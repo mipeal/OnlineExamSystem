@@ -45,7 +45,7 @@ namespace Models
         [DataType(DataType.Date)]
         public DateTime ExamCreated { get; set; }
 
-        public ICollection<Question> Questions { get; set; }
+        public ICollection<QuestionBank> Questions { get; set; }
         public ICollection<Participant> Participants { get; set; }
     }
 

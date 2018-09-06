@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class Question
+    public class QuestionBank
     {
         [Key]
         public int Id { get; set; }
@@ -17,7 +17,7 @@ namespace Models
         [Required]
         [StringLength(50)]
         [DataType(DataType.Text)]
-        public string Name { get; set; }
+        public string Question { get; set; }
         [Required]
         public bool Type { get; set; }
         [Required]
