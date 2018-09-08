@@ -34,19 +34,15 @@ namespace Models
         [Required]
         [DataType(DataType.Duration)]
         public TimeSpan Duration { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime ExamCreated { get; set; }
         [Required]
         public int CourseId { get; set; }
         [ForeignKey("CourseId")]
         public Course Course { get; set; }
-        [Required]
-        public int OrganizationId { get; set; }
-        [ForeignKey("OrganizationId")]
-        public Organization Organization { get; set; }
-        [DataType(DataType.Date)]
-        public DateTime ExamCreated { get; set; }
 
-        public ICollection<QuestionBank> Questions { get; set; }
         public ICollection<Participant> Participants { get; set; }
+        public ICollection<QuestionBank> Questions { get; set; }
     }
 
 }

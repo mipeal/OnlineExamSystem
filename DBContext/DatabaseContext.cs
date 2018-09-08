@@ -16,7 +16,16 @@ namespace DBContext
         public DbSet<Organization> Organizations { get; set; }
         public DbSet<Participant> Participants { get; set; }
         public DbSet<QuestionBank> QuestionBanks { get; set; }
-        public DbSet<Tag> Tags { get; set; }
         public DbSet<Trainer> Trainers { get; set; }
+        public DbSet<ScheduleExam> ScheduleExams { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Batch>().HasIndex(x => x.No).IsUnique();
+            modelBuilder.Entity<Course>().HasIndex(x=>x.Code).IsUnique();
+            modelBuilder.Entity<Exam>().HasIndex(x => x.Code).IsUnique();
+            modelBuilder.Entity<Organization>().HasIndex(x => x.Code).IsUnique();
+            modelBuilder.Entity<Participant>().HasIndex(x => x.RegNo).IsUnique();
+            modelBuilder.Entity<Trainer>().HasIndex(x => x.Code).IsUnique();
+        }
     }
 }

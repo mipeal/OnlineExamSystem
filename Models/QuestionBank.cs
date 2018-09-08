@@ -38,9 +38,5 @@ namespace Models
         public int CourseId { get; set; }
         [ForeignKey("CourseId")]
         public Course Course { get; set; }
-        [Required]
-        public int OrganizationId { get; set; }
-        [ForeignKey("OrganizationId")]
-        public Organization Organization { get; set; }
     }
 }

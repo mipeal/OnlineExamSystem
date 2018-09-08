@@ -48,6 +48,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseContext.cs" />
+    <Compile Include="Migrations\201809081339186_Initial.cs" />
+    <Compile Include="Migrations\201809081339186_Initial.Designer.cs">
+      <DependentUpon>201809081339186_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809081425202_AddedUniqueConstraints.cs" />
+    <Compile Include="Migrations\201809081425202_AddedUniqueConstraints.Designer.cs">
+      <DependentUpon>201809081425202_AddedUniqueConstraints.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -59,6 +68,14 @@
       <Project>{2A14CB52-B2E3-4996-A9D9-2D4431AA2591}</Project>
       <Name>Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201809081339186_Initial.resx">
+      <DependentUpon>201809081339186_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809081425202_AddedUniqueConstraints.resx">
+      <DependentUpon>201809081425202_AddedUniqueConstraints.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

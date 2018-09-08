@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,15 +10,15 @@ using Models;
 
 namespace Repository
 {
-    class CourseRepository
+    public class CourseRepository
     {
         DatabaseContext db = new DatabaseContext();
-
+        
         public bool Add(Course course)
         {
-            db.Courses.Add(course);
-            bool isAdded = db.SaveChanges() > 0;
-            return isAdded;
+                db.Courses.Add(course);
+                bool isAdded = db.SaveChanges() > 0;
+                return isAdded;
         }
 
         public List<Course> GetAll()

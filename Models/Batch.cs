@@ -27,13 +27,10 @@ namespace Models
         [DataType(DataType.Date)]
         public DateTime EndDate { get; set; }
         [Required]
-        public int OrganizationId { get; set; }
-        [ForeignKey("OrganizationId")]
-        public Organization Organization { get; set; }
-        [Required]
         public int CourseId { get; set; }
         [ForeignKey("CourseId")]
         public Course Course { get; set; }
+
         public ICollection<Participant> Participants { get; set; }
         public ICollection<Trainer> Trainers { get; set; }
         public ICollection<Exam> Exams { get; set; }

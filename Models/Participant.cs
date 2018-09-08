@@ -55,17 +55,10 @@ namespace Models
         [Required]
         public byte[] Image { get; set; }
         [Required]
-        public int OrganizationId { get; set; }
-        [ForeignKey("OrganizationId")]
-        public Organization Organization { get; set; }
-        [Required]
-        public int CourseId { get; set; }
-        [ForeignKey("CourseId")]
-        public Course Course { get; set; }
-        [Required]
         public int BatchId { get; set; }
         [ForeignKey("BatchId")]
         public Batch Batch { get; set; }
+
         public ICollection<Exam> Exams { get; set; }
     }
 }
