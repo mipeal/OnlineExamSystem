@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Models
 {
@@ -39,11 +40,14 @@ namespace Models
         [ForeignKey("OrganizationId")]
         public Organization Organization { get; set; }
         [NotMapped]
+        public ICollection<Organization> Organizations { get; set; }
+        [NotMapped]
         public ICollection<Exam> Exams { get; set; }
         [NotMapped]
         public ICollection<Participant> Participants { get; set; }
         [NotMapped]
         public ICollection<Trainer> Trainers { get; set; }
-        
+        [NotMapped]
+        public List<SelectListItem> OrganizationSelectListItems { get; set; }
     }
 }

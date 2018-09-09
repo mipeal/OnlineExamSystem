@@ -111,6 +111,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\todc-bootstrap.css.map" />
     <Content Include="Content\todc-bootstrap.min.css.map" />
+    <Content Include="Scripts\AppScripts\CourseDetail.js" />
+    <Content Include="Scripts\AppScripts\OrganizationDetail.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -167,7 +169,7 @@
     <None Include="packages.config" />
     <Content Include="Views\Organization\Entry.cshtml" />
     <Content Include="Views\Course\Entry.cshtml" />
-    <Content Include="Views\Course\Information.cshtml" />
+    <Content Include="Views\Course\Edit.cshtml" />
     <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.0.0.min.map" />
     <Content Include="Scripts\umd\popper.min.js.map" />

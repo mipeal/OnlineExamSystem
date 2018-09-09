@@ -16,17 +16,17 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-<div class="container">
-    <div class="panel col-lg-12">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Course Information</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </nav>
-            <hr/>
+    <div class="container">
+        <div class="panel col-lg-12">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">Course Information</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </nav>
+            <hr />
             <div class="panel-body">
-                @Html.ValidationSummary(true, null, htmlAttributes: new {@class = "alert alert-danger"})
+                @Html.ValidationSummary(true, null, htmlAttributes: new { @class = "alert alert-danger" })
                 @if (ViewBag.Message == "Saved")
                 {
                     <div class="alert alert-success" role="alert">
@@ -41,57 +41,57 @@
                 }
                 <form class="form-horizontal" method="post">
                     <div class="form-group">
-                        @Html.LabelFor(c => c.Organization, htmlAttributes: new {@class = "col-md-2"})
+                        @Html.LabelFor(c => c.Organization, htmlAttributes: new { @class = "col-md-2" })
                         <div class="col-md-10">
-                            @Html.DropDownListFor(x => Model.OrganizationId, new SelectList(ViewBag.OrganizationList, "Id", "Name"), htmlAttributes: new {@class = "form-control"})
-                            @Html.ValidationMessageFor(c => c.Organization, null, htmlAttributes: new {@class = "text-muted text-danger"})
+                            @Html.DropDownListFor(c => c.OrganizationId,Model.OrganizationSelectListItems, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(c => c.Organization, null, htmlAttributes: new { @class = "text-muted text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(c => c.Name, htmlAttributes: new {@class = "col-md-2"})
+                        @Html.LabelFor(c => c.Name, htmlAttributes: new { @class = "col-md-2" })
                         <div class="col-md-10">
-                            @Html.TextBoxFor(c => c.Name, htmlAttributes: new {@class = "form-control"})
-                            @Html.ValidationMessageFor(c => c.Name, null, htmlAttributes: new {@class = "text-muted text-danger"})
+                            @Html.TextBoxFor(c => c.Name, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(c => c.Name, null, htmlAttributes: new { @class = "text-muted text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(c => c.Code, htmlAttributes: new {@class = "col-md-2"})
+                        @Html.LabelFor(c => c.Code, htmlAttributes: new { @class = "col-md-2" })
                         <div class="col-md-10">
-                            @Html.TextBoxFor(c => c.Code, htmlAttributes: new {@class = "form-control"})
-                            @Html.ValidationMessageFor(c => c.Code, null, htmlAttributes: new {@class = "text-danger"})
+                            @Html.TextBoxFor(c => c.Code, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(c => c.Code, null, htmlAttributes: new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(c => c.Duration, htmlAttributes: new {@class = "col-md-2"})
+                        @Html.LabelFor(c => c.Duration, htmlAttributes: new { @class = "col-md-2" })
                         <div class="col-md-10">
-                            @Html.TextBoxFor(c => c.Duration, htmlAttributes: new {@class = "form-control"})
-                            @Html.ValidationMessageFor(c => c.Duration, null, htmlAttributes: new {@class = "text-danger"})
+                            @Html.TextBoxFor(c => c.Duration, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(c => c.Duration, null, htmlAttributes: new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(c => c.Credit, htmlAttributes: new {@class = "col-md-2"})
+                        @Html.LabelFor(c => c.Credit, htmlAttributes: new { @class = "col-md-2" })
                         <div class="col-md-10">
-                            @Html.TextBoxFor(c => c.Credit, htmlAttributes: new {@class = "form-control"})
-                            @Html.ValidationMessageFor(c => c.Credit, null, htmlAttributes: new {@class = "text-danger"})
+                            @Html.TextBoxFor(c => c.Credit, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(c => c.Credit, null, htmlAttributes: new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(c => c.Outline, htmlAttributes: new {@class = "col-md-2"})
+                        @Html.LabelFor(c => c.Outline, htmlAttributes: new { @class = "col-md-2" })
                         <div class="col-md-10">
-                            @Html.TextAreaFor(c => c.Outline, htmlAttributes: new {@class = "form-control"})
-                            @Html.ValidationMessageFor(c => c.Outline, null, htmlAttributes: new {@class = "text-danger"})
+                            @Html.TextAreaFor(c => c.Outline, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(c => c.Outline, null, htmlAttributes: new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(c => c.Fees, htmlAttributes: new {@class = "col-md-2"})
+                        @Html.LabelFor(c => c.Fees, htmlAttributes: new { @class = "col-md-2" })
                         <div class="col-md-10">
-                            @Html.TextBoxFor(c => c.Fees, htmlAttributes: new {@class = "form-control"})
-                            @Html.ValidationMessageFor(c => c.Fees, null, htmlAttributes: new {@class = "text-danger"})
+                            @Html.TextBoxFor(c => c.Fees, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(c => c.Fees, null, htmlAttributes: new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <input type="submit" value="Save" class="btn btn-primary col-md-offset-11"/>
+                            <input type="submit" value="Save" class="btn btn-primary col-md-offset-11" />
                         </div>
                     </div>
                 </form>
@@ -99,6 +99,11 @@
         </div>
     </div>
     <script src="~/Scripts/bootstrap.min.js"></script>
-<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/jquery-3.0.0.slim.min.js"></script>
+    <script src="~/Scripts/popper-utils.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/AppScripts/CourseDetail.js"></script>
 </body>
 </html>
