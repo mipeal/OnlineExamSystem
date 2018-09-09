@@ -30,9 +30,13 @@ namespace Models
         public int CourseId { get; set; }
         [ForeignKey("CourseId")]
         public Course Course { get; set; }
-
+        [NotMapped]
+        public ICollection<Course> Courses { get; set; }
+        [NotMapped]
+        public ICollection<Organization> Organizations { get; set; }
         public ICollection<Participant> Participants { get; set; }
         public ICollection<Trainer> Trainers { get; set; }
+        [NotMapped]
         public ICollection<Exam> Exams { get; set; }
     }
 }

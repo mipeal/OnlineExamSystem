@@ -18,14 +18,14 @@ namespace DBContext
         public DbSet<QuestionBank> QuestionBanks { get; set; }
         public DbSet<Trainer> Trainers { get; set; }
         public DbSet<ScheduleExam> ScheduleExams { get; set; }
+        public DbSet<ExamParticipant> ExamParticipants { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Batch>().HasIndex(x => x.No).IsUnique();
-            modelBuilder.Entity<Course>().HasIndex(x=>x.Code).IsUnique();
-            modelBuilder.Entity<Exam>().HasIndex(x => x.Code).IsUnique();
-            modelBuilder.Entity<Organization>().HasIndex(x => x.Code).IsUnique();
-            modelBuilder.Entity<Participant>().HasIndex(x => x.RegNo).IsUnique();
-            modelBuilder.Entity<Trainer>().HasIndex(x => x.Code).IsUnique();
+            modelBuilder.Entity<Participant>().HasRequired(c=>c.Course).WithMany().HasForeignKey(c=>c.CourseId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<Trainer>().HasRequired(c => c.Course).WithMany().HasForeignKey(c => c.CourseId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<Exam>().HasRequired(c => c.Course).WithMany().HasForeignKey(c => c.CourseId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<QuestionBank>().HasRequired(c => c.Exam).WithMany().HasForeignKey(c => c.ExamId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<ScheduleExam>().HasRequired(c => c.Exam).WithMany().HasForeignKey(c => c.ExamId).WillCascadeOnDelete(false);
         }
     }
 }

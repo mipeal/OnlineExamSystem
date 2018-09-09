@@ -3,7 +3,7 @@ namespace DBContext.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class InitialDb : DbMigration
     {
         public override void Up()
         {
@@ -40,24 +40,18 @@ namespace DBContext.Migrations
                 .Index(t => t.OrganizationId);
             
             CreateTable(
-                "dbo.Exams",
+                "dbo.Organizations",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 50),
                         Code = c.String(nullable: false, maxLength: 15),
-                        ExamType = c.String(nullable: false, maxLength: 50),
-                        Topic = c.String(nullable: false, maxLength: 15),
-                        FullMark = c.Double(nullable: false),
-                        Duration = c.Time(nullable: false, precision: 7),
-                        ExamCreated = c.DateTime(nullable: false),
-                        CourseId = c.Int(nullable: false),
-                        Batch_Id = c.Int(),
+                        Address = c.String(nullable: false, maxLength: 250),
+                        ContactNo = c.String(nullable: false, maxLength: 15),
+                        About = c.String(nullable: false, maxLength: 250),
+                        Logo = c.Binary(),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Courses", t => t.CourseId, cascadeDelete: true)
-                .ForeignKey("dbo.Batches", t => t.Batch_Id)
-                .Index(t => t.CourseId)
-                .Index(t => t.Batch_Id);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Participants",
@@ -76,46 +70,13 @@ namespace DBContext.Migrations
                         HighestAcademic = c.String(nullable: false, maxLength: 30),
                         Image = c.Binary(nullable: false),
                         BatchId = c.Int(nullable: false),
-                        Course_Id = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Batches", t => t.BatchId, cascadeDelete: true)
-                .ForeignKey("dbo.Courses", t => t.Course_Id)
-                .Index(t => t.BatchId)
-                .Index(t => t.Course_Id);
-            
-            CreateTable(
-                "dbo.QuestionBanks",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Order = c.Int(nullable: false),
-                        Question = c.String(nullable: false, maxLength: 50),
-                        Type = c.Boolean(nullable: false),
-                        Answer = c.String(nullable: false, maxLength: 30),
-                        Mark = c.Double(nullable: false),
-                        ExamId = c.Int(nullable: false),
                         CourseId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Courses", t => t.CourseId, cascadeDelete: true)
-                .ForeignKey("dbo.Exams", t => t.ExamId, cascadeDelete: false)
-                .Index(t => t.ExamId)
+                .ForeignKey("dbo.Batches", t => t.BatchId, cascadeDelete: true)
+                .ForeignKey("dbo.Courses", t => t.CourseId)
+                .Index(t => t.BatchId)
                 .Index(t => t.CourseId);
-            
-            CreateTable(
-                "dbo.Organizations",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 50),
-                        Code = c.String(nullable: false, maxLength: 15),
-                        Address = c.String(nullable: false, maxLength: 250),
-                        ContactNo = c.String(nullable: false, maxLength: 15),
-                        About = c.String(nullable: false, maxLength: 250),
-                        Logo = c.Binary(),
-                    })
-                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Trainers",
@@ -137,9 +98,73 @@ namespace DBContext.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Batches", t => t.BatchId, cascadeDelete: true)
-                .ForeignKey("dbo.Courses", t => t.CourseId, cascadeDelete: false)
+                .ForeignKey("dbo.Courses", t => t.CourseId)
                 .Index(t => t.CourseId)
                 .Index(t => t.BatchId);
+            
+            CreateTable(
+                "dbo.ExamParticipants",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ExamId = c.Int(nullable: false),
+                        ParticipantId = c.Int(nullable: false),
+                        Marks = c.Double(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Exams", t => t.ExamId, cascadeDelete: true)
+                .ForeignKey("dbo.Participants", t => t.ParticipantId, cascadeDelete: true)
+                .Index(t => t.ExamId)
+                .Index(t => t.ParticipantId);
+            
+            CreateTable(
+                "dbo.Exams",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Serial = c.Int(nullable: false),
+                        Code = c.String(nullable: false, maxLength: 15),
+                        ExamType = c.String(nullable: false, maxLength: 50),
+                        Topic = c.String(nullable: false, maxLength: 15),
+                        FullMark = c.Double(nullable: false),
+                        Duration = c.Time(nullable: false, precision: 7),
+                        ExamCreated = c.DateTime(nullable: false),
+                        CourseId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Courses", t => t.CourseId)
+                .Index(t => t.CourseId);
+            
+            CreateTable(
+                "dbo.QuestionBanks",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Order = c.Int(nullable: false),
+                        Question = c.String(nullable: false, maxLength: 50),
+                        Type = c.Boolean(nullable: false),
+                        Answer = c.String(nullable: false, maxLength: 30),
+                        Mark = c.Double(nullable: false),
+                        ExamId = c.Int(nullable: false),
+                        CourseId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Courses", t => t.CourseId, cascadeDelete: true)
+                .ForeignKey("dbo.Exams", t => t.ExamId)
+                .Index(t => t.ExamId)
+                .Index(t => t.CourseId);
+            
+            CreateTable(
+                "dbo.Options",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Options = c.String(nullable: false, maxLength: 30),
+                        QuestionId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.QuestionBanks", t => t.QuestionId, cascadeDelete: true)
+                .Index(t => t.QuestionId);
             
             CreateTable(
                 "dbo.ScheduleExams",
@@ -152,22 +177,9 @@ namespace DBContext.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Batches", t => t.BatchId, cascadeDelete: true)
-                .ForeignKey("dbo.Exams", t => t.ExamId, cascadeDelete: false)
+                .ForeignKey("dbo.Exams", t => t.ExamId)
                 .Index(t => t.BatchId)
                 .Index(t => t.ExamId);
-            
-            CreateTable(
-                "dbo.ParticipantExams",
-                c => new
-                    {
-                        Participant_Id = c.Int(nullable: false),
-                        Exam_Id = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.Participant_Id, t.Exam_Id })
-                .ForeignKey("dbo.Participants", t => t.Participant_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Exams", t => t.Exam_Id, cascadeDelete: false)
-                .Index(t => t.Participant_Id)
-                .Index(t => t.Exam_Id);
             
         }
         
@@ -175,39 +187,40 @@ namespace DBContext.Migrations
         {
             DropForeignKey("dbo.ScheduleExams", "ExamId", "dbo.Exams");
             DropForeignKey("dbo.ScheduleExams", "BatchId", "dbo.Batches");
-            DropForeignKey("dbo.Exams", "Batch_Id", "dbo.Batches");
-            DropForeignKey("dbo.Trainers", "CourseId", "dbo.Courses");
-            DropForeignKey("dbo.Trainers", "BatchId", "dbo.Batches");
-            DropForeignKey("dbo.Participants", "Course_Id", "dbo.Courses");
-            DropForeignKey("dbo.Courses", "OrganizationId", "dbo.Organizations");
+            DropForeignKey("dbo.Options", "QuestionId", "dbo.QuestionBanks");
             DropForeignKey("dbo.QuestionBanks", "ExamId", "dbo.Exams");
             DropForeignKey("dbo.QuestionBanks", "CourseId", "dbo.Courses");
-            DropForeignKey("dbo.ParticipantExams", "Exam_Id", "dbo.Exams");
-            DropForeignKey("dbo.ParticipantExams", "Participant_Id", "dbo.Participants");
-            DropForeignKey("dbo.Participants", "BatchId", "dbo.Batches");
+            DropForeignKey("dbo.ExamParticipants", "ParticipantId", "dbo.Participants");
+            DropForeignKey("dbo.ExamParticipants", "ExamId", "dbo.Exams");
             DropForeignKey("dbo.Exams", "CourseId", "dbo.Courses");
+            DropForeignKey("dbo.Trainers", "CourseId", "dbo.Courses");
+            DropForeignKey("dbo.Trainers", "BatchId", "dbo.Batches");
+            DropForeignKey("dbo.Participants", "CourseId", "dbo.Courses");
+            DropForeignKey("dbo.Participants", "BatchId", "dbo.Batches");
             DropForeignKey("dbo.Batches", "CourseId", "dbo.Courses");
-            DropIndex("dbo.ParticipantExams", new[] { "Exam_Id" });
-            DropIndex("dbo.ParticipantExams", new[] { "Participant_Id" });
+            DropForeignKey("dbo.Courses", "OrganizationId", "dbo.Organizations");
             DropIndex("dbo.ScheduleExams", new[] { "ExamId" });
             DropIndex("dbo.ScheduleExams", new[] { "BatchId" });
-            DropIndex("dbo.Trainers", new[] { "BatchId" });
-            DropIndex("dbo.Trainers", new[] { "CourseId" });
+            DropIndex("dbo.Options", new[] { "QuestionId" });
             DropIndex("dbo.QuestionBanks", new[] { "CourseId" });
             DropIndex("dbo.QuestionBanks", new[] { "ExamId" });
-            DropIndex("dbo.Participants", new[] { "Course_Id" });
-            DropIndex("dbo.Participants", new[] { "BatchId" });
-            DropIndex("dbo.Exams", new[] { "Batch_Id" });
             DropIndex("dbo.Exams", new[] { "CourseId" });
+            DropIndex("dbo.ExamParticipants", new[] { "ParticipantId" });
+            DropIndex("dbo.ExamParticipants", new[] { "ExamId" });
+            DropIndex("dbo.Trainers", new[] { "BatchId" });
+            DropIndex("dbo.Trainers", new[] { "CourseId" });
+            DropIndex("dbo.Participants", new[] { "CourseId" });
+            DropIndex("dbo.Participants", new[] { "BatchId" });
             DropIndex("dbo.Courses", new[] { "OrganizationId" });
             DropIndex("dbo.Batches", new[] { "CourseId" });
-            DropTable("dbo.ParticipantExams");
             DropTable("dbo.ScheduleExams");
-            DropTable("dbo.Trainers");
-            DropTable("dbo.Organizations");
+            DropTable("dbo.Options");
             DropTable("dbo.QuestionBanks");
-            DropTable("dbo.Participants");
             DropTable("dbo.Exams");
+            DropTable("dbo.ExamParticipants");
+            DropTable("dbo.Trainers");
+            DropTable("dbo.Participants");
+            DropTable("dbo.Organizations");
             DropTable("dbo.Courses");
             DropTable("dbo.Batches");
         }

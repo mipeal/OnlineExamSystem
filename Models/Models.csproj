@@ -44,6 +44,8 @@
     <Compile Include="Batch.cs" />
     <Compile Include="Course.cs" />
     <Compile Include="Exam.cs" />
+    <Compile Include="ExamParticipant.cs" />
+    <Compile Include="Option.cs" />
     <Compile Include="Organization.cs" />
     <Compile Include="Participant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

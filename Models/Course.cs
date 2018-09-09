@@ -38,9 +38,11 @@ namespace Models
         public int OrganizationId { get; set; }
         [ForeignKey("OrganizationId")]
         public Organization Organization { get; set; }
-        public ICollection<Batch> Batches { get; set; }
+        [NotMapped]
         public ICollection<Exam> Exams { get; set; }
+        [NotMapped]
         public ICollection<Participant> Participants { get; set; }
+        [NotMapped]
         public ICollection<Trainer> Trainers { get; set; }
         
     }

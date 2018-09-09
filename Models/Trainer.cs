@@ -55,6 +55,12 @@ namespace Models
         public int BatchId { get; set; }
         [ForeignKey("BatchId")]
         public Batch Batch { get; set; }
+        [NotMapped]
+        public ICollection<Organization> Organizations { get; set; }
+        [NotMapped]
+        public ICollection<Course> Courses { get; set; }
+        [NotMapped]
+        public ICollection<Batch> Batches { get; set; }
 
     }
 }

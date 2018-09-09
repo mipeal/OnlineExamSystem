@@ -23,10 +23,6 @@ namespace Models
         [Required]
         [StringLength(30)]
         [DataType(DataType.Text)]
-        public List<string> Options { get; set; }
-        [Required]
-        [StringLength(30)]
-        [DataType(DataType.Text)]
         public string Answer { get; set; }
         [Required]
         public double Mark { get; set; }
@@ -38,5 +34,13 @@ namespace Models
         public int CourseId { get; set; }
         [ForeignKey("CourseId")]
         public Course Course { get; set; }
+
+        public ICollection<Option> Options { get; set; }
+        [NotMapped]
+        public ICollection<Organization> Organizations { get; set; }
+        [NotMapped]
+        public ICollection<Course> Courses { get; set; }
+        [NotMapped]
+        public ICollection<Exam> Exams { get; set; }
     }
 }
