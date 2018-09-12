@@ -11,10 +11,6 @@ namespace Models
 {
     public class Exam
     {
-        public Exam()
-        {
-            ExamCreated = DateTime.Now;
-        }
         [Key]
         public int Id { get; set; }
         [Required]
@@ -41,15 +37,7 @@ namespace Models
         [Required]
         public int CourseId { get; set; }
         [ForeignKey("CourseId")]
-        public Course Course { get; set; }
-        [NotMapped]
-        public ICollection<Organization> Organizations { get; set; }
-        [NotMapped]
-        public ICollection<Course> Courses { get; set; }
-        [NotMapped]
-        public ICollection<Participant> Participants { get; set; }
-        [NotMapped]
-        public ICollection<QuestionBank> Questions { get; set; }
+        public virtual Course Course { get; set; }
     }
 
 }

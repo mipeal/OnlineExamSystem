@@ -12,6 +12,7 @@ namespace BLL
     {
         CourseRepository _courseRepository=new CourseRepository();
         OrganizationRepository _organizationRepository=new OrganizationRepository();
+        private TrainerRepository _trainerRepository = new TrainerRepository();
         public bool Add(Course course)
         {
             return _courseRepository.Add(course);
@@ -26,6 +27,17 @@ namespace BLL
         public bool Update(Course course)
         {
             return _courseRepository.Update(course);
+        }
+
+        public Organization GetOrganizationById(int id)
+        {
+            var organization = _organizationRepository.GetById(id);
+            return organization;
+        }
+
+        public List<Trainer> GetAllTrainers()
+        {
+            return _trainerRepository.GetAll();
         }
     }
 }

@@ -16,38 +16,29 @@ namespace Models
         [Key]
         public int Id { get; set; }
         [Required]
-        [StringLength(50, MinimumLength = 5, ErrorMessage = "Please provide a name using 5-50 characters!")]
+        [StringLength(50)]
         [DataType(DataType.Text)]
         public string Name { get; set; }
         [Required]
-        [StringLength(15, MinimumLength = 3, ErrorMessage = "Code length must be atleast 8 characters!")]
+        [StringLength(15)]
         [DataType(DataType.Text)]
         public string Code { get; set; }
-        [Required(ErrorMessage = "Please provide the duration of your course!")]
+        [Required]
         [DataType(DataType.Duration)]
         public double Duration { get; set; }
-        [Required(ErrorMessage = "Please provide the credit of your course!")]
+        [Required]
         public int Credit { get; set; }
         [Required]
         [StringLength(250, MinimumLength = 20, ErrorMessage = "Please provide outline of your course with minimum 20 characters!")]
         [DataType(DataType.MultilineText)]
         public string Outline { get; set; }
-        [Required(ErrorMessage = "Please provide the fees of your course!")]
+        [Required]
         [DataType(DataType.Currency)]
         public double Fees { get; set; }
         [Required]
         public int OrganizationId { get; set; }
         [ForeignKey("OrganizationId")]
-        public Organization Organization { get; set; }
-        [NotMapped]
-        public ICollection<Organization> Organizations { get; set; }
-        [NotMapped]
-        public ICollection<Exam> Exams { get; set; }
-        [NotMapped]
-        public ICollection<Participant> Participants { get; set; }
-        [NotMapped]
-        public ICollection<Trainer> Trainers { get; set; }
-        [NotMapped]
-        public List<SelectListItem> OrganizationSelectListItems { get; set; }
+        public virtual Organization Organization { get; set; }
+        
     }
 }

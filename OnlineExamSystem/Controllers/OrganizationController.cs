@@ -22,6 +22,7 @@ namespace OnlineExamSystem.Controllers
         }
         //POST: Organization
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Entry(Organization organization)
         {
             if (ModelState.IsValid)

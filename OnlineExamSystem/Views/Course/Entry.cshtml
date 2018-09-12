@@ -1,109 +1,105 @@
-﻿@model Models.Course
+﻿@model OnlineExamSystem.Models.CourseVM.CourseCreateVm
 @{
-    Layout = null;
+    ViewBag.Title = "Course Entry";
+
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Online Exam System</title>
-    <link href="~/App_Data/Images/checkmark.png" rel="icon" type="image/ico" />
-    <link href="~/Content/todc-bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-grid.min.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-reboot.min.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-</head>
-<body>
-    <div class="container">
-        <div class="panel col-lg-12">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">Course Information</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </nav>
-            <hr />
-            <div class="panel-body">
-                @Html.ValidationSummary(true, null, htmlAttributes: new { @class = "alert alert-danger" })
-                @if (ViewBag.Message == "Saved")
-                {
-                    <div class="alert alert-success" role="alert">
-                        Course has been saved succesfully!
+<div class="page-heading">
+    <h1 class="page-title">Organization Entry</h1>
+</div>
+<div class="page-content fade-in-up">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Entry Form</div>
+                    <div class="ibox-tools">
+                        <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
+                        <a class="fullscreen-link"><i class="fa fa-expand"></i></a>
                     </div>
-                }
-                else if (ViewBag.Message == "Failed")
-                {
-                    <div class="alert alert-warning" role="alert">
-                        Please! Try again later!
-                    </div>
-                }
-                <form class="form-horizontal" method="post">
-                    <div class="form-group">
-                        @Html.LabelFor(c => c.Organization, htmlAttributes: new { @class = "col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownListFor(c => c.OrganizationId,Model.OrganizationSelectListItems, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(c => c.Organization, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                </div>
+                <div class="ibox-body">
+                    <form class="form-horizontal" method="post">
+                        @Html.ValidationSummary(true, null, htmlAttributes: new { @class = "alert alert-danger", @role = "alert" })
+                        @if (ViewBag.Message == "Saved")
+                        {
+                            <div class="alert alert-success" role="alert">
+                                Organization has been saved succesfully!
+                            </div>
+                        }
+                        else if (ViewBag.Message == "Failed")
+                        {
+                            <div class="alert alert-warning" role="alert">
+                                Please! Try again later!
+                            </div>
+                        }
+                        @Html.AntiForgeryToken()
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Organization, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-md-9">
+                                <input type="hidden" class="hidden" name="OrganizationId" id="OrganizationIdEntry" />
+                                <select class="form-control input-sm" id="Organizations" name="Organizations">
+                                    <option>Select Organization</option>
+                                </select>
+                                @Html.ValidationMessageFor(c => c.Organization, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(c => c.Name, htmlAttributes: new { @class = "col-md-2" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(c => c.Name, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(c => c.Name, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Name, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(c => c.Name, htmlAttributes: new { @class = "form-control", @placeholder = "Name" })
+                                @Html.ValidationMessageFor(c => c.Name, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(c => c.Code, htmlAttributes: new { @class = "col-md-2" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(c => c.Code, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(c => c.Code, null, htmlAttributes: new { @class = "text-danger" })
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Code, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(c => c.Code, htmlAttributes: new { @class = "form-control", @placeholder = "Code" })
+                                @Html.ValidationMessageFor(c => c.Code, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(c => c.Duration, htmlAttributes: new { @class = "col-md-2" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(c => c.Duration, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(c => c.Duration, null, htmlAttributes: new { @class = "text-danger" })
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Duration, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    @Html.TextBoxFor(c => c.Duration, htmlAttributes: new { @class = "form-control", @placeholder = "Duration" })
+                                    <div class="input-group-addon bg-white">Months</div>
+                                </div>
+                                @Html.ValidationMessageFor(c => c.Duration, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(c => c.Credit, htmlAttributes: new { @class = "col-md-2" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(c => c.Credit, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(c => c.Credit, null, htmlAttributes: new { @class = "text-danger" })
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Credit, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(c => c.Credit, htmlAttributes: new { @class = "form-control", @placeholder = "Credit" })
+                                @Html.ValidationMessageFor(c => c.Credit, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(c => c.Outline, htmlAttributes: new { @class = "col-md-2" })
-                        <div class="col-md-10">
-                            @Html.TextAreaFor(c => c.Outline, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(c => c.Outline, null, htmlAttributes: new { @class = "text-danger" })
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Fees, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <div class="input-group-addon bg-white">৳</div>
+                                    @Html.TextBoxFor(c => c.Fees, htmlAttributes: new { @class = "form-control", @placeholder = "Fees" })
+                                </div>
+                                @Html.ValidationMessageFor(c => c.Fees, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(c => c.Fees, htmlAttributes: new { @class = "col-md-2" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(c => c.Fees, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(c => c.Fees, null, htmlAttributes: new { @class = "text-danger" })
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Outline, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.TextAreaFor(c => c.Outline, htmlAttributes: new { @class = "form-control", @placeholder = "Outline", @rows = "4" })
+                                @Html.ValidationMessageFor(c => c.Outline, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <input type="submit" value="Save" class="btn btn-primary col-md-offset-11" />
+                        <div class="form-group row">
+                            <div class="col-sm-9 ml-sm-auto">
+                                <input type="submit" value="Save" class="btn btn-primary" id="CourseSave" />
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
-    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
-    <script src="~/Scripts/jquery-3.0.0.slim.min.js"></script>
-    <script src="~/Scripts/popper-utils.min.js"></script>
-    <script src="~/Scripts/popper.min.js"></script>
-    <script src="~/Scripts/AppScripts/CourseDetail.js"></script>
-</body>
-</html>
+</div>
