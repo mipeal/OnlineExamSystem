@@ -54,6 +54,7 @@
     <Compile Include="ParticipantRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionBankRepository.cs" />
+    <Compile Include="TagRepository.cs" />
     <Compile Include="TrainerRepository.cs" />
   </ItemGroup>
   <ItemGroup>

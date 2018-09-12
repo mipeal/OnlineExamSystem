@@ -52,6 +52,10 @@
     <Compile Include="Migrations\201809091624265_InitialDb.Designer.cs">
       <DependentUpon>201809091624265_InitialDb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809121302048_CourseUpdated_TagAdded.cs" />
+    <Compile Include="Migrations\201809121302048_CourseUpdated_TagAdded.Designer.cs">
+      <DependentUpon>201809121302048_CourseUpdated_TagAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -68,6 +72,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201809091624265_InitialDb.resx">
       <DependentUpon>201809091624265_InitialDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809121302048_CourseUpdated_TagAdded.resx">
+      <DependentUpon>201809121302048_CourseUpdated_TagAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

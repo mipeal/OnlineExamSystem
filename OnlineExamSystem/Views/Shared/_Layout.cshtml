@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web.Script.Services
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,15 +8,15 @@
     <meta name="viewport" content="width=device-width initial-scale=1.0">
     <title>Online Exam Portal</title>
     <!-- GLOBAL MAINLY STYLES-->
-    <link href="~/dist/assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/dist/assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/dist/assets/vendors/themify-icons/css/themify-icons.css" rel="stylesheet" />
+    <link href="~/dist/assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="~/dist/assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="~/dist/assets/vendors/themify-icons/css/themify-icons.css" rel="stylesheet"/>
     <!-- PLUGINS STYLES-->
     <!-- THEME STYLES-->
-    <link href="~/dist/assets/css/main.min.css" rel="stylesheet" />
+    <link href="~/dist/assets/css/main.min.css" rel="stylesheet"/>
     <!-- PAGE LEVEL STYLES-->
 
-    @RenderSection("styles", required: false)
+    @RenderSection("styles", false)
 </head>
 
 <body class="fixed-navbar">
@@ -35,12 +36,16 @@
                 <!-- START TOP-LEFT TOOLBAR-->
                 <ul class="nav navbar-toolbar">
                     <li>
-                        <a class="nav-link sidebar-toggler js-sidebar-toggler"><i class="ti-menu"></i></a>
+                        <a class="nav-link sidebar-toggler js-sidebar-toggler">
+                            <i class="ti-menu"></i>
+                        </a>
                     </li>
                     <li>
                         <form class="navbar-search" action="javascript:;">
                             <div class="rel">
-                                <span class="search-icon"><i class="ti-search"></i></span>
+                                <span class="search-icon">
+                                    <i class="ti-search"></i>
+                                </span>
                                 <input class="form-control" placeholder="Search here...">
                             </div>
                         </form>
@@ -112,7 +117,11 @@
                         </ul>
                     </li>
                     <li class="dropdown dropdown-notification">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o rel"><span class="notify-signal"></span></i></a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bell-o rel">
+                                <span class="notify-signal"></span>
+                            </i>
+                        </a>
                         <ul class="dropdown-menu dropdown-menu-right dropdown-menu-media">
                             <li class="dropdown-menu-header">
                                 <div>
@@ -125,7 +134,9 @@
                                     <a class="list-group-item">
                                         <div class="media">
                                             <div class="media-img">
-                                                <span class="badge badge-success badge-big"><i class="fa fa-check"></i></span>
+                                                <span class="badge badge-success badge-big">
+                                                    <i class="fa fa-check"></i>
+                                                </span>
                                             </div>
                                             <div class="media-body">
                                                 <div class="font-13">4 task compiled</div><small class="text-muted">22 mins</small>
@@ -135,7 +146,9 @@
                                     <a class="list-group-item">
                                         <div class="media">
                                             <div class="media-img">
-                                                <span class="badge badge-default badge-big"><i class="fa fa-shopping-basket"></i></span>
+                                                <span class="badge badge-default badge-big">
+                                                    <i class="fa fa-shopping-basket"></i>
+                                                </span>
                                             </div>
                                             <div class="media-body">
                                                 <div class="font-13">You have 12 new orders</div><small class="text-muted">40 mins</small>
@@ -145,7 +158,9 @@
                                     <a class="list-group-item">
                                         <div class="media">
                                             <div class="media-img">
-                                                <span class="badge badge-danger badge-big"><i class="fa fa-bolt"></i></span>
+                                                <span class="badge badge-danger badge-big">
+                                                    <i class="fa fa-bolt"></i>
+                                                </span>
                                             </div>
                                             <div class="media-body">
                                                 <div class="font-13">Server #7 rebooted</div><small class="text-muted">2 hrs</small>
@@ -155,7 +170,9 @@
                                     <a class="list-group-item">
                                         <div class="media">
                                             <div class="media-img">
-                                                <span class="badge badge-success badge-big"><i class="fa fa-user"></i></span>
+                                                <span class="badge badge-success badge-big">
+                                                    <i class="fa fa-user"></i>
+                                                </span>
                                             </div>
                                             <div class="media-body">
                                                 <div class="font-13">New user registered</div><small class="text-muted">2 hrs</small>
@@ -414,13 +431,15 @@
     <script src="~/dist/assets/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="~/dist/assets/vendors/metisMenu/dist/metisMenu.min.js" type="text/javascript"></script>
     <script src="~/dist/assets/vendors/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-    <script language="JavaScript" type="text/javascript" src="~/Scripts/AppScripts/CourseDetail.js"></script>
+    @*<script language="JavaScript" type="text/javascript" src="~/Scripts/AppScripts/CourseDetail.js"></script>*@
     <!-- PAGE LEVEL PLUGINS-->
     <!-- CORE SCRIPTS-->
     <script src="~/dist/assets/js/app.min.js" type="text/javascript"></script>
     <!-- PAGE LEVEL SCRIPTS-->
 
-    @RenderSection("scripts", required: false)
+    @RenderSection("scripts", false)
+
+    <script src="~/Scripts/AppScripts/CourseDetail.js"></script>
 </body>
 
 </html>

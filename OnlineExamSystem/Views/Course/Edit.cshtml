@@ -1,147 +1,114 @@
-﻿@model Models.Course
+﻿@model OnlineExamSystem.Models.CourseVM.CourseUpdateVm
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Online Exam System</title>
-    <link href="~/App_Data/Images/checkmark.png" rel="icon" type="image/ico" />
-    <link href="~/Content/todc-bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-grid.min.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-reboot.min.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
-    <script src="~/Scripts/popper-utils.min.js"></script>
-    <script src="~/Scripts/popper.min.js"></script>
-</head>
-<body>
-<nav class="navbar navbar-light bg-light">
-    <span class="navbar-brand mb-0 h1">Course Information</span>
-</nav>
-<div class=" col-lg-12">
-    <div class="card">
-        <div class="card-header card-header-tabs card-header-warning">
-            <ul class="nav justify-content-center" data-tabs="tabs">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#basicInfo" data-toggle="tab">
-                        Basic Info
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#outline" data-toggle="tab">
-                        Outline
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#exams" data-toggle="tab">
-                        Exams
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#participants" data-toggle="tab">
-                        Participants
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#trainers" data-toggle="tab">
-                        Trainers
-                    </a>
-                </li>
-            </ul>
-        </div>
-            <div class="card-body">
-                <div class="tab-content">
-                    <form class="tab-pane active" id="basicInfo" method="post">
-                        <input type="hidden" name="status" value="update" />
-                        @Html.ValidationSummary(true, null, htmlAttributes: new { @class = "alert alert-danger" })
+<div class="page-heading">
+    <h1 class="page-title">Course Edit</h1>
+    <div class="clf">
+        <ul class="nav nav-tabs tabs-line nav-fill">
+            <li class="nav-item">
+                <button type="button" id="GetCourseUpdate" class="nav-link active col-lg-12" data-toggle="tab"><i class="fa fa-line-chart"></i> Basic Information</button>
+            </li>
+            <li class="nav-item">
+                <button type="button" id="GetCourseAssignTrainer" class="nav-link col-lg-12" data-toggle="tab"><i class="fa fa-heartbeat"></i> Assign Trainers</button>
+            </li>
+            <li class="nav-item">
+                <button type="button" id="GetCourseCreateExam" class="nav-link col-lg-12" data-toggle="tab"><i class="fa fa-life-ring"></i> Create Exams</button>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="page-content fade-in-up ">
+    <div class="row" id="LoadCourseEditPartial">
+        <div id="BasicInfo" class="col-md-6">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Basic Information</div>
+                    <div class="ibox-tools">
+                        <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
+                        <a class="fullscreen-link"><i class="fa fa-expand"></i></a>
+                    </div>
+                </div>
+                <div class="ibox-body">
+                    <form class="form-horizontal" method="post">
+                        <input type="hidden" class="hidden" name="status" value="update"/>
+                        @Html.ValidationSummary(true, null, htmlAttributes: new {@class = "alert alert-danger alert-bordered", @role = "alert"})
                         @if (ViewBag.Message == "Updated")
                         {
                             <div class="alert alert-success" role="alert">
-                                Course has been updated succesfully!
+                                Organization has been saved succesfully!
                             </div>
                         }
-                        else
+                        else if (ViewBag.Message == "Failed")
                         {
                             <div class="alert alert-warning" role="alert">
-                                An error occured while updating!
+                                Please! Try again later!
                             </div>
                         }
-                        <form class="form-horizontal col-lg-12" method="post">
-                            <div class="form-group">
-                                @Html.LabelFor(c => c.Organization, htmlAttributes: new { @class = "col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.DropDownListFor(x => x.OrganizationId, Model.OrganizationSelectListItems, htmlAttributes: new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(c => c.Organization, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                        @Html.AntiForgeryToken()
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Organization, htmlAttributes: new {@class = "col-sm-3 col-form-label"})
+                            <div class="col-md-9">
+                                @Html.DisplayFor(c => c.Organization.Name)
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Name, "Course Name", htmlAttributes: new {@class = "col-sm-3 col-form-label"})
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(c => c.Name, htmlAttributes: new {@class = "form-control", @placeholder = "Course Name"})
+                                @Html.ValidationMessageFor(c => c.Name, null, htmlAttributes: new {@class = "text-muted text-danger"})
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Code, "Course Code", htmlAttributes: new {@class = "col-sm-3 col-form-label"})
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(c => c.Code, htmlAttributes: new {@class = "form-control", @placeholder = "Code"})
+                                @Html.ValidationMessageFor(c => c.Code, null, htmlAttributes: new {@class = "text-muted text-danger"})
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Duration, htmlAttributes: new {@class = "col-sm-3 col-form-label"})
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    @Html.TextBoxFor(c => c.Duration, htmlAttributes: new {@class = "form-control", @placeholder = "Duration"})
+                                    <div class="input-group-addon bg-white">Months</div>
                                 </div>
+                                @Html.ValidationMessageFor(c => c.Duration, null, htmlAttributes: new {@class = "text-muted text-danger"})
                             </div>
-                            <div class="form-group">
-                                @Html.LabelFor(c => c.Name, htmlAttributes: new { @class = "col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.TextBoxFor(c => c.Name, htmlAttributes: new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(c => c.Name, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Credit, htmlAttributes: new {@class = "col-sm-3 col-form-label"})
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(c => c.Credit, htmlAttributes: new {@class = "form-control", @placeholder = "Credit"})
+                                @Html.ValidationMessageFor(c => c.Credit, null, htmlAttributes: new {@class = "text-muted text-danger"})
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Fees, htmlAttributes: new {@class = "col-sm-3 col-form-label"})
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <div class="input-group-addon bg-white">৳</div>
+                                    @Html.TextBoxFor(c => c.Fees, htmlAttributes: new {@class = "form-control", @placeholder = "Fees"})
                                 </div>
+                                @Html.ValidationMessageFor(c => c.Fees, null, htmlAttributes: new {@class = "text-muted text-danger"})
                             </div>
-                            <div class="form-group">
-                                @Html.LabelFor(c => c.Code, htmlAttributes: new { @class = "col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.TextBoxFor(c => c.Code, htmlAttributes: new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(c => c.Code, null, htmlAttributes: new { @class = "text-danger" })
-                                </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Outline, htmlAttributes: new {@class = "col-sm-3 col-form-label"})
+                            <div class="col-sm-9">
+                                @Html.TextAreaFor(c => c.Outline, htmlAttributes: new {@class = "form-control", @placeholder = "Outline", @rows = "4"})
+                                @Html.ValidationMessageFor(c => c.Outline, null, htmlAttributes: new {@class = "text-muted text-danger"})
                             </div>
-                            <div class="form-group">
-                                @Html.LabelFor(c => c.Duration, htmlAttributes: new { @class = "col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.TextBoxFor(c => c.Duration, htmlAttributes: new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(c => c.Duration, null, htmlAttributes: new { @class = "text-danger" })
-                                </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-9 ml-sm-auto">
+                                <input type="submit" value="Update" class="btn btn-success" id="CourseUpdate"/>
                             </div>
-                            <div class="form-group">
-                                @Html.LabelFor(c => c.Credit, htmlAttributes: new { @class = "col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.TextBoxFor(c => c.Credit, htmlAttributes: new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(c => c.Credit, null, htmlAttributes: new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(c => c.Outline, htmlAttributes: new { @class = "col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.TextBoxFor(c => c.Outline, htmlAttributes: new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(c => c.Outline, null, htmlAttributes: new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(c => c.Fees, htmlAttributes: new { @class = "col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.TextBoxFor(c => c.Fees, htmlAttributes: new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(c => c.Fees, null, htmlAttributes: new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" value="Update" class="btn btn-success" />
-                            </div>
-                        </form>
+                        </div>
                     </form>
-                    <div class="tab-pane" id="outline">
-
-                    </div>
-                    <div class="tab-pane" id="exams">
-
-                    </div>
-                    <div class="tab-pane" id="participants">
-
-                    </div>
-                    <div class="tab-pane" id="trainers">
-
-                    </div>
                 </div>
             </div>
+        </div>
     </div>
 </div>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
-</body>
-</html>

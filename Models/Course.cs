@@ -35,6 +35,7 @@ namespace Models
         [Required]
         [DataType(DataType.Currency)]
         public double Fees { get; set; }
+        public ICollection<Tag> Tags { get; set; }
         [Required]
         public int OrganizationId { get; set; }
         [ForeignKey("OrganizationId")]

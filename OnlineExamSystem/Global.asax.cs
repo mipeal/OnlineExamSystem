@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using AutoMapper;
+using Models;
+using OnlineExamSystem.Models.CourseVM;
 
 namespace OnlineExamSystem
 {
@@ -13,6 +16,13 @@ namespace OnlineExamSystem
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            Mapper.Initialize(conf =>
+            {
+                conf.CreateMap<CourseCreateVm, Course>();
+                conf.CreateMap<CourseUpdateVm, Course>();
+                conf.CreateMap<Course, CourseUpdateVm>();
+                conf.CreateMap<Course, CourseInformationVm>();
+            });
         }
     }
 }

@@ -1,0 +1,96 @@
+﻿@model OnlineExamSystem.Models.CourseVM.CourseInformationVm
+@{
+    ViewBag.Title = "Course Information";
+}
+
+<div class="page-heading">
+    <h1 class="page-title">Course Information</h1>
+    <div class="clf">
+        <ul class="nav nav-tabs tabs-line nav-fill">
+            <li class="nav-item">
+                <button type="button" id="GetCourseUpdate" class="nav-link active col-lg-12" data-toggle="tab"><i class="fa fa-line-chart"></i> Basic Information</button>
+            </li>
+            <li class="nav-item">
+                <button type="button" id="GetCourseAssignTrainer" class="nav-link col-lg-12" data-toggle="tab"><i class="fa fa-heartbeat"></i> Assign Trainers</button>
+            </li>
+            <li class="nav-item">
+                <button type="button" id="GetCourseCreateExam" class="nav-link col-lg-12" data-toggle="tab"><i class="fa fa-life-ring"></i> Create Exams</button>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="page-content fade-in-up ">
+    <div class="row" id="LoadCourseEditPartial">
+        <div class="col-md-4">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Basic Information</div>
+                    
+                </div>
+                <div class="ibox-body">
+                    <div class="form-horizontal">
+                        @if (ViewBag.Message == "Updated")
+                        {
+                            <div class="alert alert-success" role="alert">
+                                Course has been saved succesfully!
+                            </div>
+                        }
+                        else if (ViewBag.Message == "Failed")
+                        {
+                            <div class="alert alert-warning" role="alert">
+                                Please! Try again later!
+                            </div>
+                        }
+                        @Html.AntiForgeryToken()
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Organization, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-md-9">
+                                @Html.DisplayFor(c => c.Organization.Name)
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Name, "Course Name", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(c => c.Name)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Code, "Course Code", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(c => c.Code)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Duration, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    @Html.DisplayFor(c => c.Duration)
+                                     Months
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Credit, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(c => c.Credit)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Fees, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">৳
+                                    @Html.DisplayFor(c => c.Fees)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Outline, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(c => c.Outline)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

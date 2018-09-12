@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using BLL;
 using Models;
+using OnlineExamSystem.Models.CourseVM;
 
 namespace OnlineExamSystem.Controllers
 {
@@ -12,20 +14,27 @@ namespace OnlineExamSystem.Controllers
     {
         private CourseManager _courseManager = new CourseManager();
         // GET: Course
+
+        #region Course Entry
+
         [HttpGet]
         public ActionResult Entry()
         {
-            Course course = new Course();
-            course.OrganizationSelectListItems = GetAllOrganization();
-            return View(course);
+            var model = new CourseCreateVm()
+            {
+                OrganizationSelectListItems = GetAllOrganizationSlItems(),
+                TagsSelectListItems = GetAllTagsSlItems()
+            };
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult Entry(Course course)
+        [ValidateAntiForgeryToken]
+        public ActionResult Entry(CourseCreateVm entity)
         {
-            course.OrganizationSelectListItems = GetAllOrganization();
             if (ModelState.IsValid)
             {
+                var course = Mapper.Map<Course>(entity);
                 bool isAdded = _courseManager.Add(course);
                 if (isAdded)
                 {
@@ -34,59 +43,83 @@ namespace OnlineExamSystem.Controllers
                 }
             }
             ModelState.AddModelError("","An Unknown Error Occured!");
-            return View();
+            entity.OrganizationSelectListItems = GetAllOrganizationSlItems();
+            entity.TagsSelectListItems = GetAllTagsSlItems();
+            return View(entity);
         }
+
+            #endregion
         [HttpGet]
         public ActionResult Edit(Course course)
         {
-            course.OrganizationSelectListItems = GetAllOrganization();
-            return View(course);
+            var entity = Mapper.Map<CourseUpdateVm>(course);
+            entity.Organization = _courseManager.GetOrganizationById(entity.OrganizationId);
+            return View(entity);
         }
 
         [HttpPost]
-        public ActionResult Edit(Course course, string status)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(CourseUpdateVm entity, string status)
         {
-            course.OrganizationSelectListItems = GetAllOrganization();
             if (status == "update")
             {
                 if (ModelState.IsValid)
                 {
+                    var course = Mapper.Map<Course>(entity);
                     bool isAdded = _courseManager.Update(course);
                     if (isAdded)
                     {
                         ViewBag.Message = "Updated";
-                        return View(course);
+                        return RedirectToAction("ViewInfo",course);
                     }
                     else
                     {
                         ViewBag.Message = "Failed";
-                        return View(course);
+                        return PartialView("~/Views/Shared/Course/_CourseUpdate.cshtml", entity);
                     }
                 }
             }
             ModelState.AddModelError("", "An Unknown Error Occured!");
-            return View(course);
+            return View(entity);
         }
 
-        public List<SelectListItem> GetAllOrganization()
+        public List<SelectListItem> GetAllOrganizationSlItems()
         {
             var organizations = _courseManager.GetAllOrganization();
             var slItems = new List<SelectListItem>();
             foreach (var organization in organizations)
             {
-                var sli = new SelectListItem
-                {
-                    Text = organization.Name + " - " + organization.Code,
-                    Value = organization.Id.ToString()
-                };
+                var sli = new SelectListItem();
+                sli.Text = organization.Name + " - " + organization.Code;
+                sli.Value = organization.Id.ToString();
                 slItems.Add(sli);
             }
             return slItems;
         }
-        //public JsonResult GetAllOrganization()
-        //{
-        //    var organizations = _courseManager.GetAllOrganization();
-        //    return Json(organizations);
-        //}
+        public PartialViewResult GetCourseUpdatePartial(CourseUpdateVm entity)
+        {
+            return PartialView("~/Views/Shared/Course/_CourseUpdate.cshtml", entity);
+        }
+
+        public ActionResult ViewInfo(Course course)
+        {
+            var entity = Mapper.Map<CourseInformationVm>(course);
+            entity.Organization = _courseManager.GetOrganizationById(entity.OrganizationId);
+            ViewBag.Message = "Saved";
+            return View(entity);
+        }
+        public List<SelectListItem> GetAllTagsSlItems()
+        {
+            var tags = _courseManager.GetAllTags();
+            var slItems = new List<SelectListItem>();
+            foreach (var tag in tags)
+            {
+                var sli = new SelectListItem();
+                sli.Text = tag.Name;
+                sli.Value = tag.Id.ToString();
+                slItems.Add(sli);
+            }
+            return slItems;
+        }
     }
 }

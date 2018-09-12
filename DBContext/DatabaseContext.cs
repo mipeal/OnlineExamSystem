@@ -19,6 +19,7 @@ namespace DBContext
         public DbSet<Trainer> Trainers { get; set; }
         public DbSet<ScheduleExam> ScheduleExams { get; set; }
         public DbSet<ExamParticipant> ExamParticipants { get; set; }
+        public DbSet<Tag> Tags { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Participant>().HasRequired(c=>c.Course).WithMany().HasForeignKey(c=>c.CourseId).WillCascadeOnDelete(false);

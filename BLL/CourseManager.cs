@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace BLL
         CourseRepository _courseRepository=new CourseRepository();
         OrganizationRepository _organizationRepository=new OrganizationRepository();
         private TrainerRepository _trainerRepository = new TrainerRepository();
+        TagRepository _tagRepository = new TagRepository();
         public bool Add(Course course)
         {
             return _courseRepository.Add(course);
@@ -38,6 +40,11 @@ namespace BLL
         public List<Trainer> GetAllTrainers()
         {
             return _trainerRepository.GetAll();
+        }
+
+        public List<Tag> GetAllTags()
+        {
+            return _tagRepository.GetAll();
         }
     }
 }
