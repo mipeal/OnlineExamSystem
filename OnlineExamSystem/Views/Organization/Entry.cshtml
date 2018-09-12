@@ -1,87 +1,94 @@
 ﻿@model Models.Organization
 @{
-    ViewBag.Title = "Organization Entry";
+    Layout = null;
 }
-<div class="page-heading">
-    <h1 class="page-title">Organization Entry</h1>
-</div>
-<div class="page-content fade-in-up">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="ibox">
-                <div class="ibox-head">
-                    <div class="ibox-title">Entry Form</div>
-                    <div class="ibox-tools">
-                        <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
-                        <a class="fullscreen-link"><i class="fa fa-expand"></i></a>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Online Exam System</title>
+    <link href="~/App_Data/Images/checkmark.png" rel="icon" type="image/ico" />
+    <link href="~/Content/todc-bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-grid.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-reboot.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <div class="panel col-lg-12">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Organization Information</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+            <div class="panel-body">
+                @Html.ValidationSummary(true, null, htmlAttributes: new { @class = "alert alert-danger" })
+                @if (ViewBag.Message == "Saved")
+                {
+                    <div class="alert alert-success" role="alert">
+                        Organization has been saved succesfully!
                     </div>
-                </div>
-                <div class="ibox-body">
-                    <form class="form-horizontal" method="post">  
-                        @Html.ValidationSummary(true, null, htmlAttributes: new { @class = "alert alert-danger" ,@role="alert"})
-                        @if (ViewBag.Message == "Saved")
-                        {
-                            <div class="alert alert-success" role="alert">
-                                Organization has been saved succesfully!
-                            </div>
-                        }
-                        else if (ViewBag.Message == "Failed")
-                        {
-                            <div class="alert alert-warning" role="alert">
-                                Please! Try again later!
-                            </div>
-                        }
-                        @Html.AntiForgeryToken()
-                        <div class="form-group row">
-                            @Html.LabelFor(c => c.Name,  htmlAttributes: new { @class = "col-sm-3 col-form-label" })
-                            <div class="col-sm-9">
-                                @Html.TextBoxFor(c => c.Name, htmlAttributes: new { @class = "form-control", @placeholder = "Name" })
-                                @Html.ValidationMessageFor(c => c.Name, null, htmlAttributes: new { @class = "text-muted text-danger" })
-                            </div>
+                }
+                else if (ViewBag.Message == "Failed")
+                {
+                    <div class="alert alert-warning" role="alert">
+                        Please! Try again later!
+                    </div>
+                }
+                <form class="form-horizontal" method="post">
+                    <div class="form-group">
+                        @Html.LabelFor(c => c.Name, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(c => c.Name, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(c => c.Name, null, htmlAttributes: new { @class = "text-muted text-danger" })
                         </div>
-                        <div class="form-group row">
-                            @Html.LabelFor(c => c.Code, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
-                            <div class="col-sm-9">
-                                @Html.TextBoxFor(c => c.Code, htmlAttributes: new { @class = "form-control", @placeholder = "Code" })
-                                @Html.ValidationMessageFor(c => c.Code, null, htmlAttributes: new { @class = "text-muted text-danger" })
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(c => c.Code, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(c => c.Code, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(c => c.Code, null, htmlAttributes: new { @class = "text-danger" })
                         </div>
-                        <div class="form-group row">
-                            @Html.LabelFor(c => c.Address,  htmlAttributes: new { @class = "col-sm-3 col-form-label" })
-                            <div class="col-sm-9">
-                                @Html.TextBoxFor(c => c.Address, htmlAttributes: new { @class = "form-control", @placeholder = "Address" })
-                                @Html.ValidationMessageFor(c => c.Address, null, htmlAttributes: new { @class = "text-muted text-danger" })
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(c => c.Address, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(c => c.Address, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(c => c.Address, null, htmlAttributes: new { @class = "text-danger" })
                         </div>
-                        <div class="form-group row">
-                            @Html.LabelFor(c => c.ContactNo,"Contact No.",  htmlAttributes: new { @class = "col-sm-3 col-form-label" })
-                            <div class="col-sm-9">
-                                @Html.TextBoxFor(c => c.ContactNo, htmlAttributes: new { @class = "form-control", @placeholder = "Contact No." })
-                                @Html.ValidationMessageFor(c => c.ContactNo, null, htmlAttributes: new { @class = "text-muted text-danger" })
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(c => c.ContactNo, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(c => c.ContactNo, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(c => c.ContactNo, null, htmlAttributes: new { @class = "text-danger" })
                         </div>
-                        <div class="form-group row">
-                            @Html.LabelFor(c => c.About,  htmlAttributes: new { @class = "col-sm-3 col-form-label" })
-                            <div class="col-sm-9">
-                                @Html.TextAreaFor(c => c.About, htmlAttributes: new { @class = "form-control", @placeholder = "About",@rows="4" })
-                                @Html.ValidationMessageFor(c => c.About, null, htmlAttributes: new { @class = "text-muted text-danger" })
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(c => c.About, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(c => c.About, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(c => c.ContactNo, null, htmlAttributes: new { @class = "text-danger" })
                         </div>
-                        @*<div class="form-group row">
-                            @Html.LabelFor(c => c.Logo,  htmlAttributes: new { @class = "col-sm-3 col-form-label" })
-                            <div class="col-sm-9">
-                                @Html.TextBoxFor(c => c.Logo, htmlAttributes: new { @type = "file" })
-                                @Html.ValidationMessageFor(c => c.Logo, null, htmlAttributes: new { @class = "text-muted text-danger" })
-                            </div>
-                        </div>*@
-                        <div class="form-group row">
-                            <div class="col-sm-9 ml-sm-auto">
-                                <input type="submit" value="Save" class="btn btn-primary" />
-                            </div>
+                    </div>
+                    @*<div class="form-group">
+                        @Html.LabelFor(c => c.Logo, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-10 ">
+                            @Html.TextBoxFor(c => c.Logo, htmlAttributes: new { @type = "file",@id="ImageFile", @name="ImageFile" })
+                            @Html.ValidationMessageFor(c => c.Logo, null, htmlAttributes: new { @class = "text-danger" })
+
                         </div>
-                    </form>
-                </div>
+                    </div>*@
+                    <div class="form-group">
+                        <input type="submit" value="Save"class="btn btn-lg btn-primary center-block"/>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

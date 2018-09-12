@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using BLL;
 using Models;
-using OnlineExamSystem.Models.CourseVM;
 
 namespace OnlineExamSystem.Controllers
 {
@@ -16,27 +15,15 @@ namespace OnlineExamSystem.Controllers
         [HttpGet]
         public ActionResult Entry()
         {
-            var model = new CourseCreateVm()
-            {
-                OrganizationSelectListItems = GetAllOrganizationSLI(),
-            };
-            return View(model);
+            Course course = new Course();
+            course.OrganizationSelectListItems = GetAllOrganization();
+            return View(course);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Entry(Course entity)
+        public ActionResult Entry(Course course)
         {
-            var course = new Course()
-            {
-                Name = entity.Name,
-                Code = entity.Code,
-                Duration = entity.Duration,
-                Credit = entity.Credit,
-                Fees = entity.Fees,
-                Outline = entity.Outline,
-                OrganizationId = entity.OrganizationId
-            };
+            course.OrganizationSelectListItems = GetAllOrganization();
             if (ModelState.IsValid)
             {
                 bool isAdded = _courseManager.Add(course);
@@ -50,35 +37,16 @@ namespace OnlineExamSystem.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult Edit(CourseCreateVm entity)
+        public ActionResult Edit(Course course)
         {
-            var course = new Course()
-            {
-                Name = entity.Name,
-                Code = entity.Code,
-                Duration = entity.Duration,
-                Credit = entity.Credit,
-                Fees = entity.Fees,
-                Outline = entity.Outline,
-                OrganizationId = entity.OrganizationId
-            };
+            course.OrganizationSelectListItems = GetAllOrganization();
             return View(course);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Course entity, string status)
+        public ActionResult Edit(Course course, string status)
         {
-            var course = new Course()
-            {
-                Name = entity.Name,
-                Code = entity.Code,
-                Duration = entity.Duration,
-                Credit = entity.Credit,
-                Fees = entity.Fees,
-                Outline = entity.Outline,
-                OrganizationId = entity.OrganizationId
-            };
+            course.OrganizationSelectListItems = GetAllOrganization();
             if (status == "update")
             {
                 if (ModelState.IsValid)
@@ -99,33 +67,26 @@ namespace OnlineExamSystem.Controllers
             ModelState.AddModelError("", "An Unknown Error Occured!");
             return View(course);
         }
-        public JsonResult GetAllOrganization()
+
+        public List<SelectListItem> GetAllOrganization()
         {
             var organizations = _courseManager.GetAllOrganization();
-            return Json(organizations,JsonRequestBehavior.AllowGet);
-        }
-        public JsonResult GetAllTrainers()
-        {
-            var trainers = _courseManager.GetAllTrainers();
-            return Json(trainers, JsonRequestBehavior.AllowGet);
-        }
-
-
-        public List<SelectListItem> GetAllOrganizationSLI()
-        {
-            var organizations = _courseManager.GetAllOrganization();
-
             var slItems = new List<SelectListItem>();
             foreach (var organization in organizations)
             {
-                var sli = new SelectListItem();
-                sli.Text = organization.Name + " " + organization.Code;
-                sli.Value = organization.Id.ToString();
-
+                var sli = new SelectListItem
+                {
+                    Text = organization.Name + " - " + organization.Code,
+                    Value = organization.Id.ToString()
+                };
                 slItems.Add(sli);
             }
-
             return slItems;
         }
-}
+        //public JsonResult GetAllOrganization()
+        //{
+        //    var organizations = _courseManager.GetAllOrganization();
+        //    return Json(organizations);
+        //}
+    }
 }

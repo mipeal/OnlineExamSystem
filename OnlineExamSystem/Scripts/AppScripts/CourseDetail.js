@@ -1,100 +1,23 @@
-﻿$(document.body).ready(function () {
-   $.ajax({
-            type: "POST",
-            url: "../../Course/GetAllOrganization",
-            contentType: "application/Json; charset=uth-8",
-            data: JSON.stringify(),
-            success: function(rData) {
-                $("#Organizations").empty();
-                $("#Organizations").append("<option value=''>Select Organization</option>");
-                if (rData != undefined && rData != "") {
-                    $.each(rData,
-                        function(key, value) {
-                            $("#Organizations").append("<option value='" + value.Id + "'>" + value.Name + "</option>");
-                        });
-                }
-            }
+﻿$(document).ready(function() {
+    //$("#OrganizationId").change(function () {
+    //    var organizationId = $(this).val();
+    //    if (organizationId == undefined) {
+    //        $.ajax({
+    //            type: "GET",
+    //            url: "../../Course/GetAllOrganization",
+    //            contentType: "application/Json; charset=uth-8",
+    //            data: JSON,
+    //            success: function (rData) {
+    //                $("#OrganizationId").empty();
+    //                $("#OrganizationId").append("<option value=''>Select Organization</option>");
+    //                if (rData != undefined && rData != "") {
+    //                    $.each(rData, function (key, value) {
+    //                        $("#OrganizationId").append("<option value='" + value.Id + "'>" + value.Name + "</option>");
+    //                    });
+    //                }
+    //            }
 
-    });
-    $.ajax({
-        type: "POST",
-        url: "../../Course/GetAllTrainers",
-        contentType: "application/Json; charset=uth-8",
-        data: JSON.stringify(),
-        success: function (rData) {
-            $("#trainers").empty();
-            $("#trainers").append("<option value=''>Select Trainer</option>");
-            if (rData != undefined && rData != "") {
-                $.each(rData,
-                    function (key, value) {
-                        $("#trainers").append("<option id='"+value.Id+"' value='" + value.Name + "'>" + value.Name + "</option>");
-                    });
-            }
-        }
-
-    });
+    //        });
+    //    }
+    //});
 });
-
-
-
-$("#AddTrainer").click(function () {
-    createRowForAssignedTrainers();
-
-});
-
-
-var index = 0;
-function createRowForAssignedTrainers() {
-
-    //Get Selected Item from UI
-    var selectedItem = getSelectedItem();
-
-    //Check Last Row Index
-    var index = $("#assignedTrainers").children("tr").length;
-    var sl = index;
-
-    //For Model List<Property> Binding For MVC
-    var indexTd = "<td style='display:none'><input type='hidden' id='Index" + index + "' name='Trainers.Index' value='" + index + "' /> </td>";
-
-    //For Serial No For UI
-    var slTd = "<td id='Sl" + index + "'> " + (++sl) + " </td>";
-
-    var itemTd = "<td> <input type='hidden' id='ItemName" + index + "'  name='Trainers[" + index + "].Name' value='" + selectedItem.Name + "' /> " + selectedItem.Name + " </td>";
-    var qtyTd = "<td> <input type='hidden' id='ItemQty" + index + "'  name='Trainers[" + index + "].Type' value='" + selectedItem.Type + "' /> " + selectedItem.Type + " </td>";
-    var edit ="<button class='btn btn-default btn-xs m-r-5' data-toggle='tooltip' data-original-title='Edit'><i class='fa fa-pencil font-14'></i></button>";
-    var del ="<button class='btn btn-default btn-xs' data-toggle='tooltip' data-original-title='Delete'><i class='fa fa-trash font-14'></i></button>";
-    var actions = "<td>" + edit + del + "</td>";
-    
-    var newRow = "<tr>" + indexTd + slTd + itemTd + qtyTd + actions+" </tr>";
-
-    $("#assignedTrainers").append(newRow);
-    $("#ItemName").val("");
-    $("#ItemQty").val("");
-
-}
-
-
-function getSelectedItem() {
-    var name = $("#trainers").val();
-    var type = $("#TrainerId").val();
-
-    var item = {
-        "Name": name,
-        "Type": type
-    }
-
-    return item;
-}
-
-//$("#trainers").change(function () {
-
-//    var trainerId = $(this).val();
-//    var trainerName = $(this).text();
-//    if (trainerId != undefined && trainerId != "") {
-
-//        alert(trainerName);
-
-//    }
-
-
-//});
