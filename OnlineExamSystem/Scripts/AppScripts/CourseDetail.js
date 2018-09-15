@@ -52,11 +52,6 @@ function getSelectedItem() {
 
 
 $(document).ready(function () {
-    
-});
-
-
-$("#GetCourseUpdate").click(function () {
     $.ajax({
         type: "POST",
         url: "../../Course/GetCourseUpdatePartial",
@@ -71,3 +66,34 @@ $("#GetCourseUpdate").click(function () {
 
 
 
+$("#GetCourseCreateExam").click(function () {
+        $.ajax({
+            type: "POST",
+            url: "../../Course/GetCreateExamsPartial",
+            contentType: "application/Json; charset=utf-8",
+            data: JSON.stringify(),
+            success: function (rData) {
+                $("#LoadCourseEditPartial").html(rData);
+
+            }
+        });
+    });
+
+    $("#GetCourseAssignTrainer").click(function () {
+        $.ajax({
+            type: "POST",
+            url: "../../Course/GetAssignTrainersPartial",
+            contentType: "application/Json; charset=utf-8",
+            data: JSON.stringify(),
+            success: function (rData) {
+                $("#LoadCourseEditPartial").html(rData);
+
+            }
+        });
+    });
+
+
+function getCourseUpdatePartial() {
+ 
+}
+$('.duration-picker').durationPicker();

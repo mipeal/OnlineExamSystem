@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Models;
 
-namespace OnlineExamSystem.Models.ExamVM
+namespace Models.ViewModel.ExamVM
 {
     public class ExamCreateVm
     {

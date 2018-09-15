@@ -135,12 +135,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CourseVM\CourseAssignTrainerVm.cs" />
-    <Compile Include="Models\CourseVM\CourseCreateExamVm.cs" />
-    <Compile Include="Models\CourseVM\CourseCreateVm.cs" />
-    <Compile Include="Models\CourseVM\CourseInformationVm.cs" />
-    <Compile Include="Models\CourseVM\CourseUpdateVm.cs" />
-    <Compile Include="Models\ExamVM\ExamCreateVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -161,9 +155,6 @@
     <Content Include="Views\Course\ViewInfo.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\Course\_CourseUpdate.cshtml" />
-    <Content Include="Views\Shared\Course\_CourseAssignTrainer.cshtml" />
-    <Content Include="Views\Shared\Course\_CourseCreateExam.cshtml" />
     <Content Include="Views\Course\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -172,7 +163,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Shared\Course\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">
       <Project>{9fc7bf18-e14a-4f27-b752-764f129debd5}</Project>

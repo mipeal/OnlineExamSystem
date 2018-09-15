@@ -74,6 +74,10 @@
     <Compile Include="ScheduleExam.cs" />
     <Compile Include="Tag.cs" />
     <Compile Include="Trainer.cs" />
+    <Compile Include="ViewModel\CourseVM\CourseCreateVm.cs" />
+    <Compile Include="ViewModel\CourseVM\CourseInformationVm.cs" />
+    <Compile Include="ViewModel\CourseVM\CourseEditVm.cs" />
+    <Compile Include="ViewModel\ExamVM\ExamCreateVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

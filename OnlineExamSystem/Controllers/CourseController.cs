@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using BLL;
 using Models;
-using OnlineExamSystem.Models.CourseVM;
+using Models.ViewModel.CourseVM;
 
 namespace OnlineExamSystem.Controllers
 {
@@ -52,14 +52,14 @@ namespace OnlineExamSystem.Controllers
         [HttpGet]
         public ActionResult Edit(Course course)
         {
-            var entity = Mapper.Map<CourseUpdateVm>(course);
+            var entity = Mapper.Map<CourseEditVm>(course);
             entity.Organization = _courseManager.GetOrganizationById(entity.OrganizationId);
             return View(entity);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(CourseUpdateVm entity, string status)
+        public ActionResult Edit(CourseEditVm entity, string status)
         {
             if (status == "update")
             {
@@ -75,7 +75,7 @@ namespace OnlineExamSystem.Controllers
                     else
                     {
                         ViewBag.Message = "Failed";
-                        return PartialView("~/Views/Shared/Course/_CourseUpdate.cshtml", entity);
+                        return View( entity);
                     }
                 }
             }
@@ -96,11 +96,7 @@ namespace OnlineExamSystem.Controllers
             }
             return slItems;
         }
-        public PartialViewResult GetCourseUpdatePartial(CourseUpdateVm entity)
-        {
-            return PartialView("~/Views/Shared/Course/_CourseUpdate.cshtml", entity);
-        }
-
+       
         public ActionResult ViewInfo(Course course)
         {
             var entity = Mapper.Map<CourseInformationVm>(course);

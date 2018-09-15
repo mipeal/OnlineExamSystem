@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using Models;
 
-namespace OnlineExamSystem.Models.CourseVM
+namespace Models.ViewModel.CourseVM
 {
-    public class CourseUpdateVm
+    public class CourseInformationVm
     {
         public int Id { get; set; }
         [Required]
@@ -28,5 +27,7 @@ namespace OnlineExamSystem.Models.CourseVM
         public virtual Organization Organization { get; set; }
         public ICollection<Organization> Organizations { get; set; }
         public List<SelectListItem> OrganizationSelectListItems { get; set; }
+        public ICollection<Trainer> Trainers { get; set; }
+        public ICollection<Exam> Exams { get; set; }
     }
 }

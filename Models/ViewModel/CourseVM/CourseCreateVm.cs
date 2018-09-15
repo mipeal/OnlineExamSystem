@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using Models;
 
-namespace OnlineExamSystem.Models.CourseVM
+namespace Models.ViewModel.CourseVM
 {
     public class CourseCreateVm
     {

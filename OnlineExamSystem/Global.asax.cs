@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using AutoMapper;
 using Models;
-using OnlineExamSystem.Models.CourseVM;
+using Models.ViewModel.CourseVM;
 
 namespace OnlineExamSystem
 {
@@ -19,8 +19,8 @@ namespace OnlineExamSystem
             Mapper.Initialize(conf =>
             {
                 conf.CreateMap<CourseCreateVm, Course>();
-                conf.CreateMap<CourseUpdateVm, Course>();
-                conf.CreateMap<Course, CourseUpdateVm>();
+                conf.CreateMap<CourseEditVm, Course>();
+                conf.CreateMap<Course, CourseEditVm>();
                 conf.CreateMap<Course, CourseInformationVm>();
             });
         }
