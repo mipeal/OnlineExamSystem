@@ -7,6 +7,7 @@
 </div>
 <div class="page-content fade-in-up ">
 <form class="row" id="LoadCourseEditPartial" method="post">
+@Html.AntiForgeryToken();
 <div id="BasicInfo" class="col-md-6">
     <div class="ibox">
         <div class="ibox-head">
@@ -21,7 +22,7 @@
                 <div class="form-group row">
                     @Html.LabelFor(c => c.Organization, htmlAttributes: new {@class = "col-sm-2 col-form-label"})
                     <div class="col-md-9">
-                        @Html.DisplayFor(c => c.OrganizationId)
+                        @Html.DisplayFor(c => c.Organization.Name)
                         @Html.ValidationMessageFor(c => c.Organization, null, htmlAttributes: new {@class = "text-muted text-danger"})
                     </div>
                 </div>
@@ -33,31 +34,31 @@
                         @Html.ValidationMessageFor(c => c.Name, null, htmlAttributes: new {@class = "text-muted text-danger"})
                     </div>
                     <div class="col-sm-4">
-                        @Html.TextBoxFor(c => c.Code, htmlAttributes: new { @class = "form-control", @placeholder = "Code" })
-                        @Html.ValidationMessageFor(c => c.Code, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                        @Html.TextBoxFor(c => c.Code, htmlAttributes: new {@class = "form-control", @placeholder = "Code"})
+                        @Html.ValidationMessageFor(c => c.Code, null, htmlAttributes: new {@class = "text-muted text-danger"})
                     </div>
                 </div>
                 <div class="form-group row">
-                    @Html.LabelFor(c => c.Duration, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                    @Html.LabelFor(c => c.Duration, htmlAttributes: new {@class = "col-sm-2 col-form-label"})
                     <div class="col-sm-3">
                         <div class="input-group">
-                            @Html.TextBoxFor(c => c.Duration, htmlAttributes: new { @class = "form-control", @placeholder = "Duration" })
+                            @Html.TextBoxFor(c => c.Duration, htmlAttributes: new {@class = "form-control", @placeholder = "Duration"})
                             <div class="input-group-addon bg-white">Months</div>
                         </div>
-                        @Html.ValidationMessageFor(c => c.Duration, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                        @Html.ValidationMessageFor(c => c.Duration, null, htmlAttributes: new {@class = "text-muted text-danger"})
                     </div>
-                    @Html.LabelFor(c => c.Credit, htmlAttributes: new { @class = "col-sm-1 col-form-label" })
+                    @Html.LabelFor(c => c.Credit, htmlAttributes: new {@class = "col-sm-1 col-form-label"})
                     <div class="col-sm-2">
-                        @Html.TextBoxFor(c => c.Credit, htmlAttributes: new { @class = "form-control", @placeholder = "Credit" })
-                        @Html.ValidationMessageFor(c => c.Credit, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                        @Html.TextBoxFor(c => c.Credit, htmlAttributes: new {@class = "form-control", @placeholder = "Credit"})
+                        @Html.ValidationMessageFor(c => c.Credit, null, htmlAttributes: new {@class = "text-muted text-danger"})
                     </div>
-                    @Html.LabelFor(c => c.Fees, htmlAttributes: new { @class = "col-sm-1 col-form-label" })
+                    @Html.LabelFor(c => c.Fees, htmlAttributes: new {@class = "col-sm-1 col-form-label"})
                     <div class="col-sm-3">
                         <div class="input-group">
                             <div class="input-group-addon bg-white">৳</div>
-                            @Html.TextBoxFor(c => c.Fees, htmlAttributes: new { @class = "form-control", @placeholder = "Fees" })
+                            @Html.TextBoxFor(c => c.Fees, htmlAttributes: new {@class = "form-control", @placeholder = "Fees"})
                         </div>
-                        @Html.ValidationMessageFor(c => c.Fees, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                        @Html.ValidationMessageFor(c => c.Fees, null, htmlAttributes: new {@class = "text-muted text-danger"})
                     </div>
                 </div>
                 <div class="form-group row">
@@ -85,9 +86,10 @@
                 <div class="form-group row">
                     @Html.LabelFor(c => c.Trainers, htmlAttributes: new {@class = "col-sm-2 col-form-label"})
                     <div class="col-sm-8">
-                        <select class="form-control" id="trainers" name="TrainerId">
-                            <option>Select Trainer</option>
-                        </select>
+                        @*<select class="form-control" id="TrainersDD" name="TrainerId">
+                                <option>Select Trainer</option>
+                            </select>*@
+                        @Html.DropDownListFor(c=>c.Trainers,Model.TrainerSelectListItems,"Select Trainer",htmlAttributes:new {@class= "form-control TrainersDD" })
                         @Html.ValidationMessageFor(c => c.Trainers, null, htmlAttributes: new {@class = "text-muted text-danger"})
                     </div>
                     <div class="col-sm-1">
@@ -133,7 +135,7 @@
     </div>
 </div>
 <div id="CreateExamsPartial" class="col-md-6">
-        <div class="ibox">
+    <div class="ibox">
             <div class="ibox-head">
                 <div class="ibox-title">Create Exams</div>
                 <div class="ibox-tools">
@@ -144,14 +146,14 @@
             <div class="ibox-body">
                 <div class="form-horizontal">
                     <div class="form-group row">
-                        @Html.LabelFor(c => c.Organization, htmlAttributes: new { @class = "col-sm-1 col-form-label" })
-                        <div class="col-sm-11">
+                        @Html.LabelFor(c => c.Organization, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-10">
                             @Html.DisplayFor(c => c.Organization.Name)
                         </div>
                     </div>
                     <div class="form-group row">
-                        @Html.LabelFor(c => c.Name, "Course", htmlAttributes: new { @class = "col-sm-1 col-form-label" })
-                        <div class="col-sm-11">
+                        @Html.LabelFor(c => c.Name, "Course", htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-10">
                             @Html.DisplayFor(c => c.Name)
                         </div>
                     </div>
@@ -159,11 +161,11 @@
                         <label class="col-sm-1 col-form-label" for="ExamType">Type</label>
                         <div class="col-sm-5">
                             <label class="ui-radio ui-radio-inline">
-                                <input type="radio" name="ExamType" id="ExamType">
+                                <input type="radio" name="ExamType" id="ExamType" value="Class Test">
                                 <span class="input-span"></span>Class Test
                             </label>
                             <label class="ui-radio ui-radio-inline">
-                                <input type="radio" name="ExamType" id="ExamType">
+                                <input type="radio" name="ExamType" id="ExamType" value="Lab-Test">
                                 <span class="input-span"></span>Lab Test
                             </label>
                         </div>
@@ -195,13 +197,13 @@
                     <div class="form-group row">
                         <div class="col-sm-2 ml-sm-auto">
                             <button class="btn btn-info" type="button" id="AddExam">Add Exam</button>
-                         </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-<div  id="ExamList" class="col-md-6">
+</div>
+<div id="ExamList" class="col-md-6">
     <div class="ibox">
         <div class="ibox-head">
             <div class="ibox-title">Exam List</div>
@@ -224,7 +226,7 @@
                             <th>Actions</th>
                         </tr>
                         </thead>
-                        <tbody id="assignedTrainers">
+                        <tbody id="SubmittedExams">
                         @if (Model != null && Model.Exams != null && Model.Exams.Count > 0)
                         {
                             var sl = 0;
@@ -250,7 +252,7 @@
         </div>
     </div>
 </div>
-<div  id="EditSave" class="col-md-12">
+<div id="EditSave" class="col-md-12">
     <div class="ibox">
         <input type="submit" value="Update" name="Update" id="CourseUpdate" class="btn btn-block btn-success"/>
     </div>

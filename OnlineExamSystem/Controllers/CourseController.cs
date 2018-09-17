@@ -23,7 +23,7 @@ namespace OnlineExamSystem.Controllers
             var model = new CourseCreateVm()
             {
                 OrganizationSelectListItems = GetAllOrganizationSlItems(),
-                TagsSelectListItems = GetAllTagsSlItems()
+                //TagsSelectListItems = GetAllTagsSlItems()
             };
             return View(model);
         }
@@ -44,7 +44,7 @@ namespace OnlineExamSystem.Controllers
             }
             ModelState.AddModelError("","An Unknown Error Occured!");
             entity.OrganizationSelectListItems = GetAllOrganizationSlItems();
-            entity.TagsSelectListItems = GetAllTagsSlItems();
+            //entity.TagsSelectListItems = GetAllTagsSlItems();
             return View(entity);
         }
 
@@ -54,16 +54,15 @@ namespace OnlineExamSystem.Controllers
         {
             var entity = Mapper.Map<CourseEditVm>(course);
             entity.Organization = _courseManager.GetOrganizationById(entity.OrganizationId);
+            entity.TrainerSelectListItems = GetAllTrainersSlItems();
             return View(entity);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(CourseEditVm entity, string status)
+        public ActionResult Edit(CourseEditVm entity)
         {
-            if (status == "update")
-            {
-                if (ModelState.IsValid)
+             if (ModelState.IsValid)
                 {
                     var course = Mapper.Map<Course>(entity);
                     bool isAdded = _courseManager.Update(course);
@@ -75,12 +74,11 @@ namespace OnlineExamSystem.Controllers
                     else
                     {
                         ViewBag.Message = "Failed";
-                        return View( entity);
+                        return View("Edit",entity);
                     }
                 }
-            }
             ModelState.AddModelError("", "An Unknown Error Occured!");
-            return View(entity);
+            return View("Edit",entity);
         }
 
         public List<SelectListItem> GetAllOrganizationSlItems()
@@ -104,15 +102,15 @@ namespace OnlineExamSystem.Controllers
             ViewBag.Message = "Saved";
             return View(entity);
         }
-        public List<SelectListItem> GetAllTagsSlItems()
+        public List<SelectListItem> GetAllTrainersSlItems()
         {
-            var tags = _courseManager.GetAllTags();
+            var trainers = _courseManager.GetAllOrganization();
             var slItems = new List<SelectListItem>();
-            foreach (var tag in tags)
+            foreach (var trainer in trainers)
             {
                 var sli = new SelectListItem();
-                sli.Text = tag.Name;
-                sli.Value = tag.Id.ToString();
+                sli.Text = trainer.Name;
+                sli.Value = trainer.Id.ToString();
                 slItems.Add(sli);
             }
             return slItems;

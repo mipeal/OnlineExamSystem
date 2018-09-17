@@ -31,5 +31,6 @@ namespace Models.ViewModel.CourseVM
         public ICollection<Exam> Exams { get; set; }
         public ICollection<Organization> Organizations { get; set; }
         public List<SelectListItem> OrganizationSelectListItems { get; set; }
+        public List<SelectListItem> TrainerSelectListItems { get; set; }
     }
 }
