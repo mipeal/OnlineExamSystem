@@ -29,13 +29,12 @@ namespace Models
         [Required]
         public int Credit { get; set; }
         [Required]
-        [StringLength(250, MinimumLength = 20, ErrorMessage = "Please provide outline of your course with minimum 20 characters!")]
+        [StringLength(250)]
         [DataType(DataType.MultilineText)]
         public string Outline { get; set; }
         [Required]
         [DataType(DataType.Currency)]
         public double Fees { get; set; }
-        public ICollection<Tag> Tags { get; set; }
         [Required]
         public int OrganizationId { get; set; }
         [ForeignKey("OrganizationId")]
