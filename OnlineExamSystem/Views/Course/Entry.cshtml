@@ -35,9 +35,9 @@
                         }
                         @Html.AntiForgeryToken()
                         <div class="form-group row">
-                            @Html.LabelFor(c => c.OrganizationId,"Organization", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            @Html.LabelFor(c => c.OrganizationId, "Organization", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                             <div class="col-sm-9">
-                                @Html.DropDownListFor(c=>c.OrganizationId,Model.OrganizationSelectListItems,"Select Organization", htmlAttributes: new { @class = "form-control" })
+                                @Html.DropDownListFor(c => c.OrganizationId, Model.OrganizationSelectListItems, "Select Organization", htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(c => c.OrganizationId, null, htmlAttributes: new { @class = "text-muted text-danger" })
                             </div>
                         </div>
@@ -83,11 +83,11 @@
                             </div>
                         </div>
                         @*<div class="form-group row">
-                            @Html.LabelFor(c => c.Tags, htmlAttributes: new {@class = "col-sm-3 col-form-label"})
-                            <div class="col-sm-9">
-                                @Html.DropDownListFor(c => c.Tags, Model.TagsSelectListItems, "Select Tag", htmlAttributes: new { @class = "form-control dropdown-toggle", @multiple="" ,@searchable=""})
-                            </div>
-                        </div>*@
+                                @Html.LabelFor(c => c.Tags, htmlAttributes: new {@class = "col-sm-3 col-form-label"})
+                                <div class="col-sm-9">
+                                    @Html.DropDownListFor(c => c.Tags, Model.TagsSelectListItems, "Select Tag", htmlAttributes: new { @class = "form-control dropdown-toggle", @multiple="" ,@searchable=""})
+                                </div>
+                            </div>*@
                         <div class="form-group row">
                             @Html.LabelFor(c => c.Outline, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                             <div class="col-sm-9">
@@ -106,3 +106,6 @@
         </div>
     </div>
 </div>
+@section scripts{
+    <script src="~/Scripts/AppScripts/CourseDetail.js"></script>
+}

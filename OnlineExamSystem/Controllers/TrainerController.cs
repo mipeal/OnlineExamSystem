@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Models.ViewModel.TrainerVM;
+using Models;
+using AutoMapper;
 
 namespace OnlineExamSystem.Controllers
 {
@@ -23,7 +25,28 @@ namespace OnlineExamSystem.Controllers
             };
             return View(model);
         }
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Entry(TrainerCreateVm entity)
+        {
+            if (ModelState.IsValid)
+            {
+                var trainer = Mapper.Map<Trainer>(entity);
+                bool isAdded = _trainerManager.Add(trainer);
+                if (isAdded)
+                {
+                    ViewBag.Message = "Saved";
+                    return RedirectToAction("Edit", trainer);
+                }
+            }
+            ModelState.AddModelError("", "An Unknown Error Occured!");
+            return View(entity);
+        }
+        [HttpGet]
+        public ActionResult Edit(Trainer trainer)
+        {
+            return View();
+        }
         public List<SelectListItem> GetAllBatchSlItems()
         {
             var batches = _trainerManager.GetAllBatch();

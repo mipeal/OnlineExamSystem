@@ -13,6 +13,7 @@ namespace BLL
         OrganizationRepository _organizationRepository = new OrganizationRepository();
         CourseRepository _courseRepository = new CourseRepository();
         BatchRepository _batchRepository = new BatchRepository();
+        TrainerRepository _trainerRepository = new TrainerRepository();
         public List<Batch> GetAllBatch()
         {
             return _batchRepository.GetAll();
@@ -26,6 +27,11 @@ namespace BLL
         public List<Course> GetAllCourse()
         {
             return _courseRepository.GetAll();
+        }
+
+        public bool Add(Trainer trainer)
+        {
+            return _trainerRepository.Add(trainer);
         }
     }
 }
