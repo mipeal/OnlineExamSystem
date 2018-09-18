@@ -56,11 +56,17 @@
     <Compile Include="Migrations\201809121302048_CourseUpdated_TagAdded.Designer.cs">
       <DependentUpon>201809121302048_CourseUpdated_TagAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809160932066_TrainerImage_NotRequired.cs" />
+    <Compile Include="Migrations\201809160932066_TrainerImage_NotRequired.Designer.cs">
+      <DependentUpon>201809160932066_TrainerImage_NotRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +81,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809121302048_CourseUpdated_TagAdded.resx">
       <DependentUpon>201809121302048_CourseUpdated_TagAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809160932066_TrainerImage_NotRequired.resx">
+      <DependentUpon>201809160932066_TrainerImage_NotRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

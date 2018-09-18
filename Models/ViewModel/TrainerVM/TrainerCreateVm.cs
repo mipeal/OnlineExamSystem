@@ -5,55 +5,54 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
-namespace Models
+namespace Models.ViewModel.TrainerVM
 {
-    public class Trainer
+    public class TrainerCreateVm
     {
-        [Key]
         public int Id { get; set; }
         [Required]
-        [StringLength(15)]
-        [DataType(DataType.Text)]
+        [StringLength(15, MinimumLength =3, ErrorMessage ="Please provide a trainer code between 3 to 15 characters!")]
         public string Code { get; set; }
         [Required]
         [StringLength(50)]
-        [DataType(DataType.Text)]
-        public string Name { get; set; }
+         public string Name { get; set; }
         [Required]
         public bool Type { get; set; }
         [Required]
         [StringLength(15)]
-        [DataType(DataType.PhoneNumber)]
         public string ContactNo { get; set; }
         [Required]
         [StringLength(50)]
-        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [Required]
         [StringLength(250)]
-        [DataType(DataType.MultilineText)]
         public string Address { get; set; }
         [Required]
         [StringLength(20)]
-        [DataType(DataType.Text)]
         public string City { get; set; }
         [StringLength(10)]
-        [DataType(DataType.PostalCode)]
         public string PostalCode { get; set; }
         [Required]
         [StringLength(20)]
-        [DataType(DataType.Text)]
         public string Country { get; set; }
         //[Required]
         public byte[] Image { get; set; }
         [Required]
         public int CourseId { get; set; }
         [ForeignKey("CourseId")]
-        public Course Course { get; set; }
+        public virtual Course Course { get; set; }
         [Required]
         public int BatchId { get; set; }
         [ForeignKey("BatchId")]
-        public Batch Batch { get; set; }
+        public virtual Batch Batch { get; set; }
+        public ICollection<Organization> Organizations { get; set; }
+        public ICollection<Course> Courses { get; set; }
+        public ICollection<Batch> Batches { get; set; }
+        public List<SelectListItem> OrganizationSelectListItems { get; set; }
+        public List<SelectListItem> CourseSelectListItems { get; set; }
+        public List<SelectListItem> BatchSelectListItems { get; set; }
+
     }
 }

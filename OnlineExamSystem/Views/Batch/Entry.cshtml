@@ -1,0 +1,108 @@
+﻿@model Models.ViewModel.BatchVM.BatchCreateVm
+@{
+    ViewBag.Title = "Batch Entry";
+
+}
+
+<div class="page-heading">
+    <h1 class="page-title">Batch Entry</h1>
+</div>
+<div class="page-content fade-in-up">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Entry Form</div>
+                    <div class="ibox-tools">
+                        <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
+                        <a class="fullscreen-link"><i class="fa fa-expand"></i></a>
+                    </div>
+                </div>
+                <div class="ibox-body">
+                    <form class="form-horizontal" method="post">
+                        @Html.ValidationSummary(true, null, htmlAttributes: new { @class = "alert alert-danger", @role = "alert" })
+                        @if (ViewBag.Message == "Saved")
+                        {
+                            <div class="alert alert-success" role="alert">
+                                Organization has been saved succesfully!
+                            </div>
+                        }
+                        else if (ViewBag.Message == "Failed")
+                        {
+                            <div class="alert alert-warning" role="alert">
+                                Please! Try again later!
+                            </div>
+                        }
+                        @Html.AntiForgeryToken()
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.OrganizationId, "Organization", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.DropDownListFor(c => c.OrganizationId, Model.OrganizationSelectListItems, "Select Organization", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(c => c.OrganizationId, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Name, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(c => c.Name, htmlAttributes: new { @class = "form-control", @placeholder = "Name" })
+                                @Html.ValidationMessageFor(c => c.Name, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Code, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(c => c.Code, htmlAttributes: new { @class = "form-control", @placeholder = "Code" })
+                                @Html.ValidationMessageFor(c => c.Code, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Duration, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    @Html.TextBoxFor(c => c.Duration, htmlAttributes: new { @class = "form-control", @placeholder = "Duration" })
+                                    <div class="input-group-addon bg-white">Months</div>
+                                </div>
+                                @Html.ValidationMessageFor(c => c.Duration, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Credit, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(c => c.Credit, htmlAttributes: new { @class = "form-control", @placeholder = "Credit" })
+                                @Html.ValidationMessageFor(c => c.Credit, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Fees, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <div class="input-group-addon bg-white">৳</div>
+                                    @Html.TextBoxFor(c => c.Fees, htmlAttributes: new { @class = "form-control", @placeholder = "Fees" })
+                                </div>
+                                @Html.ValidationMessageFor(c => c.Fees, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
+                        </div>
+                        @*<div class="form-group row">
+                                @Html.LabelFor(c => c.Tags, htmlAttributes: new {@class = "col-sm-3 col-form-label"})
+                                <div class="col-sm-9">
+                                    @Html.DropDownListFor(c => c.Tags, Model.TagsSelectListItems, "Select Tag", htmlAttributes: new { @class = "form-control dropdown-toggle", @multiple="" ,@searchable=""})
+                                </div>
+                            </div>*@
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Outline, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.TextAreaFor(c => c.Outline, htmlAttributes: new { @class = "form-control", @placeholder = "Outline", @rows = "4" })
+                                @Html.ValidationMessageFor(c => c.Outline, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-9 ml-sm-auto">
+                                <input type="submit" value="Save" class="btn btn-primary" id="CourseSave" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

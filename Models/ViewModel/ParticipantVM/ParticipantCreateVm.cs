@@ -8,5 +8,6 @@ namespace Models.ViewModel.ParticipantVM
 {
     class ParticipantCreateVm
     {
+
     }
 }

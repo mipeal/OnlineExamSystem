@@ -48,7 +48,8 @@ namespace OnlineExamSystem.Controllers
             return View(entity);
         }
 
-            #endregion
+        #endregion
+        #region Course Edit
         [HttpGet]
         public ActionResult Edit(Course course)
         {
@@ -70,12 +71,12 @@ namespace OnlineExamSystem.Controllers
                     if (isAdded)
                     {
                         ViewBag.Message = "Updated";
-                        return RedirectToAction("ViewInfo",course);
+                        return RedirectToAction("ViewInfo", course);
                     }
                     else
                     {
                         ViewBag.Message = "Failed";
-                        return View( entity);
+                        return View(entity);
                     }
                 }
             }
@@ -83,6 +84,7 @@ namespace OnlineExamSystem.Controllers
             return View(entity);
         }
 
+        #endregion
         public List<SelectListItem> GetAllOrganizationSlItems()
         {
             var organizations = _courseManager.GetAllOrganization();
