@@ -12,24 +12,23 @@ namespace Models.ViewModel.BatchVM
     {
         public int Id { get; set; }
         [Required]
-        [StringLength(50, MinimumLength = 5, ErrorMessage = "Please provide a course name using 5-50 characters!")]
-        public string Course { get; set; }
-        [Required]
-        [StringLength(15, MinimumLength = 3, ErrorMessage = "Please provide a batch number!")]
-        public double BatchNo { get; set; }
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Please provide a code using 5-50 characters!")]
+        public string No { get; set; }
         [StringLength(250, MinimumLength = 10, ErrorMessage = "Please provide Description of your course with minimum 20 characters!")]
         public string Description { get; set; }
         [Required(ErrorMessage = "Please provide a start date!")]
         public string StartDate { get; set; }
         [Required(ErrorMessage = "Please provide an end date!")]
         public string EndDate { get; set; }
-        public ICollection<Tag> Tags { get; set; }
-        [Required(ErrorMessage = "Please select a organization!")]
-        public int OrganizationId { get; set; }
-        public virtual Organization Organization { get; set; }
+        [Required(ErrorMessage = "Please select a course!")]
+        public int CourseId { get; set; }
+        public virtual Course Course { get; set; }
+        public ICollection<Course> Courses { get; set; }
         public ICollection<Organization> Organizations { get; set; }
-        public IEnumerable<SelectListItem> TagsSelectListItems { get; set; }
-        public IEnumerable<SelectListItem> OrganizationSelectListItems { get; set; }
+        public ICollection<Participant> Participants { get; set; }
+        public ICollection<Trainer> Trainers { get; set; }
+        public ICollection<Exam> Exams { get; set; }
+        public IEnumerable<SelectListItem> CourseSelectListItems { get; set; }
 
     }
 }

@@ -24,7 +24,7 @@
                         @if (ViewBag.Message == "Saved")
                         {
                             <div class="alert alert-success" role="alert">
-                                Organization has been saved succesfully!
+                                Batch has been saved succesfully!
                             </div>
                         }
                         else if (ViewBag.Message == "Failed")
@@ -35,69 +35,46 @@
                         }
                         @Html.AntiForgeryToken()
                         <div class="form-group row">
-                            @Html.LabelFor(c => c.OrganizationId, "Organization", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            @Html.LabelFor(c => c.CourseId, "Course", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                             <div class="col-sm-9">
-                                @Html.DropDownListFor(c => c.OrganizationId, Model.OrganizationSelectListItems, "Select Organization", htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(c => c.OrganizationId, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                                @Html.DropDownListFor(c => c.CourseId, Model.CourseSelectListItems, "Select Organizatio", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(c => c.CourseId, null, htmlAttributes: new { @class = "text-muted text-danger" })
                             </div>
                         </div>
                         <div class="form-group row">
-                            @Html.LabelFor(c => c.Name, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            @Html.LabelFor(c => c.No, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                             <div class="col-sm-9">
-                                @Html.TextBoxFor(c => c.Name, htmlAttributes: new { @class = "form-control", @placeholder = "Name" })
-                                @Html.ValidationMessageFor(c => c.Name, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                                @Html.TextBoxFor(c => c.No, htmlAttributes: new { @class = "form-control", @placeholder = "Name" })
+                                @Html.ValidationMessageFor(c => c.No, null, htmlAttributes: new { @class = "text-muted text-danger" })
                             </div>
                         </div>
                         <div class="form-group row">
-                            @Html.LabelFor(c => c.Code, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            @Html.LabelFor(c => c.Description, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                             <div class="col-sm-9">
-                                @Html.TextBoxFor(c => c.Code, htmlAttributes: new { @class = "form-control", @placeholder = "Code" })
-                                @Html.ValidationMessageFor(c => c.Code, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                                @Html.TextBoxFor(c => c.Description, htmlAttributes: new { @class = "form-control", @placeholder = "Code" })
+                                @Html.ValidationMessageFor(c => c.Description, null, htmlAttributes: new { @class = "text-muted text-danger" })
                             </div>
                         </div>
                         <div class="form-group row">
-                            @Html.LabelFor(c => c.Duration, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            @Html.LabelFor(c => c.StartDate, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                             <div class="col-sm-9">
                                 <div class="input-group">
-                                    @Html.TextBoxFor(c => c.Duration, htmlAttributes: new { @class = "form-control", @placeholder = "Duration" })
+                                    @Html.TextBoxFor(c => c.StartDate, htmlAttributes: new { @class = "form-control", @placeholder = "Duration" })
                                     <div class="input-group-addon bg-white">Months</div>
                                 </div>
-                                @Html.ValidationMessageFor(c => c.Duration, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                                @Html.ValidationMessageFor(c => c.StartDate, null, htmlAttributes: new { @class = "text-muted text-danger" })
                             </div>
                         </div>
                         <div class="form-group row">
-                            @Html.LabelFor(c => c.Credit, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            @Html.LabelFor(c => c.EndDate, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                             <div class="col-sm-9">
-                                @Html.TextBoxFor(c => c.Credit, htmlAttributes: new { @class = "form-control", @placeholder = "Credit" })
-                                @Html.ValidationMessageFor(c => c.Credit, null, htmlAttributes: new { @class = "text-muted text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            @Html.LabelFor(c => c.Fees, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <div class="input-group-addon bg-white">৳</div>
-                                    @Html.TextBoxFor(c => c.Fees, htmlAttributes: new { @class = "form-control", @placeholder = "Fees" })
-                                </div>
-                                @Html.ValidationMessageFor(c => c.Fees, null, htmlAttributes: new { @class = "text-muted text-danger" })
-                            </div>
-                        </div>
-                        @*<div class="form-group row">
-                                @Html.LabelFor(c => c.Tags, htmlAttributes: new {@class = "col-sm-3 col-form-label"})
-                                <div class="col-sm-9">
-                                    @Html.DropDownListFor(c => c.Tags, Model.TagsSelectListItems, "Select Tag", htmlAttributes: new { @class = "form-control dropdown-toggle", @multiple="" ,@searchable=""})
-                                </div>
-                            </div>*@
-                        <div class="form-group row">
-                            @Html.LabelFor(c => c.Outline, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
-                            <div class="col-sm-9">
-                                @Html.TextAreaFor(c => c.Outline, htmlAttributes: new { @class = "form-control", @placeholder = "Outline", @rows = "4" })
-                                @Html.ValidationMessageFor(c => c.Outline, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                                @Html.TextBoxFor(c => c.EndDate, htmlAttributes: new { @class = "form-control", @placeholder = "Credit" })
+                                @Html.ValidationMessageFor(c => c.EndDate, null, htmlAttributes: new { @class = "text-muted text-danger" })
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-9 ml-sm-auto">
-                                <input type="submit" value="Save" class="btn btn-primary" id="CourseSave" />
+                                <input type="submit" value="Save" class="btn btn-primary" id="BatchSave" />
                             </div>
                         </div>
                     </form>

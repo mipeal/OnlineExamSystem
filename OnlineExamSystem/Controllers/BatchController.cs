@@ -22,6 +22,7 @@ namespace OnlineExamSystem.Controllers
         {
             var model = new BatchCreateVm()
             {
+                CourseSelectListItems = GetAllCourseSlItems(),
             };
             return View(model);
         }
@@ -37,12 +38,31 @@ namespace OnlineExamSystem.Controllers
                 if (isAdded)
                 {
                     ViewBag.Message = "Saved";
-                    return RedirectToAction("Edit", _batchManager);
+                    return RedirectToAction("Edit", batch);
                 }
             }
             ModelState.AddModelError("", "An Unknown Error Occured!");
             return View(entity);
         }
         #endregion
+        [HttpGet]
+        public ActionResult Edit(Batch batch)
+        {
+
+            return View(batch);
+        }
+        public List<SelectListItem> GetAllCourseSlItems()
+        {
+            var courses = _batchManager.GetAllCourse();
+            var slItems = new List<SelectListItem>();
+            foreach (var course in courses)
+            {
+                var sli = new SelectListItem();
+                sli.Text = course.Name + " - " + course.Code;
+                sli.Value = course.Id.ToString();
+                slItems.Add(sli);
+            }
+            return slItems;
+        }
     }
 }
