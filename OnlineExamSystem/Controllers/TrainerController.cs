@@ -66,31 +66,31 @@ namespace OnlineExamSystem.Controllers
             }
             return slItems;
         }
-        public List<SelectListItem> GetAllCourseSlItems()
-        {
-            var courses = _trainerManager.GetAllCourse();
-            var slItems = new List<SelectListItem>();
-            foreach (var course in courses)
+            public List<SelectListItem> GetAllCourseSlItems()
             {
-                var sli = new SelectListItem();
-                sli.Text = course.Name + " - " + course.Code;
-                sli.Value = course.Id.ToString();
-                slItems.Add(sli);
+                var courses = _trainerManager.GetAllCourse();
+                var slItems = new List<SelectListItem>();
+                foreach (var course in courses)
+                {
+                    var sli = new SelectListItem();
+                    sli.Text = course.Name + " - " + course.Code;
+                    sli.Value = course.Id.ToString();
+                    slItems.Add(sli);
+                }
+                return slItems;
             }
-            return slItems;
-        }
-        public List<SelectListItem> GetAllOrganizationSlItems()
-        {
-            var organizations = _trainerManager.GetAllOrganization();
-            var slItems = new List<SelectListItem>();
-            foreach (var organization in organizations)
+            public List<SelectListItem> GetAllOrganizationSlItems()
             {
-                var sli = new SelectListItem();
-                sli.Text = organization.Name + " - " + organization.Code;
-                sli.Value = organization.Id.ToString();
-                slItems.Add(sli);
+                var organizations = _trainerManager.GetAllOrganization();
+                var slItems = new List<SelectListItem>();
+                foreach (var organization in organizations)
+                {
+                    var sli = new SelectListItem();
+                    sli.Text = organization.Name + " - " + organization.Code;
+                    sli.Value = organization.Id.ToString();
+                    slItems.Add(sli);
+                }
+                return slItems;
             }
-            return slItems;
-        }
     }
 }

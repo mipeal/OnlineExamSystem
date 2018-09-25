@@ -38,6 +38,8 @@ namespace Models
         public int CourseId { get; set; }
         [ForeignKey("CourseId")]
         public virtual Course Course { get; set; }
+
+        
     }
 
 }
