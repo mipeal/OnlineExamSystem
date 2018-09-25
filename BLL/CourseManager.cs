@@ -13,7 +13,8 @@ namespace BLL
     {
         CourseRepository _courseRepository=new CourseRepository();
         OrganizationRepository _organizationRepository=new OrganizationRepository();
-        private TrainerRepository _trainerRepository = new TrainerRepository();
+        //private parti _trainerRepository = new parti();
+        TrainerRepository trainerRepository = new TrainerRepository();
         TagRepository _tagRepository = new TagRepository();
         public bool Add(Course course)
         {
@@ -37,14 +38,17 @@ namespace BLL
             return organization;
         }
 
-        public List<Trainer> GetAllTrainers()
-        {
-            return _trainerRepository.GetAll();
-        }
-
         public List<Tag> GetAllTags()
         {
             return _tagRepository.GetAll();
+        }
+    }
+
+    public class _trainerRepository
+    {
+        public List<Trainer> GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

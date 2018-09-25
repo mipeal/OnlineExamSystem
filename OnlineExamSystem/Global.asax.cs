@@ -9,6 +9,7 @@ using Models;
 using Models.ViewModel.BatchVM;
 using Models.ViewModel.CourseVM;
 using Models.ViewModel.TrainerVM;
+using Models.ViewModel.ParticipantVM;
 
 namespace OnlineExamSystem
 {
@@ -25,7 +26,10 @@ namespace OnlineExamSystem
                 conf.CreateMap<Course, CourseEditVm>();
                 conf.CreateMap<Course, CourseInformationVm>();
                 conf.CreateMap<BatchCreateVm, Batch>();
+                conf.CreateMap<ParticipantCreateVm, Participant>();
+                conf.CreateMap<Participant, ParticipantCreateVm>();
                 conf.CreateMap<TrainerCreateVm, Trainer>();
+
             });
         }
     }

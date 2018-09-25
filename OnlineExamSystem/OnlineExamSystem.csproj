@@ -143,6 +143,7 @@
     <Compile Include="Controllers\BatchController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
+    <Compile Include="Controllers\ParticipantController.cs" />
     <Compile Include="Controllers\TrainerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -160,10 +161,10 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Course\Edit.cshtml" />
-    <Content Include="Views\Trainer\Entry.cshtml" />
     <Content Include="Views\Batch\Entry.cshtml" />
     <Content Include="Views\Batch\Edit.cshtml" />
-    <Content Include="Views\Trainer\Edit.cshtml" />
+    <Content Include="Views\Participant\Entry.cshtml" />
+    <Content Include="Views\Trainer\Entry.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -172,6 +173,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\NewFolder1\" />
     <Folder Include="Views\Shared\Course\" />
   </ItemGroup>
   <ItemGroup>

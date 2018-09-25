@@ -22,7 +22,7 @@ namespace Repository
 
         public List<Organization> GetAll()
         {
-            var organizationList = db.Organizations.ToList();
+            List<Organization> organizationList = db.Organizations.ToList();
             return organizationList;
         }
         public Organization GetById(int id)

@@ -1,24 +1,27 @@
 ﻿using BLL;
+using Models;
+using Models.ViewModel.ParticipantVM;
+using Models.ViewModel.TrainerVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Models.ViewModel.TrainerVM;
-using Models;
-using AutoMapper;
 
 namespace OnlineExamSystem.Controllers
 {
-    public class TrainerController : Controller
+    public class ParticipantController : Controller
     {
-        TrainerManager _trainerManager = new TrainerManager();
+        
+     public ParticipantManager _participantManager = new ParticipantManager();      
+             
 
-        // GET: Trainer
+
+        //GET: Participant
         [HttpGet]
         public ActionResult Entry()
         {
-            var model = new TrainerCreateVm()
+            var model = new ParticipantCreateVm()
             {
                 OrganizationSelectListItems = GetAllOrganizationSlItems(),
                 CourseSelectListItems = GetAllCourseSlItems(),
@@ -28,17 +31,18 @@ namespace OnlineExamSystem.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Entry(TrainerCreateVm entity)
+        public ActionResult Entry(ParticipantCreateVm entity)
         {
             if (ModelState.IsValid)
             {
-                var trainer = Mapper.Map<Trainer>(entity);
-                bool isAdded = _trainerManager.Add(trainer);
+                var participant = AutoMapper.Mapper.Map<Participant>(entity);
+                bool isAdded = _participantManager.Add(participant);
+
                 if (isAdded)
                 {
                     ModelState.Clear();
                     ViewBag.Message = "Saved";
-                    var model = new TrainerCreateVm()
+                    var model = new ParticipantCreateVm()
                     {
                         OrganizationSelectListItems = GetAllOrganizationSlItems(),
                         CourseSelectListItems = GetAllCourseSlItems(),
@@ -55,7 +59,7 @@ namespace OnlineExamSystem.Controllers
         }
         public List<SelectListItem> GetAllBatchSlItems()
         {
-            var batches = _trainerManager.GetAllBatch();
+            var batches = _participantManager.GetAllBatch();
             var slItems = new List<SelectListItem>();
             foreach (var batch in batches)
             {
@@ -68,7 +72,7 @@ namespace OnlineExamSystem.Controllers
         }
         public List<SelectListItem> GetAllCourseSlItems()
         {
-            var courses = _trainerManager.GetAllCourse();
+            var courses = _participantManager.GetAllCourse();
             var slItems = new List<SelectListItem>();
             foreach (var course in courses)
             {
@@ -81,7 +85,7 @@ namespace OnlineExamSystem.Controllers
         }
         public List<SelectListItem> GetAllOrganizationSlItems()
         {
-            var organizations = _trainerManager.GetAllOrganization();
+            var organizations = _participantManager.GetAllOrganization();
             var slItems = new List<SelectListItem>();
             foreach (var organization in organizations)
             {
