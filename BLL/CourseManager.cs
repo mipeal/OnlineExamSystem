@@ -43,12 +43,4 @@ namespace BLL
             return _tagRepository.GetAll();
         }
     }
-
-    public class _trainerRepository
-    {
-        public List<Trainer> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-    }
 }
