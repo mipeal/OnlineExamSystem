@@ -13,8 +13,7 @@ namespace BLL
     {
         CourseRepository _courseRepository=new CourseRepository();
         OrganizationRepository _organizationRepository=new OrganizationRepository();
-        //private parti _trainerRepository = new parti();
-        TrainerRepository trainerRepository = new TrainerRepository();
+        TrainerRepository _trainerRepository = new TrainerRepository();
         TagRepository _tagRepository = new TagRepository();
         public bool Add(Course course)
         {
