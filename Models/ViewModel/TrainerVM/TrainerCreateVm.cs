@@ -37,8 +37,6 @@ namespace Models.ViewModel.TrainerVM
         [Required]
         [StringLength(20)]
         public string Country { get; set; }
-        //[Required]
-        public byte[] Image { get; set; }
         [Required]
         public int CourseId { get; set; }
         [ForeignKey("CourseId")]

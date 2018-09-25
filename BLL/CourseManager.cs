@@ -13,7 +13,7 @@ namespace BLL
     {
         CourseRepository _courseRepository=new CourseRepository();
         OrganizationRepository _organizationRepository=new OrganizationRepository();
-        private TrainerRepository _trainerRepository = new TrainerRepository();
+        TrainerRepository _trainerRepository = new TrainerRepository();
         TagRepository _tagRepository = new TagRepository();
         public bool Add(Course course)
         {
@@ -35,11 +35,6 @@ namespace BLL
         {
             var organization = _organizationRepository.GetById(id);
             return organization;
-        }
-
-        public List<Trainer> GetAllTrainers()
-        {
-            return _trainerRepository.GetAll();
         }
 
         public List<Tag> GetAllTags()

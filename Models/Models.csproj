@@ -75,11 +75,15 @@
     <Compile Include="Tag.cs" />
     <Compile Include="Trainer.cs" />
     <Compile Include="ViewModel\BatchVM\BatchCreateVm.cs" />
+    <Compile Include="ViewModel\BatchVM\BatchEditVm.cs" />
+    <Compile Include="ViewModel\BatchVM\BatchInformationVm.cs" />
     <Compile Include="ViewModel\CourseVM\CourseCreateVm.cs" />
     <Compile Include="ViewModel\CourseVM\CourseInformationVm.cs" />
     <Compile Include="ViewModel\CourseVM\CourseEditVm.cs" />
     <Compile Include="ViewModel\ExamVM\ExamCreateVM.cs" />
     <Compile Include="ViewModel\ParticipantVM\ParticipantCreateVm.cs" />
+    <Compile Include="ViewModel\QuestionBankVM\QuestionCreateVM.cs" />
+    <Compile Include="ViewModel\ScheduleExamVM\ScheduleExamInfoVm.cs" />
     <Compile Include="ViewModel\QuestionBankVM\QuestionCreateVM.cs" />
     <Compile Include="ViewModel\TrainerVM\TrainerCreateVm.cs" />
   </ItemGroup>

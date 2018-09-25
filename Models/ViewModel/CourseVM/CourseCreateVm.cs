@@ -11,7 +11,7 @@ namespace Models.ViewModel.CourseVM
         [StringLength(50, MinimumLength = 5, ErrorMessage = "Please provide a name using 5-50 characters!")]
         public string Name { get; set; }
         [Required]
-        [StringLength(15, MinimumLength = 3, ErrorMessage = "Code length must be atleast 8 characters!")]
+        [StringLength(15, MinimumLength = 3, ErrorMessage = "Code length must be at least 8 characters!")]
         public string Code { get; set; }
         [Required(ErrorMessage = "Please provide the duration of your course!")]
         public double Duration { get; set; }
