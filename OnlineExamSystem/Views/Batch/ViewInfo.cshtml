@@ -1,0 +1,96 @@
+﻿@model Models.ViewModel.BatchVM.BatchInformationVm
+@{
+    ViewBag.Title = "Batch Information";
+}
+
+<div class="page-heading">
+    <h1 class="page-title">Batch Information</h1>
+    <div class="clf">
+        <ul class="nav nav-tabs tabs-line nav-fill">
+            <li class="nav-item">
+                <button type="button" id="GetBatchUpdate" class="nav-link active col-lg-12" data-toggle="tab"><i class="fa fa-line-chart"></i> Basic Information</button>
+            </li>
+            <li class="nav-item">
+                <button type="button" id="GetBatchAssignParticipant" class="nav-link col-lg-12" data-toggle="tab"><i class="fa fa-heartbeat"></i> Assign Participants</button>
+            </li>
+            <li class="nav-item">
+                <button type="button" id="GetBatchAssignTrainer" class="nav-link col-lg-12" data-toggle="tab"><i class="fa fa-heartbeat"></i> Assign Trainers</button>
+            </li>
+            <li class="nav-item">
+                <button type="button" id="GetBatchCreateExam" class="nav-link col-lg-12" data-toggle="tab"><i class="fa fa-life-ring"></i> Schedule Exams</button>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="page-content fade-in-up ">
+    <div class="row" id="LoadBatchEditPartial">
+        <div class="col-md-4">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Basic Information</div>
+
+                </div>
+                <div class="ibox-body">
+                    <div class="form-horizontal">
+                        @if (ViewBag.Message == "Updated")
+                        {
+                            <div class="alert alert-success" role="alert">
+                                Course has been saved succesfully!
+                            </div>
+                        }
+                        else if (ViewBag.Message == "Failed")
+                        {
+                            <div class="alert alert-warning" role="alert">
+                                Please! Try again later!
+                            </div>
+                        }
+                        @Html.AntiForgeryToken()
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Organizations, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-md-9">
+                                @Html.DisplayFor(c => c.Organization.Name)
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Course, "Course Name", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(c => c.Course.Name)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.No, "Course Code", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(c => c.No)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Description, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                    @Html.DisplayFor(c => c.Description)
+                                </div>
+                            </div>
+                        </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(c => c.StartDate, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                @Html.DisplayFor(c => c.StartDate)                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(c => c.EndDate, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                @Html.DisplayFor(c => c.EndDate)
+                            </div>
+                        </div>
+                    </div>
+                   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

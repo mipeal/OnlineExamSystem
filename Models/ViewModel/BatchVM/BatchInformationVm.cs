@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Models.ViewModel.BatchVM
 {
-    public class BatchCreateVm
+    public class BatchInformationVm
     {
-        private ICollection<Organization> _organizations;
-
         public int Id { get; set; }
         [Required]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "Please provide a code using 5-50 characters!")]
@@ -28,11 +22,13 @@ namespace Models.ViewModel.BatchVM
         public virtual Course Course { get; set; }
         public ICollection<Course> Courses { get; set; }
         public ICollection<SelectListItem> CourseSelectListItems { get; set; }
-       // public ICollection<Organization> Organizations { get => _organizations; set => _organizations = value; }
+        public int OrganizationId { get; set; }
+        public virtual Organization Organization { get; set; }
+        public ICollection<Organization> Organizations { get; set; }
+        public List<SelectListItem> OrganizationSelectListItems { get; set; }
         public ICollection<Participant> Participants { get; set; }
         public ICollection<Trainer> Trainers { get; set; }
         public ICollection<Exam> Exams { get; set; }
-
 
     }
 }

@@ -94,7 +94,7 @@ namespace OnlineExamSystem.Controllers
             }
             return slItems;
         }
-       
+       [HttpGet]
         public ActionResult ViewInfo(Course course)
         {
             var entity = Mapper.Map<CourseInformationVm>(course);

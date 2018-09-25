@@ -70,5 +70,6 @@ namespace Models
         public ICollection<Exam> Exams { get; set; }
         [NotMapped]
         public ICollection<Batch> Batches { get; set; }
+        
     }
 }

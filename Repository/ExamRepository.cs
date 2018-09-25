@@ -9,7 +9,7 @@ using Models;
 
 namespace Repository
 {
-    class ExamRepository
+    public class ExamRepository
     {
         DatabaseContext db = new DatabaseContext();
 

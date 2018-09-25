@@ -164,6 +164,7 @@
     <Content Include="Views\Batch\Entry.cshtml" />
     <Content Include="Views\Trainer\Edit.cshtml" />
     <Content Include="Views\Batch\Edit.cshtml" />
+    <Content Include="Views\Batch\ViewInfo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
