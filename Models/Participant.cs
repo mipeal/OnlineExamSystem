@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Models
 {
@@ -52,7 +53,7 @@ namespace Models
         [StringLength(30)]
         [DataType(DataType.Text)]
         public string HighestAcademic { get; set; }
-        [Required]
+        //[Required]
         public byte[] Image { get; set; }
         [Required]
         public int BatchId { get; set; }
@@ -62,14 +63,5 @@ namespace Models
         public int CourseId { get; set; }
         [ForeignKey("CourseId")]
         public Course Course { get; set; }
-        [NotMapped]
-        public ICollection<Organization> Organizations { get; set; }
-        [NotMapped]
-        public ICollection<Course> Courses { get; set; }
-        [NotMapped]
-        public ICollection<Exam> Exams { get; set; }
-        [NotMapped]
-        public ICollection<Batch> Batches { get; set; }
-        
     }
 }

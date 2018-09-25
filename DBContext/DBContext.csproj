@@ -60,6 +60,10 @@
     <Compile Include="Migrations\201809160932066_TrainerImage_NotRequired.Designer.cs">
       <DependentUpon>201809160932066_TrainerImage_NotRequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809250622085_ParticipantImage_NotRequired.cs" />
+    <Compile Include="Migrations\201809250622085_ParticipantImage_NotRequired.Designer.cs">
+      <DependentUpon>201809250622085_ParticipantImage_NotRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -84,6 +88,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809160932066_TrainerImage_NotRequired.resx">
       <DependentUpon>201809160932066_TrainerImage_NotRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809250622085_ParticipantImage_NotRequired.resx">
+      <DependentUpon>201809250622085_ParticipantImage_NotRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

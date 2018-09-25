@@ -6,26 +6,26 @@
     <h1 class="page-title">Course Edit</h1>
 </div>
 <div class="page-content fade-in-up ">
-<form class="row" id="LoadCourseEditPartial" method="post">
-@Html.AntiForgeryToken();
-<div id="BasicInfo" class="col-md-6">
-    <div class="ibox">
-        <div class="ibox-head">
-            <div class="ibox-title">Basic Information</div>
-            <div class="ibox-tools">
-                <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
-                <a class="fullscreen-link"><i class="fa fa-expand"></i></a>
-            </div>
-        </div>
-        <div class="ibox-body">
-            <div class="form-horizontal">
-                <div class="form-group row">
-                    @Html.LabelFor(c => c.Organization, htmlAttributes: new {@class = "col-sm-2 col-form-label"})
-                    <div class="col-md-9">
-                        @Html.DisplayFor(c => c.Organization.Name)
-                        @Html.ValidationMessageFor(c => c.Organization, null, htmlAttributes: new {@class = "text-muted text-danger"})
+    <form class="row" id="LoadCourseEditPartial" method="post">
+        @Html.AntiForgeryToken();
+        <div id="BasicInfo" class="col-md-6">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Basic Information</div>
+                    <div class="ibox-tools">
+                        <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
+                        <a class="fullscreen-link"><i class="fa fa-expand"></i></a>
                     </div>
                 </div>
+                <div class="ibox-body">
+                    <div class="form-horizontal">
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Organization, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                            <div class="col-md-9">
+                                @Html.DisplayFor(c => c.Organization.Name)
+                                @Html.ValidationMessageFor(c => c.Organization, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
+                        </div>
 
                 <div class="form-group row">
                     @Html.LabelFor(c => c.Name, "Course", htmlAttributes: new {@class = "col-sm-2 col-form-label"})
@@ -258,4 +258,7 @@
 </div>
 </form>
 </div>
+@section scripts{
+    <script src="~/Scripts/AppScripts/CourseDetail.js"></script>
+}
 

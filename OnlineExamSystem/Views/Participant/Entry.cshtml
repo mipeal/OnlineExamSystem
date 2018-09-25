@@ -1,11 +1,11 @@
-﻿@model Models.ViewModel.TrainerVM.TrainerCreateVm
+﻿@model Models.ViewModel.ParticipantVM.ParticipantCreateVm
 
 @{
-    ViewBag.Title = "Trainer Entry";
+    ViewBag.Title = "Participant Entry";
 }
 
 <div class="page-heading">
-    <h1 class="page-title">Trainer Entry</h1>
+    <h1 class="page-title">Participant Entry</h1>
 </div>
 <div class="page-content fade-in-up">
     <div class="row">
@@ -62,10 +62,10 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            @Html.LabelFor(c => c.Code, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            @Html.LabelFor(c => c.RegNo, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                             <div class="col-sm-9">
-                                @Html.TextBoxFor(c => c.Code, htmlAttributes: new { @class = "form-control", @placeholder = "Code" })
-                                @Html.ValidationMessageFor(c => c.Code, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                                @Html.TextBoxFor(c => c.RegNo, htmlAttributes: new { @class = "form-control", @placeholder = "Code" })
+                                @Html.ValidationMessageFor(c => c.RegNo, null, htmlAttributes: new { @class = "text-muted text-danger" })
                             </div>
                         </div>
                         <div class="form-group row">
@@ -111,8 +111,22 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            @Html.LabelFor(c => c.Profession, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(c => c.Profession, htmlAttributes: new { @class = "form-control", @placeholder = "Profession" })
+                                @Html.ValidationMessageFor(c => c.Profession, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.HighestAcademic, "Highest Academic", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(c => c.HighestAcademic, htmlAttributes: new { @class = "form-control", @placeholder = "Highest Academic" })
+                                @Html.ValidationMessageFor(c => c.HighestAcademic, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <div class="col-sm-9 ml-sm-auto">
-                                <input type="submit" value="Save" class="btn btn-primary" id="TrainerSave" />
+                                <input type="submit" value="Save" class="btn btn-primary" id="ParticipantSave" />
                             </div>
                         </div>
                     </form>
