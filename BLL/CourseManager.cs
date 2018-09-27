@@ -15,6 +15,7 @@ namespace BLL
         OrganizationRepository _organizationRepository=new OrganizationRepository();
         TrainerRepository _trainerRepository = new TrainerRepository();
         TagRepository _tagRepository = new TagRepository();
+        ExamRepository _examRepository =new ExamRepository();
         public bool Add(Course course)
         {
             return _courseRepository.Add(course);
@@ -39,7 +40,20 @@ namespace BLL
 
         public List<Tag> GetAllTags()
         {
-            return _tagRepository.GetAll();
+            var tags= _tagRepository.GetAll();
+            return tags;
+        }
+
+        public List<Trainer> GetAllTrainers()
+        {
+            var trainers=_trainerRepository.GetAll();
+            return trainers;
+        }
+
+        public int ExamCounter()
+        {
+            var noOfCount = _examRepository.GetAll().Count;
+            return noOfCount;
         }
     }
 }

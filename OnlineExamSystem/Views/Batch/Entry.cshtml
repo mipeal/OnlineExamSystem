@@ -58,18 +58,14 @@
                         <div class="form-group row">
                             @Html.LabelFor(c => c.StartDate, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                             <div class="col-sm-9">
-                                <div class="input-group">
-                                    @Html.TextBoxFor(c => c.StartDate, htmlAttributes: new { @class = "form-control", placeholder = " dd/mm/YY", @type="date", @min="01/01/2015" })
-                                    <br>
-
-                                    </div>
+                                    @Html.TextBoxFor(c => c.StartDate, htmlAttributes: new { @class = "form-control", placeholder = " dd/MM/yyyy", @type="date", @min="01/01/2015" })
                                 @Html.ValidationMessageFor(c => c.StartDate, null, htmlAttributes: new { @class = "text-muted text-danger" })
                             </div>
                         </div>
                         <div class="form-group row">
                             @Html.LabelFor(c => c.EndDate, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                         <div class="col-sm-9">
-                            @Html.TextBoxFor(c => c.EndDate, htmlAttributes: new { @class = "form-control", placeholder = "dd/ mm/YY ", @type = "date", @max = "01/01/2021" })
+                            @Html.TextBoxFor(c => c.EndDate, htmlAttributes: new { @class = "form-control", placeholder = "dd/MM/yyyy ", @type = "date", @max = "01/01/2021" })
                             @Html.ValidationMessageFor(c => c.EndDate, null, htmlAttributes: new { @class = "text-muted text-danger" })     
                         </div>
                         </div>

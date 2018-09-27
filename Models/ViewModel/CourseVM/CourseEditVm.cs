@@ -26,9 +26,9 @@ namespace Models.ViewModel.CourseVM
         [Required(ErrorMessage = "Please select a organization!")]
         public int OrganizationId { get; set; }
         public virtual Organization Organization { get; set; }
-        public virtual Exam Exam { get; set; }
-        public ICollection<Trainer> Trainers { get; set; }
-        public ICollection<Exam> Exams { get; set; }
+        public int ExamSerial { get; set; }
+        public virtual List<Trainer> Trainers { get; set; }
+        public virtual List<Exam> Exams { get; set; }
         public ICollection<Organization> Organizations { get; set; }
         public List<SelectListItem> OrganizationSelectListItems { get; set; }
         public List<SelectListItem> TrainerSelectListItems { get; set; }

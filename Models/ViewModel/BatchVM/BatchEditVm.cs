@@ -21,12 +21,12 @@ namespace Models.ViewModel.BatchVM
         [StringLength(250, MinimumLength = 10,
             ErrorMessage = "Please provide Description of your course with minimum 20 characters!")]
         public string Description { get; set; }
-
         [Required(ErrorMessage = "Please provide a start date!")]
-        public string StartDate { get; set; }
-
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
+        public DateTime StartDate { get; set; }
         [Required(ErrorMessage = "Please provide an end date!")]
-        public string EndDate { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
+        public DateTime EndDate { get; set; }
 
         [Required(ErrorMessage = "Please select a course!")]
         public int CourseId { get; set; }

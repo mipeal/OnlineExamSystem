@@ -11,24 +11,24 @@ namespace Models.ViewModel.BatchVM
 {
     public class BatchCreateVm
     {
-        private ICollection<Organization> _organizations;
-
-        public int Id { get; set; }
+        public int Id { get; set;}
         [Required]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "Please provide a code using 5-50 characters!")]
         public string No { get; set; }
         [StringLength(250, MinimumLength = 10, ErrorMessage = "Please provide Description of your course with minimum 20 characters!")]
         public string Description { get; set; }
         [Required(ErrorMessage = "Please provide a start date!")]
-        public string StartDate { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
+        public DateTime StartDate { get; set; }
         [Required(ErrorMessage = "Please provide an end date!")]
-        public string EndDate { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
+        public DateTime EndDate { get; set; }
         [Required(ErrorMessage = "Please select a course!")]
         public int CourseId { get; set; }
         public virtual Course Course { get; set; }
         public ICollection<Course> Courses { get; set; }
         public ICollection<SelectListItem> CourseSelectListItems { get; set; }
-       // public ICollection<Organization> Organizations { get => _organizations; set => _organizations = value; }
+        public ICollection<Organization> Organizations { get; set; }
         public ICollection<Participant> Participants { get; set; }
         public ICollection<Trainer> Trainers { get; set; }
         public ICollection<Exam> Exams { get; set; }

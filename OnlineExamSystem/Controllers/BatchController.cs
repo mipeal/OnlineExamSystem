@@ -44,6 +44,7 @@ namespace OnlineExamSystem.Controllers
             }
 
             ModelState.AddModelError("", "An Unknown Error Occured!");
+            entity.CourseSelectListItems = GetAllCourseSlItems();
             return View(entity);
         }
 

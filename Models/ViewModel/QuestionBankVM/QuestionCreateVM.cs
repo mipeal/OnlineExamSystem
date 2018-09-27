@@ -5,12 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Models.ViewModel.QuestionBankVM
 {
-    class QuestionCreateVM
+    public class QuestionCreateVM
     {
-        [Key]
         public int Id { get; set; }
         [Required]
         public int Order { get; set; }
@@ -36,11 +36,12 @@ namespace Models.ViewModel.QuestionBankVM
         public Course Course { get; set; }
 
         public ICollection<Option> Options { get; set; }
-        [NotMapped]
         public ICollection<Organization> Organizations { get; set; }
-        [NotMapped]
         public ICollection<Course> Courses { get; set; }
-        [NotMapped]
         public ICollection<Exam> Exams { get; set; }
+
+        public List<SelectListItem> OrganizationSelectListItems { get; set; }
+        public List<SelectListItem> CourseSelectListItems { get; set; }
+        public List<SelectListItem> ExamSelectListItems { get; set; }
     }
 }

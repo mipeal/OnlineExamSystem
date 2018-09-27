@@ -51,10 +51,13 @@ namespace OnlineExamSystem.Controllers
             #endregion
         [HttpGet]
         public ActionResult Edit(Course course)
+
         {
             var entity = Mapper.Map<CourseEditVm>(course);
+            var examSerial = _courseManager.ExamCounter();
             entity.Organization = _courseManager.GetOrganizationById(entity.OrganizationId);
             entity.TrainerSelectListItems = GetAllTrainersSlItems();
+            entity.ExamSerial = ++examSerial;
             return View(entity);
         }
 
@@ -104,13 +107,13 @@ namespace OnlineExamSystem.Controllers
         }
         public List<SelectListItem> GetAllTrainersSlItems()
         {
-            var trainers = _courseManager.GetAllOrganization();
+            var trainers = _courseManager.GetAllTrainers();
             var slItems = new List<SelectListItem>();
             foreach (var trainer in trainers)
             {
                 var sli = new SelectListItem();
                 sli.Text = trainer.Name;
-                sli.Value = trainer.Id.ToString();
+                sli.Value =trainer.Type.ToString();
                 slItems.Add(sli);
             }
             return slItems;
