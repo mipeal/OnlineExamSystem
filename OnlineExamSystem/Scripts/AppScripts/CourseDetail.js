@@ -129,7 +129,6 @@ function getSubmittedExam() {
 
 $(document).ready(function () {
     $.ajax({
-
         type: "POST",
         url: "../../Course/GetAllTrainers",
         contentType: "application/Json; charset=utf-8",
@@ -144,7 +143,69 @@ $(document).ready(function () {
 
             }
         }
-
-
+    });
+    var sl = 0;
+    $.ajax({
+        type: "POST",
+        url: "../../Course/GetSearchInformation",
+        contentType: "application/JSON; charset=utf-8",
+        data: JSON.stringify(),
+        success: function (rData) {
+            if (rData != undefined && rData != "") {
+                $.each(rData, function (k, v) {
+                    addRowsInSearch(++sl,v.Id, v.Name, v.Duration, v.Fees, v.Participants, v.Trainers, v.Batches);
+                });
+            }
+        }
     });
 });
+$("#OrganizationDDSearch").change(function () {
+
+    $("#SearchedInfo").empty();
+    var oId = $(this).val();
+    var sl = 0;
+    if (oId !== "") {
+        var params = { id: oId };
+        $.ajax({
+            type: "POST",
+            url: "../../Course/GetSearchInfo",
+            contentType: "application/JSON; charset=utf-8",
+            data: JSON.stringify(params),
+            success: function (rData) {
+                if (rData != undefined && rData != "") {
+                    $.each(rData, function (k, v) {
+                        addRowsInSearch(++sl,v.Id, v.Name, v.Duration, v.Fees, v.Participants, v.Trainers, v.Batches);
+                    });
+                }
+            }
+        });
+    }
+});
+function addRowsInSearch(sl, id, name, duration, fees, participants, trainers, batches) {
+
+    var index = $("#SubmittedExams").children("tr").length;
+    var idTd = "<td style='display:none'><input type='hidden' id='ItemId" + index + "' name='Course[" + index + "].Id' value='" + id + "' /> </td>";
+    var slTd = "<td> <input type='hidden' id='ItemSerial" + index + "'  name='Course[" + index + "].Serial' value='" + sl + "' /> " + sl + " </td>";
+    var nameTd = "<td> <input type='hidden' id='ItemName" + index + "'  name='Course[" + index + "].Name' value='" + name + "' /> " + name + " </td>";
+    var durationTd = "<td> <input type='hidden' id='ItemDuration" + index + "'  name='Course[" + index + "].Duration' value='" + duration + "' /> " + duration + " Month  </td>";
+    var feesTd = "<td> <input type='hidden' id='ItemFees" + index + "'  name='Course[" + index + "].Fees' value='" + fees + "' /> ৳. " + fees + " </td>";
+    var participantsTd = "<td> <input type='hidden' id='ItemParticipants" + index + "'  name='Course[" + index + "].Participants' value='" + participants+ "' /> " + participants + " </td>";
+    var trainersTd = "<td> <input type='hidden' id='ItemTrainers" + index + "'  name='Course[" + index + "].Trainers' value='" + trainers + "' /> " + trainers + " </td>";
+    var batchesTd = "<td> <input type='hidden' id='ItemBatches" + index + "'  name='Course[" + index + "].Batches' value='" + batches + "' /> " + batches + " </td>";
+    var edit = "<button class='btn btn-default btn-xs m-r-5' data-toggle='tooltip' data-original-title='Edit'><i class='fa fa-pencil font-14'></i></button>";
+    var del = "<button class='btn btn-default btn-xs' data-toggle='tooltip' data-original-title='Delete'><i class='fa fa-trash font-14'></i></button>";
+    var actions = "<td>" + edit + del + "</td>";
+
+    var newRow = "<tr>" + idTd+slTd + nameTd + durationTd + feesTd + participantsTd + trainersTd +batchesTd + actions + " </tr>";
+
+    $("#SearchedInfo").append(newRow);
+    
+    $("#ItemSerial").val("");
+    $("#ItemName").val("");
+    $("#ItemDuration").val("");
+    $("#ItemFees").val("");
+    $("#ItemParticipants").val("");
+    $("#ItemTrainers").val("");
+    $("#ItemBatches").val("");
+
+}

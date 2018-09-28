@@ -16,6 +16,8 @@ namespace BLL
         TrainerRepository _trainerRepository = new TrainerRepository();
         TagRepository _tagRepository = new TagRepository();
         ExamRepository _examRepository =new ExamRepository();
+        ParticipantRepository _participantRepository =new ParticipantRepository();
+        BatchRepository _batchRepository=new BatchRepository();
         public bool Add(Course course)
         {
             return _courseRepository.Add(course);
@@ -94,6 +96,37 @@ namespace BLL
                 return true;
             }
             return false;
+        }
+
+        public List<Course> GetAllCourseInfoForSearch(int id)
+        {
+            var courses = _courseRepository.GetAll().Where(x => x.OrganizationId == id).ToList();
+            return courses;
+        }
+
+        public int GetAllParticipantsForSearch(int courseId)
+        {
+            var participants = _participantRepository.GetAll().Where(x => x.CourseId == courseId).ToList();
+            return participants.Count;
+        }
+
+        public int GetAllBatchForSearch(int courseId)
+        {
+            var batches = _batchRepository.GetAll().Where(x => x.CourseId == courseId).ToList();
+            return batches.Count;
+        }
+
+        public string GetAllTrainersForSearch(int courseId)
+        {
+            var trainers = _trainerRepository.GetAll().Where(x=>x.CourseId == courseId).ToList();
+            var trainerNames = string.Join("|", trainers.Select(x => x.Name));
+            return trainerNames;
+        }
+
+        public List<Course> GetAllCourse()
+        {
+            var courses = _courseRepository.GetAll().ToList();
+            return courses;
         }
     }
 }

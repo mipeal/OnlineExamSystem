@@ -102,7 +102,15 @@ namespace OnlineExamSystem.Controllers
             ModelState.AddModelError("", "An Unknown Error Occured!");
             return View("Edit",entity);
         }
-
+        [HttpGet]
+        public ActionResult Search()
+        {
+            var model = new CourseSearchVm()
+            {
+                OrganizationSLI = GetAllOrganizationSlItems()
+            };
+            return View(model);
+        }
         public List<SelectListItem> GetAllOrganizationSlItems()
         {
             var organizations = _courseManager.GetAllOrganization();
@@ -153,5 +161,50 @@ namespace OnlineExamSystem.Controllers
             return null;
         }
 
+        public JsonResult GetSearchInfo(int id)
+        {
+            if (id > 0)
+            {
+                var courses = _courseManager.GetAllCourseInfoForSearch(id);
+                List<CourseSearchVm> dataList = new List<CourseSearchVm>();
+                foreach (var course in courses)
+                {
+                    var searchInfo = new CourseSearchVm()
+                    {
+                        Name = course.Name,
+                        Duration = course.Duration,
+                        Fees = course.Fees,
+                        Participants = _courseManager.GetAllParticipantsForSearch(course.Id),
+                        Trainers = _courseManager.GetAllTrainersForSearch(course.Id),
+                        Batches = _courseManager.GetAllBatchForSearch(course.Id)
+                    };
+                    dataList.Add(searchInfo);
+                }
+                
+                return Json(dataList);
+            }
+            return null;
+        }
+
+        public JsonResult GetSearchInformation()
+        {
+                var courses = _courseManager.GetAllCourse();
+                List<CourseSearchVm> dataList = new List<CourseSearchVm>();
+                foreach (var course in courses)
+                {
+                    var searchInfo = new CourseSearchVm()
+                    {
+                        Name = course.Name,
+                        Duration = course.Duration,
+                        Fees = course.Fees,
+                        Participants = _courseManager.GetAllParticipantsForSearch(course.Id),
+                        Trainers = _courseManager.GetAllTrainersForSearch(course.Id),
+                        Batches = _courseManager.GetAllBatchForSearch(course.Id)
+                    };
+                    dataList.Add(searchInfo);
+                }
+
+                return Json(dataList);
+        }
     }
 }

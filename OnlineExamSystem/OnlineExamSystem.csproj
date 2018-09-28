@@ -237,6 +237,7 @@
     <Content Include="Views\Batch\ViewInfo.cshtml" />
     <Content Include="Views\QuestionBank\Entry.cshtml" />
     <Content Include="Views\Exam\Entry.cshtml" />
+    <Content Include="Views\Course\Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

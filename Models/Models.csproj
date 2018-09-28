@@ -80,6 +80,7 @@
     <Compile Include="ViewModel\CourseVM\CourseCreateVm.cs" />
     <Compile Include="ViewModel\CourseVM\CourseInformationVm.cs" />
     <Compile Include="ViewModel\CourseVM\CourseEditVm.cs" />
+    <Compile Include="ViewModel\CourseVM\CourseSearchVm.cs" />
     <Compile Include="ViewModel\ExamVM\ExamCreateVM.cs" />
     <Compile Include="ViewModel\ParticipantVM\ParticipantCreateVm.cs" />
     <Compile Include="ViewModel\QuestionBankVM\QuestionCreateVM.cs" />
