@@ -152,10 +152,31 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\TimePicker\jquery.timesetter.css" />
+    <Content Include="Content\TimePicker\jquery.timesetter.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Mockup Primary\01. Organization Entry.png" />
+    <Content Include="Mockup Primary\02. Organization Information.png" />
+    <Content Include="Mockup Primary\03. Organization Search.png" />
+    <Content Include="Mockup Primary\04. Course Entry.png" />
+    <Content Include="Mockup Primary\05. Course Edit.png" />
+    <Content Include="Mockup Primary\06. Course Information.png" />
+    <Content Include="Mockup Primary\07. Course Search.png" />
+    <Content Include="Mockup Primary\08. Batch Entry.png" />
+    <Content Include="Mockup Primary\09. Batch Edit.png" />
+    <Content Include="Mockup Primary\10. Trainer Entry.png" />
+    <Content Include="Mockup Primary\11. Participant Entry.png" />
+    <Content Include="Mockup Primary\12. Exam Entry.png" />
+    <Content Include="Mockup Primary\13. Question And Options Entry.png" />
+    <Content Include="Mockup Primary\14. Exam Attend.png" />
+    <Content Include="Mockup Primary\15. Exam Result.png" />
     <Content Include="Scripts\AppScripts\CourseDetail.js" />
+    <Content Include="Scripts\AppScripts\ExamDetail.js" />
     <Content Include="Scripts\AppScripts\OrganizationDetail.js" />
+    <Content Include="Scripts\AppScripts\TimePicker\jquery.timesetter.es5.js" />
+    <Content Include="Scripts\AppScripts\TimePicker\jquery.timesetter.es5.min.js" />
+    <Content Include="Scripts\AppScripts\TimePicker\jquery.timesetter.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -166,6 +187,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\TimePicker\jquery.timesetter.less" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.4.js" />
     <Content Include="Scripts\jquery-2.2.4.min.js" />
@@ -187,6 +209,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BatchController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\ExamController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\ParticipantController.cs" />
     <Compile Include="Controllers\QuestionBankController.cs" />
@@ -213,6 +236,7 @@
     <Content Include="Views\Trainer\Entry.cshtml" />
     <Content Include="Views\Batch\ViewInfo.cshtml" />
     <Content Include="Views\QuestionBank\Entry.cshtml" />
+    <Content Include="Views\Exam\Entry.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

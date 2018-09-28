@@ -31,15 +31,6 @@ namespace Repository
             var course = db.Courses.FirstOrDefault(x => x.Id == id);
             return course;
         }
-
-       /* public bool Update(Batch batch)
-        {
-            db.Batches.Attach(batch);
-            db.Entry(batch).State = EntityState.Modified;
-            bool isUpdated = db.SaveChanges() > 0;
-            return isUpdated;
-        }
-        */
         public bool Update(Course course)
         {
             db.Courses.Attach(course);

@@ -55,5 +55,45 @@ namespace BLL
             var noOfCount = _examRepository.GetAll().Count;
             return noOfCount;
         }
+
+        public Trainer GetInfoByTrainerId(int id)
+        {
+            var trainer = _trainerRepository.GetById(id);
+            return trainer;
+        }
+
+        public bool AddExam(List<Exam> entityExams)
+        {
+            var counter = 0;
+            foreach (var exam in entityExams)
+            {
+                if (_examRepository.Add(exam) == true)
+                {
+                    counter++;
+                }
+            }
+            if (counter == entityExams.Count)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool AssignTrainers(List<Trainer> entityTrainers)
+        {
+            var counter = 0;
+            foreach (var trainer in entityTrainers)
+            {
+                if (_trainerRepository.Update(trainer) == true)
+                {
+                    counter++;
+                }
+            }
+            if (counter == entityTrainers.Count)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

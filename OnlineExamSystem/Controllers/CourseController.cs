@@ -65,20 +65,39 @@ namespace OnlineExamSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(CourseEditVm entity)
         {
-             if (ModelState.IsValid)
-                {
-                    var course = Mapper.Map<Course>(entity);
-                    bool isAdded = _courseManager.Update(course);
-                    if (isAdded)
-                    {
-                        ViewBag.Message = "Updated";
-                        return RedirectToAction("ViewInfo",course);
+            foreach (var exam in entity.Exams)
+            {
+                exam.CourseId = entity.Id;
+                exam.ExamCreated = DateTime.Now;
+            }
+            foreach (var trainer in entity.Trainers)
+            {
+                trainer.CourseId = entity.Id;
+            }
+            if (ModelState.IsValid)
+             {
+                 if (entity.Exams != null && entity.Exams.Count > 0 && entity.Trainers != null &&
+                     entity.Trainers.Count > 0)
+                 {
+                     bool isAdded = _courseManager.AddExam(entity.Exams);
+                     bool isAssigned = _courseManager.AssignTrainers(entity.Trainers);
+                     if (isAssigned==true && isAdded == true)
+                     {
+                        var course = Mapper.Map<Course>(entity);
+                         bool isUpdated = _courseManager.Update(course);
+                         if (isUpdated)
+                         {
+                             ViewBag.Message = "Updated";
+                             return RedirectToAction("ViewInfo", course);
+                         }
+                         else
+                         {
+                             ViewBag.Message = "Failed";
+                             return View("Edit", entity);
+                         }
                     }
-                    else
-                    {
-                        ViewBag.Message = "Failed";
-                        return View("Edit",entity);
-                    }
+                 }
+                   
                 }
             ModelState.AddModelError("", "An Unknown Error Occured!");
             return View("Edit",entity);
@@ -113,10 +132,26 @@ namespace OnlineExamSystem.Controllers
             {
                 var sli = new SelectListItem();
                 sli.Text = trainer.Name;
-                sli.Value =trainer.Type.ToString();
+                sli.Value =trainer.Id.ToString();
                 slItems.Add(sli);
             }
             return slItems;
         }
+
+        public JsonResult GetAllTrainers()
+        {
+            var trainers = _courseManager.GetAllTrainers();
+            return Json(trainers);
+        }
+        public JsonResult GetInfoByTrainerId(int id)
+        {
+            if (id > 0)
+            {
+                var dataList = _courseManager.GetInfoByTrainerId(id);
+                return Json(dataList);
+            }
+            return null;
+        }
+
     }
 }

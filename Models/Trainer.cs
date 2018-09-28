@@ -47,11 +47,9 @@ namespace Models
         public string Country { get; set; }
         //[Required]
         public byte[] Image { get; set; }
-        [Required]
         public int CourseId { get; set; }
         [ForeignKey("CourseId")]
         public Course Course { get; set; }
-        [Required]
         public int BatchId { get; set; }
         [ForeignKey("BatchId")]
         public Batch Batch { get; set; }

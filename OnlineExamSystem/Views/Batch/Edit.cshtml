@@ -87,9 +87,6 @@
                     <div class="form-group row">
                         @Html.LabelFor(c => c.Participants, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
                         <div class="col-sm-8">
-                            @*<select class="form-control" id="TrainersDD" name="TrainerId">
-                                    <option>Select Trainer</option>
-                                </select>*@
                             @Html.DropDownListFor(c => c.Participants, Model.ParticipantSelectListItems, "Select participants", htmlAttributes: new { @class = "form-control ParticipantsDD" })
                             @Html.ValidationMessageFor(c => c.Participants, null, htmlAttributes: new { @class = "text-muted text-danger" })
                         </div>
@@ -130,10 +127,7 @@
                     <div class="form-group row">
                         @Html.LabelFor(c => c.Trainers, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
                         <div class="col-sm-8">
-                            @*<select class="form-control" id="TrainersDD" name="TrainerId">
-                                    <option>Select Trainer</option>
-                                </select>*@
-                            @Html.DropDownListFor(c => c.Trainers, Model.TrainerSelectListItems, "Select Trainer", htmlAttributes: new { @class = "form-control TrainersDD" })
+                            @Html.DropDownListFor(c => c.Trainers, Model.TrainerSelectListItems, "Select Trainer", htmlAttributes: new { @class = "form-control",@id="TrainerDD" })
                             @Html.ValidationMessageFor(c => c.Trainers, null, htmlAttributes: new { @class = "text-muted text-danger" })
                         </div>
                         <div class="col-sm-1">

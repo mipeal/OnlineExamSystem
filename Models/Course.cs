@@ -38,7 +38,11 @@ namespace Models
         [Required]
         public int OrganizationId { get; set; }
         [ForeignKey("OrganizationId")]
-        public virtual Organization Organization { get; set; }
+        public Organization Organization { get; set; }
+        [NotMapped]
+        public virtual ICollection<Trainer> Trainers { get; set; }
+        [NotMapped]
+        public virtual ICollection<Exam> Exams { get; set; }
         
     }
 }

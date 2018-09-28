@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace Models.ViewModel.ExamVM
 {
@@ -30,10 +31,12 @@ namespace Models.ViewModel.ExamVM
         public DateTime ExamCreated { get; set; }
         [Required]
         public int CourseId { get; set; }
-        //public virtual Course Course { get; set; }
+        public virtual Course Course { get; set; }
         public ICollection<Organization> Organizations { get; set; }
-       // public ICollection<Course> Courses { get; set; }
+        public ICollection<Course> Courses { get; set; }
         public ICollection<Participant> Participants { get; set; }
         public ICollection<QuestionBank> Questions { get; set; }
+        public ICollection<SelectListItem> OrganizationSelectListItems { get; set; }
+        public ICollection<SelectListItem> ExamTypeSelectListItems { get; set; }
     }
 }
