@@ -1,12 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.Remoting.Messaging;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace EntityModels.ViewModel.OrganizationVM
 {
-    public class OrganizationCreateVm
+    public class OrganizationInfoVm
     {
-
         [Key]
         public int Id { get; set; }
         [Required]
@@ -30,7 +32,7 @@ namespace EntityModels.ViewModel.OrganizationVM
         [DataType(DataType.Text)]
         public string About { get; set; }
         // [Required(ErrorMessage = "Please provide your organization logo!")]
-        public byte[] Logo { get; set; }
+        public string Logo { get; set; }
 
         public ICollection<Course> Courses { get; set; }
     }

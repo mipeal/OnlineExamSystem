@@ -33,6 +33,7 @@ namespace EntityModels.ViewModel.TrainerVM
         [Required]
         [StringLength(20)]
         public string Country { get; set; }
+        public byte[] Image { get; set; }
         [Required]
         public int CourseId { get; set; }
         [ForeignKey("CourseId")]

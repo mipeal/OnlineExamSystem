@@ -26,38 +26,72 @@ namespace OnlineExamSystem.Controllers
         //POST: Organization
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Entry(OrganizationCreateVm entity, List<HttpPostedFileBase> uploadFiles)
+        public ActionResult Entry(OrganizationCreateVm entity)
         {
-            if (uploadFiles!=null && uploadFiles.Count>0 && uploadFiles[0]!=null)
+            HttpPostedFileBase file = Request.Files["uploadImage"];
+            if (file != null)
             {
-                
-            }
-            if (ModelState.IsValid)
-            {
-                var organization = Mapper.Map<Organization>(entity);
-                var organizations = _organizationManager.GetAllOrganization();
-                if (organizations.FirstOrDefault(x => x.Code == organization.Code) != null)
+                entity.Logo = ConvertToBytes(file);
+                if (ModelState.IsValid)
                 {
-                    ViewBag.Message = "Exist";
-                    return View(entity);
+                    var organization = Mapper.Map<Organization>(entity);
+                    var organizations = _organizationManager.GetAllOrganization();
+                    if (organizations.FirstOrDefault(x => x.Code == organization.Code) != null)
+                    {
+                        ViewBag.Message = "Exist";
+                        return View(entity);
+                    }
+                    else
+                    {
+                        bool isAdded = _organizationManager.Add(organization);
+                        if (isAdded)
+                        {
+                            ModelState.Clear();
+                            ViewBag.Message = "Saved";;
+                            return View();
+                        }
+                    }
                 }
                 else
                 {
-                    bool isAdded = _organizationManager.Add(organization);
-                    if (isAdded)
-                    {
-                        ViewBag.Message = "Saved";
-                        return View();
-                    }
+                    ViewBag.Message = "Failed";
+                    return View(entity);
                 }
             }
-            else
-            {
-                ViewBag.Message = "Failed";
-                return View(entity);
-            }
+            
             ModelState.AddModelError("","An Unknown Error Occured!");
             return View(entity);
+        }
+
+        [HttpGet]
+        public ActionResult ViewInfo(int id)
+        {
+            var organization = _organizationManager.GetOrganizationById(id);
+            var entity = Mapper.Map<OrganizationInfoVm>(organization);
+            entity.Logo = ConvertToJpgImage(organization.Logo);
+            return View(entity);
+        }
+        public byte[] ConvertToBytes(HttpPostedFileBase image)
+        {
+            byte[] imageBytes = null;
+            BinaryReader reader = new BinaryReader(image.InputStream);
+            imageBytes = reader.ReadBytes((int)image.ContentLength);
+            return imageBytes;
+        }
+
+        public string ConvertToJpgImage(byte[] imageBytes)
+        {
+            var base64 = Convert.ToBase64String(imageBytes);
+            var imgSrc = string.Format("data:image/jpg;base64,{0}", base64);
+            return imgSrc;
+        }
+
+
+        public string ConvertToPngImage(byte[] imageBytes)
+        {
+            var base64 = Convert.ToBase64String(imageBytes);
+            var imgSrc = string.Format("data:image/png;base64,{0}", base64);
+            return imgSrc;
         }
     }
 }

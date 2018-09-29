@@ -34,6 +34,8 @@ namespace OnlineExamSystem
                 conf.CreateMap<ExamCreateVm, Exam>();
                 conf.CreateMap<OrganizationCreateVm, Organization>();
                 conf.CreateMap<Organization, OrganizationCreateVm>();
+                conf.CreateMap<OrganizationInfoVm, Organization>();
+                conf.CreateMap<Organization, OrganizationInfoVm>();
 
             });
         }

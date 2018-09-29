@@ -26,5 +26,11 @@ namespace BLL
             var organizations = _organizationRepository.GetAll();
             return organizations;
         }
+
+        public Organization GetOrganizationById(int id)
+        {
+            var organization = _organizationRepository.GetById(id);
+            return organization;
+        }
     }
 }

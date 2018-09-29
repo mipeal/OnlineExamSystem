@@ -48,7 +48,6 @@ namespace EntityModels.ViewModel.ParticipantVM
         [StringLength(30)]
         [DataType(DataType.Text)]
         public string HighestAcademic { get; set; }
-//        [Required]
         public byte[] Image { get; set; }
         [Required]
         public int BatchId { get; set; }

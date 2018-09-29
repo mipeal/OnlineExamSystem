@@ -1,6 +1,7 @@
 ﻿using BLL;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -30,32 +31,37 @@ namespace OnlineExamSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Entry(TrainerCreateVm entity)
         {
-            if (ModelState.IsValid)
+            HttpPostedFileBase file = Request.Files["uploadImage"];
+            if (file != null)
             {
-                var trainer = Mapper.Map<Trainer>(entity);
-                var trainers = _trainerManager.GetAllTrainers();
-                if (trainers.FirstOrDefault(x => x.Code == trainer.Code) != null)
+                entity.Image = ConvertToBytes(file);
+                if (ModelState.IsValid)
                 {
-                    ViewBag.Message = "Exist";
-                    entity.OrganizationSelectListItems = GetAllOrganizationSlItems();
-                    entity.CourseSelectListItems = GetAllCourseSlItems();
-                    entity.BatchSelectListItems = GetAllBatchSlItems();
-                    return View(entity);
-                }
-                else
-                {
-                    bool isAdded = _trainerManager.Add(trainer);
-                    if (isAdded)
+                    var trainer = Mapper.Map<Trainer>(entity);
+                    var trainers = _trainerManager.GetAllTrainers();
+                    if (trainers.FirstOrDefault(x => x.Code == trainer.Code) != null)
                     {
-                        ModelState.Clear();
-                        ViewBag.Message = "Saved";
-                        var model = new TrainerCreateVm()
+                        ViewBag.Message = "Exist";
+                        entity.OrganizationSelectListItems = GetAllOrganizationSlItems();
+                        entity.CourseSelectListItems = GetAllCourseSlItems();
+                        entity.BatchSelectListItems = GetAllBatchSlItems();
+                        return View(entity);
+                    }
+                    else
+                    {
+                        bool isAdded = _trainerManager.Add(trainer);
+                        if (isAdded)
                         {
-                            OrganizationSelectListItems = GetAllOrganizationSlItems(),
-                            CourseSelectListItems = GetAllCourseSlItems(),
-                            BatchSelectListItems = GetAllBatchSlItems()
-                        };
-                        return View(model);
+                            ModelState.Clear();
+                            ViewBag.Message = "Saved";
+                            var model = new TrainerCreateVm()
+                            {
+                                OrganizationSelectListItems = GetAllOrganizationSlItems(),
+                                CourseSelectListItems = GetAllCourseSlItems(),
+                                BatchSelectListItems = GetAllBatchSlItems()
+                            };
+                            return View(model);
+                        }
                     }
                 }
             }
@@ -121,6 +127,29 @@ namespace OnlineExamSystem.Controllers
                 return Json(dataList);
             }
             return null;
+        }
+
+        public byte[] ConvertToBytes(HttpPostedFileBase image)
+        {
+            byte[] imageBytes = null;
+            BinaryReader reader = new BinaryReader(image.InputStream);
+            imageBytes = reader.ReadBytes((int)image.ContentLength);
+            return imageBytes;
+        }
+
+        public string ConvertToJpgImage(byte[] imageBytes)
+        {
+            var base64 = Convert.ToBase64String(imageBytes);
+            var imgSrc = string.Format("data:image/jpg;base64,{0}", base64);
+            return imgSrc;
+        }
+
+
+        public string ConvertToPngImage(byte[] imageBytes)
+        {
+            var base64 = Convert.ToBase64String(imageBytes);
+            var imgSrc = string.Format("data:image/png;base64,{0}", base64);
+            return imgSrc;
         }
     }
 }

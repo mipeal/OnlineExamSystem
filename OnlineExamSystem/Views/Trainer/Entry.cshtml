@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="ibox-body">
-                    <form class="form-horizontal" method="post">
+                    <form class="form-horizontal" method="post" enctype="multipart/form-data">
                         @Html.ValidationSummary(true, null, htmlAttributes: new { @class = "alert alert-danger", @role = "alert" })
                         @if (ViewBag.Message == "Saved")
                         {
@@ -116,6 +116,13 @@
                             <div class="col-sm-9">
                                 @Html.TextBoxFor(c => c.Country, htmlAttributes: new { @class = "form-control", @placeholder = "Country" })
                                 @Html.ValidationMessageFor(c => c.Country, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Image, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                <input type="file" name="uploadImage" id="uploadImage" />
+                                @Html.ValidationMessageFor(c => c.Image, null, htmlAttributes: new { @class = "text-muted text-danger" })
                             </div>
                         </div>
                         <div class="form-group row">
