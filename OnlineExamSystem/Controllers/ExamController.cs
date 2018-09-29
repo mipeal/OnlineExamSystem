@@ -36,19 +36,30 @@ namespace OnlineExamSystem.Controllers
             if (ModelState.IsValid)
             {
                 var exam = Mapper.Map<Exam>(entity);
-                bool isAdded = _examManager.Add(exam);
-                if (isAdded)
+                var exams = _examManager.GetAllExams();
+                if (exams.FirstOrDefault(x => x.Code == exam.Code) != null)
                 {
-                    ModelState.Clear();
-                    ViewBag.Message = "Saved";
-                    var examSerial = _examManager.ExamCounter();
-                    var model = new ExamCreateVm()
+                    ViewBag.Message = "Exist";
+                    entity.ExamTypeSelectListItems = GetAllExamTypesSLI();
+                    entity.OrganizationSelectListItems = GetAllOrganizationSlI();
+                    return View(entity);
+                }
+                else
+                {
+                    bool isAdded = _examManager.Add(exam);
+                    if (isAdded)
                     {
-                        ExamTypeSelectListItems = GetAllExamTypesSLI(),
-                        OrganizationSelectListItems = GetAllOrganizationSlI(),
-                        Serial = ++examSerial
-                    };
-                    return View(model);
+                        ModelState.Clear();
+                        ViewBag.Message = "Saved";
+                        var examSerial = _examManager.ExamCounter();
+                        var model = new ExamCreateVm()
+                        {
+                            ExamTypeSelectListItems = GetAllExamTypesSLI(),
+                            OrganizationSelectListItems = GetAllOrganizationSlI(),
+                            Serial = ++examSerial
+                        };
+                        return View(model);
+                    }
                 }
             }
             ModelState.AddModelError("", "An Unknown Error Occured!");

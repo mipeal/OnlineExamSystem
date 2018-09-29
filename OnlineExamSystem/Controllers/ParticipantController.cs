@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 
 namespace OnlineExamSystem.Controllers
 {
@@ -35,20 +36,32 @@ namespace OnlineExamSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                var participant = AutoMapper.Mapper.Map<Participant>(entity);
-                bool isAdded = _participantManager.Add(participant);
-
-                if (isAdded)
+                var participant = Mapper.Map<Participant>(entity);
+                var participants = _participantManager.GetAllParticipants();
+                if (participants.FirstOrDefault(x => x.RegNo == participant.RegNo) != null)
                 {
-                    ModelState.Clear();
-                    ViewBag.Message = "Saved";
-                    var model = new ParticipantCreateVm()
+                    ViewBag.Message = "Exist";
+                    entity.OrganizationSelectListItems = GetAllOrganizationSlItems();
+                    entity.CourseSelectListItems = GetAllCourseSlItems();
+                    entity.BatchSelectListItems = GetAllBatchSlItems();
+                    return View(entity);
+                }
+                else
+                {
+                    bool isAdded = _participantManager.Add(participant);
+
+                    if (isAdded)
                     {
-                        OrganizationSelectListItems = GetAllOrganizationSlItems(),
-                        CourseSelectListItems = GetAllCourseSlItems(),
-                        BatchSelectListItems = GetAllBatchSlItems()
-                    };
-                    return View(model);
+                        ModelState.Clear();
+                        ViewBag.Message = "Saved";
+                        var model = new ParticipantCreateVm()
+                        {
+                            OrganizationSelectListItems = GetAllOrganizationSlItems(),
+                            CourseSelectListItems = GetAllCourseSlItems(),
+                            BatchSelectListItems = GetAllBatchSlItems()
+                        };
+                        return View(model);
+                    }
                 }
             }
             ModelState.AddModelError("", "An Unknown Error Occured!");

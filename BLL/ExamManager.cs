@@ -36,5 +36,11 @@ namespace BLL
         {
             return _examRepository.GetAll().Count;
         }
+
+        public List<Exam> GetAllExams()
+        {
+            var exams = _examRepository.GetAll();
+            return exams;
+        }
     }
 }

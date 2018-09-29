@@ -15,15 +15,9 @@ namespace Models
         [Required]
         public int Order { get; set; }
         [Required]
-        [StringLength(50)]
-        [DataType(DataType.Text)]
         public string Question { get; set; }
         [Required]
-        public bool Type { get; set; }
-        [Required]
-        [StringLength(30)]
-        [DataType(DataType.Text)]
-        public string Answer { get; set; }
+        public string Type { get; set; }
         [Required]
         public double Mark { get; set; }
         [Required]
@@ -34,13 +28,7 @@ namespace Models
         public int CourseId { get; set; }
         [ForeignKey("CourseId")]
         public Course Course { get; set; }
-
+        [InverseProperty("Question")]
         public ICollection<Option> Options { get; set; }
-        [NotMapped]
-        public ICollection<Organization> Organizations { get; set; }
-        [NotMapped]
-        public ICollection<Course> Courses { get; set; }
-        [NotMapped]
-        public ICollection<Exam> Exams { get; set; }
     }
 }

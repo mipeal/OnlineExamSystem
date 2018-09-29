@@ -26,12 +26,21 @@ namespace OnlineExamSystem.Controllers
         public ActionResult Entry(Organization organization)
         {
             if (ModelState.IsValid)
-            {
-                bool isAdded = _organizationManager.Add(organization);
-                if (isAdded)
+            { 
+                var organizations = _organizationManager.GetAllOrganization();
+                if (organizations.FirstOrDefault(x => x.Code == organization.Code) != null)
                 {
-                    ViewBag.Message ="Saved";
-                    return View();
+                    ViewBag.Message = "Exist";
+                    return View(organization);
+                }
+                else
+                {
+                    bool isAdded = _organizationManager.Add(organization);
+                    if (isAdded)
+                    {
+                        ViewBag.Message = "Saved";
+                        return View();
+                    }
                 }
             }
             else

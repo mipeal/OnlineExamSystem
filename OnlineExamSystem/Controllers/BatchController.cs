@@ -35,11 +35,21 @@ namespace OnlineExamSystem.Controllers
             if (ModelState.IsValid)
             {
                 var batch = Mapper.Map<Batch>(entity);
-                bool isAdded = _batchManager.Add(batch);
-                if (isAdded)
+                var batches = _batchManager.GetAllBatches();
+                if (batches.FirstOrDefault(x => x.Id == batch.Id) != null)
                 {
-                    ViewBag.Message = "Saved";
-                    return RedirectToAction("Edit", batch);
+                    ViewBag.Message = "Exist";
+                    entity.CourseSelectListItems = GetAllCourseSlItems();
+                    return View(entity);
+                }
+                else
+                {
+                    bool isAdded = _batchManager.Add(batch);
+                    if (isAdded)
+                    {
+                        ViewBag.Message = "Saved";
+                        return RedirectToAction("Edit", batch);
+                    }
                 }
             }
 

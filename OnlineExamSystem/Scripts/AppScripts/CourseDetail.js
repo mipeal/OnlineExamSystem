@@ -183,7 +183,7 @@ $("#OrganizationDDSearch").change(function () {
 });
 function addRowsInSearch(sl, id, name, duration, fees, participants, trainers, batches) {
 
-    var index = $("#SubmittedExams").children("tr").length;
+    var index = $("#SearchedInfo").children("tr").length;
     var idTd = "<td style='display:none'><input type='hidden' id='ItemId" + index + "' name='Course[" + index + "].Id' value='" + id + "' /> </td>";
     var slTd = "<td> <input type='hidden' id='ItemSerial" + index + "'  name='Course[" + index + "].Serial' value='" + sl + "' /> " + sl + " </td>";
     var nameTd = "<td> <input type='hidden' id='ItemName" + index + "'  name='Course[" + index + "].Name' value='" + name + "' /> " + name + " </td>";

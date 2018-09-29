@@ -50,6 +50,7 @@
     <Compile Include="BatchRepository.cs" />
     <Compile Include="CourseRepository.cs" />
     <Compile Include="ExamRepository.cs" />
+    <Compile Include="OptionRepository.cs" />
     <Compile Include="OrganizationRepository.cs" />
     <Compile Include="ParticipantRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

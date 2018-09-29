@@ -64,6 +64,22 @@
     <Compile Include="Migrations\201809250622085_ParticipantImage_NotRequired.Designer.cs">
       <DependentUpon>201809250622085_ParticipantImage_NotRequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809281513416_UpdatedQuestionBankModel.cs" />
+    <Compile Include="Migrations\201809281513416_UpdatedQuestionBankModel.Designer.cs">
+      <DependentUpon>201809281513416_UpdatedQuestionBankModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809290547245_UpdatedOptionAddedAnswer.cs" />
+    <Compile Include="Migrations\201809290547245_UpdatedOptionAddedAnswer.Designer.cs">
+      <DependentUpon>201809290547245_UpdatedOptionAddedAnswer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809290551448_UpdatedOptionAddedOrder.cs" />
+    <Compile Include="Migrations\201809290551448_UpdatedOptionAddedOrder.Designer.cs">
+      <DependentUpon>201809290551448_UpdatedOptionAddedOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809290637523_UpdatedQuestionRemovedOption.cs" />
+    <Compile Include="Migrations\201809290637523_UpdatedQuestionRemovedOption.Designer.cs">
+      <DependentUpon>201809290637523_UpdatedQuestionRemovedOption.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -91,6 +107,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809250622085_ParticipantImage_NotRequired.resx">
       <DependentUpon>201809250622085_ParticipantImage_NotRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809281513416_UpdatedQuestionBankModel.resx">
+      <DependentUpon>201809281513416_UpdatedQuestionBankModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809290547245_UpdatedOptionAddedAnswer.resx">
+      <DependentUpon>201809290547245_UpdatedOptionAddedAnswer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809290551448_UpdatedOptionAddedOrder.resx">
+      <DependentUpon>201809290551448_UpdatedOptionAddedOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809290637523_UpdatedQuestionRemovedOption.resx">
+      <DependentUpon>201809290637523_UpdatedQuestionRemovedOption.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -36,5 +36,10 @@ namespace BLL
             return _trainerRepository.Add(trainer);
         }
 
+        public List<Trainer> GetAllTrainers()
+        {
+            var trainers = _trainerRepository.GetAll();
+            return trainers;
         }
+    }
 }

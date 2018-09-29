@@ -22,8 +22,7 @@ namespace OnlineExamSystem.Controllers
         {
             var model = new CourseCreateVm()
             {
-                OrganizationSelectListItems = GetAllOrganizationSlItems(),
-                //TagsSelectListItems = GetAllTagsSlItems()
+                OrganizationSelectListItems = GetAllOrganizationSlItems()
             };
             return View(model);
         }
@@ -35,11 +34,21 @@ namespace OnlineExamSystem.Controllers
             if (ModelState.IsValid)
             {
                 var course = Mapper.Map<Course>(entity);
-                bool isAdded = _courseManager.Add(course);
-                if (isAdded)
+                var courses = _courseManager.GetAllCourse();
+                if (courses.FirstOrDefault(x => x.Code == course.Code) != null)
                 {
-                    ViewBag.Message = "Saved";
-                    return RedirectToAction("Edit", course);
+                    ViewBag.Message = "Exist";
+                    entity.OrganizationSelectListItems = GetAllOrganizationSlItems();
+                    return View(entity);
+                }
+                else
+                {
+                    bool isAdded = _courseManager.Add(course);
+                    if (isAdded)
+                    {
+                        ViewBag.Message = "Saved";
+                        return RedirectToAction("Edit", course);
+                    }
                 }
             }
             ModelState.AddModelError("","An Unknown Error Occured!");

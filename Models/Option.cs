@@ -14,9 +14,12 @@ namespace Models
         [Key]
         public int Id { get; set; }
         [Required]
+        public int Order { get; set; }
+        [Required]
         [StringLength(30)]
         [DataType(DataType.Text)]
         public string Options { get; set; }
+        public bool Answer { get; set; }
         [Required]
         public int QuestionId { get; set; }
         [ForeignKey("QuestionId")]

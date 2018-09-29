@@ -61,5 +61,11 @@ namespace BLL
             var exams = _examRepository.GetAll();
             return exams;
         }
+
+        public List<Batch> GetAllBatches()
+        {
+            var batches = _batchRepository.GetAll();
+            return batches;
+        }
     }
 }

@@ -20,7 +20,7 @@
                         @if (ViewBag.Message == "Saved")
                         {
                             <div class="alert alert-success" role="alert">
-                                Organization has been saved succesfully!
+                                Questions has been saved succesfully!
                             </div>
                         }
                         else if (ViewBag.Message == "Failed")
@@ -33,70 +33,129 @@
                         <div class="form-group row">
                             @Html.Label("Organization", "Organization", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                             <div class="col-sm-9">
-                                @Html.DropDownList("OrganizationId", Model.OrganizationSelectListItems, "Select Organization", htmlAttributes: new { @class = "form-control" })
-                                @*@Html.ValidationMessageFor(c => c.OrganizationId, null, htmlAttributes: new { @class = "text-muted text-danger" })*@
+                                @Html.DropDownList("OrganizationId", Model.OrganizationSelectListItems, "Select Organization", htmlAttributes: new { @class = "form-control", @id = "OrganizationDD" })
                             </div>
                         </div>
                         <div class="form-group row">
                             @Html.LabelFor(c => c.Course, "Course", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                             <div class="col-sm-9">
-                                @Html.DropDownListFor(c => c.CourseId, Model.CourseSelectListItems, "Select Course", htmlAttributes: new { @class = "form-control" })
+                                <select class="form-control" name="CourseId" id="CourseId">
+                                    <option value="">Select Course</option>
+                                </select>
                                 @Html.ValidationMessageFor(c => c.CourseId, null, htmlAttributes: new { @class = "text-muted text-danger" })
                             </div>
                         </div>
                         <div class="form-group row">
                             @Html.LabelFor(c => c.Exam, "Exam", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                             <div class="col-sm-9">
-                                @Html.DropDownListFor(c => c.ExamId, Model.ExamSelectListItems, "Select Batch", htmlAttributes: new { @class = "form-control" })
+                                <select class="form-control" name="ExamId" id="ExamId">
+                                    <option value="">Select Exam</option>
+                                </select>
                                 @Html.ValidationMessageFor(c => c.ExamId, null, htmlAttributes: new { @class = "text-muted text-danger" })
                             </div>
                         </div>
-                        <div class="form-group">
-
-                            <label>Mark</label>
-                            <input type="text" class="form-control" id="mark" placeholder="mark">
-
-                            <label for="exampleFormControlTextarea2">
-                                <h2>Write Your Question</h2>
-                            </label>
-                            <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"></textarea>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Question, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            @Html.LabelFor(c => c.Mark, htmlAttributes: new { @class = "col-sm-1 col-form-label" })
+                            <div class="col-sm-1">
+                                @Html.TextBoxFor(c => c.Mark, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                            @Html.LabelFor(c => c.Order, "Q. Order", htmlAttributes: new { @class = "col-sm-2 ml-sm-auto" })
+                            <div class="col-sm-2">
+                                @Html.TextBoxFor(c => c.Order, htmlAttributes: new { @class = "form-control", @readonly = "true", @placeholder = "Auto Generated" })
+                            </div>
                         </div>
-
-                        <div class="row">
-                            <div>
-                                <div class="radio col-md-12">
-                                    <label>
-                                        <input type="radio" name="optradio">
-                                        <input type="text" class="form-control" id="answer" placeholder="Enter one answer">
-                                    </label>
-                                </div>
-                                <div class="radio col-md-12">
-                                    <label>
-                                        <input type="radio" name="optradio">
-                                        <input type="text" class="form-control" id="answer" placeholder="Enter one answer">
-                                    </label>
-                                </div>
-                                <div class="radio col-md-12">
-                                    <label>
-                                        <input type="radio" name="optradio">
-                                        <input type="text" class="form-control" id="answer" placeholder="Enter one answer">
-                                    </label>
-                                </div>
-                                <div class="radio col-md-12">
-                                    <label>
-                                        <input type="radio" name="optradio">
-                                        <input type="text" class="form-control" id="answer" placeholder="Enter one answer">
-                                    </label>
-                                </div>
+                        <div class="form-group row">
+                            <div class="col-sm-9  ml-sm-auto">
+                                @Html.TextAreaFor(c => c.Question, htmlAttributes: new { @class = "col-sm-12 summernote",@id="Question" })
+                                @Html.ValidationMessageFor(c => c.Mark, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Type, "Option(s) Type", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.DropDownListFor(c => c.Type, Model.TypeSelectListItems, "Select Course", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(c => c.Type, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row" id="LoadOptionTypePartial">
+                            <label class="col-sm-3" for="QuestionAnswer">
+                                Option(s)
+                            </label>
+                            <input type="checkbox" name="QuestionAnswer" id="QuestionAnswer" class="form-control col-sm-1" />
+                            <div class="col-sm-7">
+                                <input class="form-control" type="text" name="QuestionOption" id="QuestionOption" placeholder="Option">
+                            </div>
+                            <div class="col-sm-1">
+                                <button type="button" id="AddOptions" class="btn btn-sm btn-circle ">
+                                    <i class="fa fa-question">+</i>
+                                </button>
                             </div>
 
+                            <div class="table-responsive col-md-9 ml-sm-auto">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Sl</th>
+                                            <th>Option</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="CreatedOptions"></tbody>
+                                </table>
+                            </div>
+                        </div>
 
-
-
+                        <div class="form-group row">
+                            <div class="col-sm-4 ml-sm-auto">
+                                <input type="submit" value="Save Question & Answer" class="btn btn-primary" id="QuestionSave" />
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+
+        <div id="ExamList" class="col-md-6">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Question List</div>
+                    <div class="ibox-tools">
+                        <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
+                        <a class="fullscreen-link"><i class="fa fa-expand"></i></a>
+                    </div>
+                </div>
+                <div class="ibox-body">
+                    <div class="form-horizontal">
+                        <div class="table-responsive col-md-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Order</th>
+                                        <th>Question</th>
+                                        <th>OptionType</th>
+                                        <th>Options</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="SubmittedQuestions"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+@section scripts
+{
+    <script src="~/dist/assets/vendors/summernote/dist/summernote-bs4.js"></script>
+    <script src="~/Scripts/AppScripts/QuestionDetail.js"></script>
+    <script type="text/javascript">
+        
+    </script>
+}
+@section styles{
+
+    <link href="~/dist/assets/vendors/summernote/dist/summernote-bs4.css" rel="stylesheet" />
+}
