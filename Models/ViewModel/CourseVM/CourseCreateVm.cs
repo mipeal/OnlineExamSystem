@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace Models.ViewModel.CourseVM
+namespace EntityModels.ViewModel.CourseVM
 {
     public class CourseCreateVm
     {

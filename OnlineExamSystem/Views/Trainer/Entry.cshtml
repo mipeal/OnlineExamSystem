@@ -1,4 +1,4 @@
-﻿@model Models.ViewModel.TrainerVM.TrainerCreateVm
+﻿@model EntityModels.ViewModel.TrainerVM.TrainerCreateVm
 
 @{
     ViewBag.Title = "Trainer Entry";
@@ -27,23 +27,25 @@
                                 Organization has been saved succesfully!
                             </div>
                         }
-                        else if (ViewBag.Message == "Failed")
+                        else if (ViewBag.Message == "Exist")
                         {
                             <div class="alert alert-warning" role="alert">
-                                Please! Try again later!
+                                Your entered trainer already exist!
                             </div>
                         }
                         @Html.AntiForgeryToken()
                         <div class="form-group row">
                             @Html.Label("Organization", "Organization", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                             <div class="col-sm-9">
-                                @Html.DropDownList("OrganizationId", Model.OrganizationSelectListItems, "Select Organization", htmlAttributes: new { @class = "form-control" })
+                                @Html.DropDownList("OrganizationId", Model.OrganizationSelectListItems, "Select Organization", htmlAttributes: new { @class = "form-control", @id = "OrganizationDD" })
                             </div>
                         </div>
                         <div class="form-group row">
                             @Html.LabelFor(c => c.CourseId, "Course", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                             <div class="col-sm-6">
-                                @Html.DropDownListFor(c => c.CourseId, Model.CourseSelectListItems, "Select Course", htmlAttributes: new { @class = "form-control" })
+                                <select class="form-control" name="CourseId" id="CourseId">
+                                    <option value="">Select Course</option>
+                                </select>
                                 @Html.ValidationMessageFor(c => c.CourseId, null, htmlAttributes: new { @class = "text-muted text-danger" })
                             </div>
                             <div class="col-sm-3">
@@ -54,7 +56,9 @@
                         <div class="form-group row">
                             @Html.LabelFor(c => c.BatchId, "Batch", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                             <div class="col-sm-9">
-                                @Html.DropDownListFor(c => c.BatchId, Model.BatchSelectListItems, "Select Batch", htmlAttributes: new { @class = "form-control" })
+                                <select class="form-control" name="BatchId" id="BatchId">
+                                    <option value="">Select Exam</option>
+                                </select>
                                 @Html.ValidationMessageFor(c => c.BatchId, null, htmlAttributes: new { @class = "text-muted text-danger" })
                             </div>
                         </div>
@@ -125,4 +129,7 @@
         </div>
     </div>
 </div>
+@section scripts{
 
+    <script src="~/Scripts/AppScripts/TrainerDetails.js"></script>
+}

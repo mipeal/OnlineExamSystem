@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace Models.ViewModel.ExamVM
+namespace EntityModels.ViewModel.ExamVM
 {
     public class ExamCreateVm
     {

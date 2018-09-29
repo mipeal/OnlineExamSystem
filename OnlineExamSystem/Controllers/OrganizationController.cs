@@ -5,9 +5,12 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
-using Models;
+using AutoMapper;
 using BLL;
+using EntityModels;
+using EntityModels.ViewModel.OrganizationVM;
 
 namespace OnlineExamSystem.Controllers
 {
@@ -23,15 +26,20 @@ namespace OnlineExamSystem.Controllers
         //POST: Organization
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Entry(Organization organization)
+        public ActionResult Entry(OrganizationCreateVm entity, List<HttpPostedFileBase> uploadFiles)
         {
+            if (uploadFiles!=null && uploadFiles.Count>0 && uploadFiles[0]!=null)
+            {
+                
+            }
             if (ModelState.IsValid)
-            { 
+            {
+                var organization = Mapper.Map<Organization>(entity);
                 var organizations = _organizationManager.GetAllOrganization();
                 if (organizations.FirstOrDefault(x => x.Code == organization.Code) != null)
                 {
                     ViewBag.Message = "Exist";
-                    return View(organization);
+                    return View(entity);
                 }
                 else
                 {
@@ -46,10 +54,10 @@ namespace OnlineExamSystem.Controllers
             else
             {
                 ViewBag.Message = "Failed";
-                return View();
+                return View(entity);
             }
             ModelState.AddModelError("","An Unknown Error Occured!");
-            return View();
+            return View(entity);
         }
     }
 }

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace Models.ViewModel.CourseVM
+namespace EntityModels.ViewModel.CourseVM
 {
     public class CourseSearchVm
     {

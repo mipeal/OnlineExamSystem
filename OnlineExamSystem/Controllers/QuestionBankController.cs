@@ -5,10 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using BLL;
-using Models;
-using Models.ViewModel.ExamVM;
-using Models.ViewModel.QuestionBankVM;
-using Models.ViewModel.TrainerVM;
+using EntityModels;
+using EntityModels.ViewModel.QuestionBankVM;
 
 namespace OnlineExamSystem.Controllers
 {

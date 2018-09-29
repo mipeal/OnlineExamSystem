@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace Models.ViewModel.BatchVM
+namespace EntityModels.ViewModel.BatchVM
 {
     public class BatchCreateVm
     {
@@ -27,7 +23,7 @@ namespace Models.ViewModel.BatchVM
         public int CourseId { get; set; }
         public virtual Course Course { get; set; }
         public ICollection<Course> Courses { get; set; }
-        public ICollection<SelectListItem> CourseSelectListItems { get; set; }
+        public ICollection<SelectListItem> OrganizationSelectListItems { get; set; }
         public ICollection<Organization> Organizations { get; set; }
         public ICollection<Participant> Participants { get; set; }
         public ICollection<Trainer> Trainers { get; set; }

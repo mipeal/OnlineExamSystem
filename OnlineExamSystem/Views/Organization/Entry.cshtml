@@ -1,4 +1,4 @@
-﻿@model Models.Organization
+﻿@model EntityModels.ViewModel.OrganizationVM.OrganizationCreateVm
 @{
     ViewBag.Title = "Organization Entry";
 }
@@ -25,10 +25,10 @@
                                 Organization has been saved succesfully!
                             </div>
                         }
-                        else if (ViewBag.Message == "Failed")
+                        else if (ViewBag.Message == "Exist")
                         {
                             <div class="alert alert-warning" role="alert">
-                                Please! Try again later!
+                               Organization already exist!
                             </div>
                         }
                         @Html.AntiForgeryToken()
@@ -67,13 +67,13 @@
                                 @Html.ValidationMessageFor(c => c.About, null, htmlAttributes: new { @class = "text-muted text-danger" })
                             </div>
                         </div>
-                        @*<div class="form-group row">
+                        <div class="form-group row">
                             @Html.LabelFor(c => c.Logo,  htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                             <div class="col-sm-9">
-                                @Html.TextBoxFor(c => c.Logo, htmlAttributes: new { @type = "file" })
+                                <input type="file" name="uploadFiles"/>
                                 @Html.ValidationMessageFor(c => c.Logo, null, htmlAttributes: new { @class = "text-muted text-danger" })
                             </div>
-                        </div>*@
+                        </div>
                         <div class="form-group row">
                             <div class="col-sm-9 ml-sm-auto">
                                 <input type="submit" value="Save" class="btn btn-primary" />

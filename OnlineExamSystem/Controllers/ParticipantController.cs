@@ -1,13 +1,12 @@
 ﻿using BLL;
-using Models;
-using Models.ViewModel.ParticipantVM;
-using Models.ViewModel.TrainerVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using EntityModels;
+using EntityModels.ViewModel.ParticipantVM;
 
 namespace OnlineExamSystem.Controllers
 {
@@ -108,6 +107,25 @@ namespace OnlineExamSystem.Controllers
                 slItems.Add(sli);
             }
             return slItems;
+        }
+
+        public JsonResult GetInfoByOrganizationId(int id)
+        {
+            if (id > 0)
+            {
+                var dataList = _participantManager.GetAllCourse().Where(x => x.OrganizationId == id).ToList();
+                return Json(dataList);
+            }
+            return null;
+        }
+        public JsonResult GetInfoByCourseId(int id)
+        {
+            if (id > 0)
+            {
+                var dataList = _participantManager.GetAllBatch().Where(x => x.CourseId == id).ToList();
+                return Json(dataList);
+            }
+            return null;
         }
     }
 }

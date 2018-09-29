@@ -7,8 +7,8 @@
     <ProjectGuid>{2A14CB52-B2E3-4996-A9D9-2D4431AA2591}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Models</RootNamespace>
-    <AssemblyName>Models</AssemblyName>
+    <RootNamespace>EntityModels</RootNamespace>
+    <AssemblyName>EntityModels</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -82,6 +82,7 @@
     <Compile Include="ViewModel\CourseVM\CourseEditVm.cs" />
     <Compile Include="ViewModel\CourseVM\CourseSearchVm.cs" />
     <Compile Include="ViewModel\ExamVM\ExamCreateVM.cs" />
+    <Compile Include="ViewModel\OrganizationVM\OrganizationCreateVm.cs" />
     <Compile Include="ViewModel\ParticipantVM\ParticipantCreateVm.cs" />
     <Compile Include="ViewModel\QuestionBankVM\QuestionCreateVM.cs" />
     <Compile Include="ViewModel\QuestionBankVM\QuestionGridListVm.cs" />

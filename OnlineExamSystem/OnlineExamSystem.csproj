@@ -171,13 +171,16 @@
     <Content Include="Mockup Primary\13. Question And Options Entry.png" />
     <Content Include="Mockup Primary\14. Exam Attend.png" />
     <Content Include="Mockup Primary\15. Exam Result.png" />
+    <Content Include="Scripts\AppScripts\BatchDetails.js" />
     <Content Include="Scripts\AppScripts\CourseDetail.js" />
     <Content Include="Scripts\AppScripts\ExamDetail.js" />
     <Content Include="Scripts\AppScripts\OrganizationDetail.js" />
+    <Content Include="Scripts\AppScripts\ParticipantDetails.js" />
     <Content Include="Scripts\AppScripts\QuestionDetail.js" />
     <Content Include="Scripts\AppScripts\TimePicker\jquery.timesetter.es5.js" />
     <Content Include="Scripts\AppScripts\TimePicker\jquery.timesetter.es5.min.js" />
     <Content Include="Scripts\AppScripts\TimePicker\jquery.timesetter.js" />
+    <Content Include="Scripts\AppScripts\TrainerDetails.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -254,9 +257,9 @@
       <Project>{9fc7bf18-e14a-4f27-b752-764f129debd5}</Project>
       <Name>BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Models\Models.csproj">
+    <ProjectReference Include="..\Models\EntityModels.csproj">
       <Project>{2A14CB52-B2E3-4996-A9D9-2D4431AA2591}</Project>
-      <Name>Models</Name>
+      <Name>EntityModels</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

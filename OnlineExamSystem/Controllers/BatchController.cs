@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
 using BLL;
-using Models.ViewModel.BatchVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Models;
-using Models.ViewModel.CourseVM;
+using EntityModels;
+using EntityModels.ViewModel.BatchVM;
 
 namespace OnlineExamSystem.Controllers
 {
@@ -23,7 +22,7 @@ namespace OnlineExamSystem.Controllers
         {
             var model = new BatchCreateVm()
             {
-                CourseSelectListItems = GetAllCourseSlItems(),
+                OrganizationSelectListItems = GetAllOrganizationSlItems(),
             };
             return View(model);
         }
@@ -39,7 +38,7 @@ namespace OnlineExamSystem.Controllers
                 if (batches.FirstOrDefault(x => x.Id == batch.Id) != null)
                 {
                     ViewBag.Message = "Exist";
-                    entity.CourseSelectListItems = GetAllCourseSlItems();
+                    entity.OrganizationSelectListItems = GetAllOrganizationSlItems();
                     return View(entity);
                 }
                 else
@@ -54,7 +53,7 @@ namespace OnlineExamSystem.Controllers
             }
 
             ModelState.AddModelError("", "An Unknown Error Occured!");
-            entity.CourseSelectListItems = GetAllCourseSlItems();
+            entity.OrganizationSelectListItems = GetAllOrganizationSlItems();
             return View(entity);
         }
 
@@ -78,15 +77,15 @@ namespace OnlineExamSystem.Controllers
             var entity = Mapper.Map<BatchInformationVm>(batch);
             return View(entity);
         }
-        public List<SelectListItem> GetAllCourseSlItems()
+        public List<SelectListItem> GetAllOrganizationSlItems()
         {
-            var courses = _batchManager.GetAllCourse();
+            var organizations = _batchManager.GetAllOrganization();
             var slItems = new List<SelectListItem>();
-            foreach (var course in courses)
+            foreach (var organization in organizations)
             {
                 var sli = new SelectListItem();
-                sli.Text = course.Name + " - " + course.Code;
-                sli.Value = course.Id.ToString();
+                sli.Text = organization.Name + " - " + organization.Code;
+                sli.Value = organization.Id.ToString();
                 slItems.Add(sli);
             }
 
@@ -137,6 +136,15 @@ namespace OnlineExamSystem.Controllers
             }
 
             return slItems;
+        }
+        public JsonResult GetInfoByOrganizationId(int id)
+        {
+            if (id > 0)
+            {
+                var dataList = _batchManager.GetAllCourse().Where(x => x.OrganizationId == id).ToList();
+                return Json(dataList);
+            }
+            return null;
         }
     }
 }

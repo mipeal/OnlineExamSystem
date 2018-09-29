@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Models.ViewModel.TrainerVM;
-using Models;
 using AutoMapper;
+using EntityModels;
+using EntityModels.ViewModel.TrainerVM;
 
 namespace OnlineExamSystem.Controllers
 {
@@ -104,5 +104,23 @@ namespace OnlineExamSystem.Controllers
                 }
                 return slItems;
             }
+        public JsonResult GetInfoByOrganizationId(int id)
+        {
+            if (id > 0)
+            {
+                var dataList = _trainerManager.GetAllCourse().Where(x => x.OrganizationId == id).ToList();
+                return Json(dataList);
+            }
+            return null;
+        }
+        public JsonResult GetInfoByCourseId(int id)
+        {
+            if (id > 0)
+            {
+                var dataList = _trainerManager.GetAllBatch().Where(x => x.CourseId == id).ToList();
+                return Json(dataList);
+            }
+            return null;
+        }
     }
 }

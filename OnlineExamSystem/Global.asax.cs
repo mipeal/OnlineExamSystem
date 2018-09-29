@@ -1,12 +1,13 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 using AutoMapper;
-using Models;
-using Models.ViewModel.BatchVM;
-using Models.ViewModel.CourseVM;
-using Models.ViewModel.ExamVM;
-using Models.ViewModel.TrainerVM;
-using Models.ViewModel.ParticipantVM;
+using EntityModels;
+using EntityModels.ViewModel.BatchVM;
+using EntityModels.ViewModel.CourseVM;
+using EntityModels.ViewModel.ExamVM;
+using EntityModels.ViewModel.OrganizationVM;
+using EntityModels.ViewModel.ParticipantVM;
+using EntityModels.ViewModel.TrainerVM;
 
 namespace OnlineExamSystem
 {
@@ -31,6 +32,8 @@ namespace OnlineExamSystem
                 conf.CreateMap<TrainerCreateVm, Trainer>();
                 conf.CreateMap<Exam, ExamCreateVm>();
                 conf.CreateMap<ExamCreateVm, Exam>();
+                conf.CreateMap<OrganizationCreateVm, Organization>();
+                conf.CreateMap<Organization, OrganizationCreateVm>();
 
             });
         }

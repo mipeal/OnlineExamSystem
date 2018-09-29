@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace Models.ViewModel.CourseVM
+namespace EntityModels.ViewModel.CourseVM
 {
     public class CourseEditVm
     {

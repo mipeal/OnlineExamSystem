@@ -63,9 +63,9 @@
       <Project>{F4277102-26AE-4171-B476-2390B17F5C56}</Project>
       <Name>DBContext</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Models\Models.csproj">
+    <ProjectReference Include="..\Models\EntityModels.csproj">
       <Project>{2A14CB52-B2E3-4996-A9D9-2D4431AA2591}</Project>
-      <Name>Models</Name>
+      <Name>EntityModels</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
