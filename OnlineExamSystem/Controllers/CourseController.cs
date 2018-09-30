@@ -67,6 +67,8 @@ namespace OnlineExamSystem.Controllers
             entity.Organization = _courseManager.GetOrganizationById(entity.OrganizationId);
             entity.TrainerSelectListItems = GetAllTrainersSlItems();
             entity.ExamSerial = ++examSerial;
+            entity.Trainers = _courseManager.GetTrainersByCourseId(entity.Id);
+            entity.Exams = _courseManager.GetExamsByCourseId(entity.Id);
             return View(entity);
         }
 
@@ -74,7 +76,10 @@ namespace OnlineExamSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(CourseEditVm entity)
         {
-            foreach (var exam in entity.Exams)
+            if (entity.Exams != null && entity.Exams.Count > 0 && entity.Trainers != null &&
+                entity.Trainers.Count > 0)
+            {
+                foreach (var exam in entity.Exams)
             {
                 exam.CourseId = entity.Id;
                 exam.ExamCreated = DateTime.Now;
@@ -85,9 +90,6 @@ namespace OnlineExamSystem.Controllers
             }
             if (ModelState.IsValid)
              {
-                 if (entity.Exams != null && entity.Exams.Count > 0 && entity.Trainers != null &&
-                     entity.Trainers.Count > 0)
-                 {
                      bool isAdded = _courseManager.AddExam(entity.Exams);
                      bool isAssigned = _courseManager.AssignTrainers(entity.Trainers);
                      if (isAssigned==true && isAdded == true)

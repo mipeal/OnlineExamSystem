@@ -94,7 +94,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="table-responsive col-md-12">
+                            <div class="table-responsive col-md-12 pre-scrollable">
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -113,14 +113,24 @@
                                                 <tr>
                                                     <td>@(++sl)</td>
                                                     <td>@item.Name</td>
-                                                    <td>@item.Type</td>
+
                                                     <td>
-                                                        <button class="btn btn-default btn-xs m-r-5" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil font-14"></i></button>
-                                                        <button class="btn btn-default btn-xs" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash font-14"></i></button>
-                                                    </td>
-                                                </tr>
-                                            }
+                                                        @if (item.Type == true)
+                                                        {
+                                                            <input type='checkbox' id='ItemType' checked="@item.Type" />
+                                                        }
+                                                        else
+                                                        {
+                                                            <input type='checkbox' id='ItemType' checked="@item.Type" />
+                                                        }
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-default btn-xs m-r-5" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil font-14"></i></button>
+                                                    <button class="btn btn-default btn-xs" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash font-14"></i></button>
+                                                </td>
+                                            </tr>
                                         }
+                                    }
                                     </tbody>
                                 </table>
                             </div>
@@ -197,7 +207,7 @@
                 </div>
                 <div class="ibox-body">
                     <div class="form-horizontal">
-                        <div class="table-responsive col-md-12">
+                        <div class="table-responsive col-md-12 pre-scrollable">
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -213,10 +223,11 @@
                                 <tbody id="SubmittedExams">
                                     @if (Model != null && Model.Exams != null && Model.Exams.Count > 0)
                                     {
+                                        var sl = 0;
                                         foreach (var item in Model.Exams)
                                         {
                                             <tr>
-                                                <td>@item.Serial</td>
+                                                <td>@(++sl)</td>
                                                 <td>@item.ExamType</td>
                                                 <td>@item.Topic</td>
                                                 <td>@item.Code</td>
@@ -264,4 +275,9 @@ On page load call the below code
 
 @section styles{
     <link href="~/Content/TimePicker/jquery.timesetter.css" rel="stylesheet" />
+    <style>
+        .pre-scrollable {
+            max-height: 176px;
+        }
+    </style>
 }

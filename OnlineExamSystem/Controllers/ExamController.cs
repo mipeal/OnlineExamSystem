@@ -67,7 +67,24 @@ namespace OnlineExamSystem.Controllers
             return View(entity);
         }
 
-
+        [HttpGet]
+        public ActionResult Attend()
+        {
+            var model = new ExamAttendVm()
+            {
+                OrganizationSelectListItems = GetAllOrganizationSlI()
+            };
+            return View(model);
+        }
+        [HttpGet]
+        public ActionResult Result()
+        {
+            var model = new ExamResultVm()
+            {
+                OrganizationSelectListItems = GetAllOrganizationSlI()
+            };
+            return View(model);
+        }
         public List<SelectListItem> GetAllOrganizationSlI()
         {
             var organizations = _examManager.GetAllOrganization();
@@ -100,11 +117,29 @@ namespace OnlineExamSystem.Controllers
             slItems.Add(labType);
             return slItems;
         }
-        public JsonResult GetInfoByCourseId(int id)
+        public JsonResult GetInfoByOrganizationId(int id)
         {
             if (id > 0)
             {
-                var dataList = _examManager.GetInfoByCourseId(id);
+                var dataList = _examManager.GetInfoByOrganizationId(id);
+                return Json(dataList);
+            }
+            return null;
+        }
+        public JsonResult GetParticipantInfoByCourseId(int id)
+        {
+            if (id > 0)
+            {
+                var dataList = _examManager.GetParticipantInfoByCourseId(id);
+                return Json(dataList);
+            }
+            return null;
+        }
+        public JsonResult GetExamInfoByCourseId(int id)
+        {
+            if (id > 0)
+            {
+                var dataList = _examManager.GetExamInfoByCourseId(id);
                 return Json(dataList);
             }
             return null;

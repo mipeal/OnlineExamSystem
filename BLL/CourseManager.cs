@@ -128,5 +128,17 @@ namespace BLL
             var courses = _courseRepository.GetAll().ToList();
             return courses;
         }
+
+        public List<Trainer> GetTrainersByCourseId(int courseId)
+        {
+            var trainers = _trainerRepository.GetAll().Where(x => x.CourseId == courseId).ToList();
+            return trainers;
+        }
+
+        public List<Exam> GetExamsByCourseId(int courseId)
+        {
+            var exams = _examRepository.GetAll().Where(x => x.CourseId == courseId).ToList();
+            return exams;
+        }
     }
 }

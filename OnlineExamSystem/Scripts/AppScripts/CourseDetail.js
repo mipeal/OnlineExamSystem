@@ -28,7 +28,7 @@ function createRowForAssignedTrainers() {
         var emailTd = "<td style='display:none'><input type='hidden' id='ItemEmail" + index + "' name='Trainers[" + index +"].Email' value='" + selectedItem.Email + "' /> </td>";
         var postalTd = "<td style='display:none'><input type='hidden' id='ItemPostalCode" + index + "' name='Trainers[" + index +"].PostalCode' value='" + selectedItem.PostalCode + "' /> </td>";
         var slTd = "<td id='Sl" + index + "'> " + (++sl) + " </td>";
-        var typeTdChecked = '';
+        var typeTdChecked = "";
         if (selectedItem.Type !== true) {
             typeTdChecked = "";
         } else {

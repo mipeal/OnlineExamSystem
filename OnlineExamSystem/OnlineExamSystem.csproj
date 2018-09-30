@@ -243,6 +243,8 @@
     <Content Include="Views\Exam\Entry.cshtml" />
     <Content Include="Views\Course\Search.cshtml" />
     <Content Include="Views\Organization\ViewInfo.cshtml" />
+    <Content Include="Views\Exam\Attend.cshtml" />
+    <Content Include="Views\Exam\Result.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

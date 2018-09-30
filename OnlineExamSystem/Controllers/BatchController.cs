@@ -68,7 +68,46 @@ namespace OnlineExamSystem.Controllers
             entity.ParticipantSelectListItems = GetAllParticipantSlItems();
             entity.TrainerSelectListItems = GetAllTrainersSlItems();
             entity.ExamSelectListItems = GetAllExamSlItems();
+            entity.Trainers = _batchManager.GetTrainersByBatchId(entity.Id);
+            entity.Participants = _batchManager.GetParticipantByBatchId(entity.Id);
             return View(entity);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(BatchEditVm entity)
+        {
+            if (entity.ScheduleExams != null && entity.ScheduleExams.Count > 0 && entity.Trainers != null &&
+                entity.Trainers.Count > 0 && entity.Participants != null &&
+                entity.Participants.Count > 0)
+            {
+                if (ModelState.IsValid)
+            {
+                    bool isAdded = _batchManager.AddExamSchedule(entity.ScheduleExams);
+                    bool isAssigned = _batchManager.AssignTrainers(entity.Trainers);
+                    bool isEntered = _batchManager.AssignParticipants(entity.Participants);
+                    if (isAssigned == true && isAdded == true)
+                    {
+                        var batch = Mapper.Map<Batch>(entity);
+                        bool isUpdated = _batchManager.Update(batch);
+                        if (isUpdated)
+                        {
+                            ViewBag.Message = "Updated";
+                            return RedirectToAction("ViewInfo", batch);
+                        }
+                        else
+                        {
+                            ViewBag.Message = "Failed";
+                            return View("Edit", entity);
+                        }
+                    }
+                }
+
+            }
+            ModelState.AddModelError("", "An Unknown Error Occured!");
+            entity.ParticipantSelectListItems = GetAllParticipantSlItems();
+            entity.TrainerSelectListItems = GetAllTrainersSlItems();
+            entity.ExamSelectListItems = GetAllExamSlItems();
+            return View("Edit", entity);
         }
 
         [HttpGet]
@@ -142,6 +181,36 @@ namespace OnlineExamSystem.Controllers
             if (id > 0)
             {
                 var dataList = _batchManager.GetAllCourse().Where(x => x.OrganizationId == id).ToList();
+                return Json(dataList);
+            }
+            return null;
+        }
+        //paste here
+        public JsonResult GetInfoByParticipantId(int id)
+        {
+            if (id > 0)
+            {
+                var participants = _batchManager.GetParticipantById(id);
+                return Json(participants);
+            }
+            return null;
+        }
+
+        public JsonResult GetInfoByTrainerId(int id)
+        {
+            if (id > 0)
+            {
+                var dataList = _batchManager.GetInfoByTrainerId(id);
+                return Json(dataList);
+            }
+            return null;
+        }
+
+        public JsonResult GetExamById(int id)
+        {
+            if (id > 0)
+            {
+                var dataList = _batchManager.GetExamById(id);
                 return Json(dataList);
             }
             return null;
