@@ -1,0 +1,111 @@
+﻿@import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
+
+@white-color: #ffffff;
+@border-color: #bebebe;
+
+.divTimeSetterContainer
+{
+    margin: 5px;
+    float: left;
+    position: relative;
+
+    .timeValueBorder
+    {
+        float: left;
+        background-color: @white-color;
+        border: 1px solid @border-color;
+        border-radius: 3px;
+        height: 30px;
+    }
+
+    input.timePart
+    {
+        float: left;
+        margin-top: 1px;
+        text-align: right;
+        height: 25px;
+        border: none;
+        font-size: 1.05em;
+        font-weight: bold;
+        border-radius: 3px;
+        padding: 0;
+        cursor: text;
+        outline: none;
+    }
+
+    input.hours
+    {
+        width: 30px;
+    }
+
+    input.minutes
+    {
+        width: 18px;
+    }
+
+    span.hourSymbol, span.minuteSymbol
+    {
+        float: left;
+        margin: 6px 2px 0 2px;
+        font-size: 0.9em;
+    }
+
+    span.timeDelimiter
+    {
+        float: left;
+        font-size: 1.2em;
+        font-weight: bold;
+        margin: 2px 2px 0 2px;
+    }
+
+    .postfix-position
+    {
+        position: relative;
+        right: -3px;
+        top: 5px;
+        font-weight: bold;
+    }
+
+    .button-time-control
+    {
+        width: 20px;
+        float: left;
+        position: relative;
+        right: -2px;
+        top: -1px;
+        cursor: pointer;
+
+        div.updownButton
+        {
+            width: 20px;
+            float: left;
+            height: 15px;
+            border: 1px solid @border-color;
+            text-align: center;
+
+            &:first-child
+            {
+                border-top-right-radius: 3px;
+                border-bottom: none; /* to remove double line */
+            }
+
+            &:last-child
+            {
+                border-bottom-right-radius: 3px;
+            }
+
+            i
+            {
+                font-weight: bold;
+                font-size: 0.7em;
+                top: -2px;
+            }
+        }
+
+        div.updownButton:hover
+        {
+            background-color: @border-color;
+        }
+    }
+}
+

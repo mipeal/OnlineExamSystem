@@ -1,0 +1,71 @@
+﻿@model EntityModels.ViewModel.ExamVM.ExamAttendVm
+@{
+    ViewBag.Title = "Attend";
+}
+
+<div class="page-heading">
+    <h1 class="page-title">Exam Attend</h1>
+</div>
+<div class="page-content fade-in-up">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Entry Criteria</div>
+                    <div class="ibox-tools">
+                        <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
+                        <a class="fullscreen-link"><i class="fa fa-expand"></i></a>
+                    </div>
+                </div>
+                <div class="ibox-body">
+                    <form class="form-horizontal" method="post">
+                        @Html.ValidationSummary(true, null, htmlAttributes: new { @class = "alert alert-danger", @role = "alert" })
+                        @Html.AntiForgeryToken()
+                        <div class="form-group row">
+                            @Html.Label("Organization", "Organization", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.DropDownList("OrganizationId", Model.OrganizationSelectListItems, "Select Organization", htmlAttributes: new { @class = "form-control", @id = "OrganizationDD" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.CourseId, "Course", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                <select class="form-control" name="CourseId" id="CourseId">
+                                    <option value="">Select Course</option>
+                                </select>
+                                @Html.ValidationMessageFor(c => c.CourseId, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Exam, "Exam", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                <select class="form-control" name="ExamId" id="ExamId">
+                                    <option value="">Select Exam</option>
+                                </select>
+                                @Html.ValidationMessageFor(c => c.ExamId, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Participant, "Participant", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                <select class="form-control" name="ParticipantId" id="ParticipantId">
+                                    <option value="">Select Participant</option>
+                                </select>
+                                @Html.ValidationMessageFor(c => c.ParticipantId, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-4 ml-sm-auto">
+                                <input type="submit" value="Start" class="btn btn-primary" id="ExamStart" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/AppScripts/ExamDetail.js"></script>
+}

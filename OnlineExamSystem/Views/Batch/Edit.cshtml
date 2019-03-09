@@ -1,0 +1,298 @@
+﻿@model EntityModels.ViewModel.BatchVM.BatchEditVm
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-heading">
+    <h1 class="page-title">Batch Edit</h1>
+</div>
+<div class="page-content fade-in-up ">
+    <form class="row" id="LoadBatchEditPartial" method="post">
+        @Html.AntiForgeryToken()
+        <div id="BasicInfo" class="col-md-6">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Basic Information</div>
+                    <div class="ibox-tools">
+                        <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
+                        <a class="fullscreen-link"><i class="fa fa-expand"></i></a>
+                    </div>
+                </div>
+                <div class="ibox-body">
+                    <div class="form-group row">
+                        @Html.Label("Organization", "Organization", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                        <div class="col-sm-9">
+                            @Html.DisplayFor(c => c.Course.Organization.Name)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(c => c.CourseId, "Course", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                        <div class="col-sm-9">
+                            @Html.DisplayFor(c => c.Course.Name)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(c => c.No, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(c => c.No, htmlAttributes: new { @class = "form-control", placeholder = "batch no", @id = "BatchNo" })
+                            @Html.ValidationMessageFor(c => c.No, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(c => c.Description, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(c => c.Description, htmlAttributes: new { @class = "form-control", placeholder = "  " })
+                            @Html.ValidationMessageFor(c => c.Description, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(c => c.StartDate, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                @Html.TextBoxFor(c => c.StartDate, htmlAttributes: new { @class = "form-control", placeholder = " dd/mm/YY", @type = "date", @min = "01/01/2015" })
+                            </div>
+                            @Html.ValidationMessageFor(c => c.StartDate, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(c => c.EndDate, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(c => c.EndDate, htmlAttributes: new { @class = "form-control", placeholder = "dd/ mm/YY ", @type = "date", @max = "01/01/2021" })
+                            @Html.ValidationMessageFor(c => c.EndDate, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="AssignParticipants" class="col-md-6">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Assign Participants</div>
+                    <div class="ibox-tools">
+                        <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
+                        <a class="fullscreen-link"><i class="fa fa-expand"></i></a>
+                    </div>
+                </div>
+                <div class="ibox-body">
+                    <div class="form-horizontal">
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Participants, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                            <div class="col-sm-8">
+                                @Html.DropDownListFor(c => c.Participants, Model.ParticipantSelectListItems, "Select participants", htmlAttributes: new { @class = "form-control", @id = "ParticipantsDD" })
+                                @Html.ValidationMessageFor(c => c.Participants, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
+                            <div class="col-sm-1">
+                                <button type="button" id="AddParticipant" class="btn btn-sm btn-circle ">
+                                    <i class="fa fa-user">+</i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="table-responsive col-md-12  pre-scrollable">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Sl</th>
+                                            <th>Name</th>
+                                            <th>Profession</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="assignedParticipants">
+                                        @if (Model != null && Model.Participants != null && Model.Participants.Count > 0)
+                                        {
+                                            var sl = 0;
+                                            foreach (var item in Model.Participants)
+                                            {
+                                                <tr>
+                                                    <td>@item.Id</td>
+                                                    <td>@item.Name</td>
+                                                    <td>@item.Profession</td>
+                                                    <td>
+                                                        <button class="btn btn-default btn-xs m-r-5" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil font-14"></i></button>
+                                                        <button class="btn btn-default btn-xs" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash font-14"></i></button>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="ScheduleExamsPartial" class="col-md-6">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Schedule Exams</div>
+                    <div class="ibox-tools">
+                        <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
+                        <a class="fullscreen-link"><i class="fa fa-expand"></i></a>
+                    </div>
+                </div>
+                <div class="ibox-body">
+                    <div class="form-group row">
+                        @Html.LabelFor(c => c.ScheduleExam.ExamId, "Exam", htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-10">
+                            @Html.DropDownListFor(c => c.ScheduleExam.ExamId, Model.ExamSelectListItems, "Select Course", htmlAttributes: new { @class = "form-control", @id = "ScheduleExamDD" })
+                            @Html.ValidationMessageFor(c => c.ScheduleExam.ExamId, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(c => c.ScheduleExam.Schedule, "Schedule", htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-6">
+                            <div class="input-group date mb-2 mr-sm-2 mb-sm-0">
+                                <span class="input-group-addon bg-white"><i class="fa fa-calendar"></i></span>
+                                @Html.TextBox("ExamDate", "", htmlAttributes: new { @class = "form-control", @type = "date", @max = "01/01/2021", @id = "ExamDate" })
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <span class="input-group-addon bg-white"><i class="fa fa-clock-o"></i></span>
+                                @Html.TextBox("ExamTime", "", htmlAttributes: new { @class = "form-control", @type = "time", @min = "9:00", max = "17:00", @id = "ExamTime" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-10 ml-sm-auto">
+                            <button class="btn btn-info" type="button" id="ScheduleExam">Schedule Exam</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="AssignTrainers" class="col-md-6">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Assign Trainers</div>
+                    <div class="ibox-tools">
+                        <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
+                        <a class="fullscreen-link"><i class="fa fa-expand"></i></a>
+                    </div>
+                </div>
+                <div class="ibox-body">
+                    <div class="form-horizontal">
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Trainers, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                            <div class="col-sm-8">
+                                @Html.DropDownListFor(c => c.Trainers, Model.TrainerSelectListItems, "Select Trainer", htmlAttributes: new { @class = "form-control", @id = "TrainersDD" })
+                                @Html.ValidationMessageFor(c => c.Trainers, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
+                            <div class="col-sm-1">
+                                <button type="button" id="AddTrainer" class="btn btn-sm btn-circle ">
+                                    <i class="fa fa-user">+</i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="table-responsive col-md-12 pre-scrollable">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Sl</th>
+                                            <th>Name</th>
+                                            <th>Lead Trainer</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="assignedTrainers">
+                                        @if (Model != null && Model.Trainers != null && Model.Trainers.Count > 0)
+                                        {
+                                            var sl = 0;
+                                            foreach (var item in Model.Trainers)
+                                            {
+                                                <tr>
+                                                    <td>@item.Id</td>
+                                                    <td>@item.Name</td> 
+                                                    <td>
+                                                        @if (item.Type == true)
+                                                        {
+                                                            <input type='checkbox' id='ItemType' checked="@item.Type" />
+                                                        }
+                                                        else
+                                                        {
+                                                            <input type='checkbox' id='ItemType' checked="@item.Type" />
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-default btn-xs m-r-5" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil font-14"></i></button>
+                                                        <button class="btn btn-default btn-xs" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash font-14"></i></button>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="ExamList" class="col-md-6">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Exam List</div>
+                    <div class="ibox-tools">
+                        <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
+                        <a class="fullscreen-link"><i class="fa fa-expand"></i></a>
+                    </div>
+                </div>
+                <div class="ibox-body">
+                    <div class="form-horizontal">
+                        <div class="table-responsive col-md-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Topic</th>
+                                        <th>Code</th>
+                                        <th>Duration</th>
+                                        <th>Full Marks</th>
+                                        <th>Schedule</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="SubmittedExams">
+                                    @if (Model != null && Model.ScheduleExams != null && Model.ScheduleExams.Count > 0)
+                                    {
+                                        var sl = 0;
+                                        foreach (var item in Model.ScheduleExams)
+                                        {
+                                            <tr>
+                                                <td>@sl++</td>
+                                                <td>@item.Exam.ExamType</td>
+                                                <td>@item.Exam.Topic</td>
+                                                <td>@item.Exam.Code</td>
+                                                <td>@item.Exam.Duration</td>
+                                                <td>@item.Exam.FullMark</td>
+                                                <td>@item.Schedule</td>
+                                                <td>
+                                                    <button class="btn btn-default btn-xs m-r-5" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil font-14"></i></button>
+                                                    <button class="btn btn-default btn-xs" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash font-14"></i></button>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="EditSave" class="col-md-12">
+            <div class="ibox">
+                <input type="submit" value="Update" name="Update" id="BatchUpdate" class="btn btn-block btn-success" />
+            </div>
+        </div>
+
+    </form>
+</div>
+@section scripts
+{
+    <script src="~/Scripts/AppScripts/BatchDetails.js"></script>
+}
+
+

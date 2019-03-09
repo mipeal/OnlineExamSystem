@@ -1,0 +1,94 @@
+﻿@model EntityModels.ViewModel.BatchVM.BatchCreateVm
+@{
+    ViewBag.Title = "Batch Entry";
+
+}
+
+<div class="page-heading">
+    <h1 class="page-title">Batch Entry</h1>
+</div>
+<div class="page-content fade-in-up">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Entry Form</div>
+                    <div class="ibox-tools">
+                        <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
+                        <a class="fullscreen-link"><i class="fa fa-expand"></i></a>
+                    </div>
+                </div>
+                <div class="ibox-body">
+                    <form class="form-horizontal" method="post">
+                        @Html.ValidationSummary(true, null, htmlAttributes: new { @class = "alert alert-danger", role = "alert" })
+                        @if (ViewBag.Message == "Saved")
+                        {
+                            <div class="alert alert-success" role="alert">
+                                Batch has been saved succesfully!
+                            </div>
+                        }
+                        else if (ViewBag.Message == "Exist")
+                        {
+                            <div class="alert alert-warning" role="alert">
+                                Your entered batch already exist!
+                            </div>
+                        }
+                        @Html.AntiForgeryToken()
+                        <div class="form-group row">
+                            @Html.Label("Organization", "Organization", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.DropDownList("OrganizationId", Model.OrganizationSelectListItems, "Select Organization", htmlAttributes: new { @class = "form-control", @id = "OrganizationDD" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.CourseId, "Course", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                <select class="form-control" name="CourseId" id="CourseId">
+                                    <option value="">Select Course</option>
+                                </select>
+                                @Html.ValidationMessageFor(c => c.CourseId, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.No, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(c => c.No, htmlAttributes: new { @class = "form-control", placeholder = "batch no" })
+                                @Html.ValidationMessageFor(c => c.No, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.Description, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.TextAreaFor(c => c.Description, htmlAttributes: new { @class = "form-control", placeholder = "Course Description", @rows = "3" })
+                                @Html.ValidationMessageFor(c => c.Description, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.StartDate, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(c => c.StartDate, htmlAttributes: new { @class = "form-control", placeholder = " dd/MM/yyyy", @type = "date", @min = "01/01/2015" })
+                                @Html.ValidationMessageFor(c => c.StartDate, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(c => c.EndDate, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(c => c.EndDate, htmlAttributes: new { @class = "form-control", placeholder = "dd/MM/yyyy ", @type = "date", @max = "01/01/2021" })
+                                @Html.ValidationMessageFor(c => c.EndDate, null, htmlAttributes: new { @class = "text-muted text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-9 ml-sm-auto">
+                                <input type="submit" value="Save" class="btn btn-primary" id="BatchSave" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+
+    <script src="~/Scripts/AppScripts/BatchDetails.js"></script>
+}

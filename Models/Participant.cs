@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Models
+namespace EntityModels
 {
     public class Participant
     {
@@ -52,20 +47,15 @@ namespace Models
         [StringLength(30)]
         [DataType(DataType.Text)]
         public string HighestAcademic { get; set; }
-        [Required]
+        //[Required]
         public byte[] Image { get; set; }
-        [Required]
-        public int OrganizationId { get; set; }
-        [ForeignKey("OrganizationId")]
-        public Organization Organization { get; set; }
-        [Required]
-        public int CourseId { get; set; }
-        [ForeignKey("CourseId")]
-        public Course Course { get; set; }
         [Required]
         public int BatchId { get; set; }
         [ForeignKey("BatchId")]
         public Batch Batch { get; set; }
-        public ICollection<Exam> Exams { get; set; }
+        [Required]
+        public int CourseId { get; set; }
+        [ForeignKey("CourseId")]
+        public Course Course { get; set; }
     }
 }

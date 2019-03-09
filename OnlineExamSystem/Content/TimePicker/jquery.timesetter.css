@@ -1,0 +1,45 @@
+﻿.divTimeSetterContainer {
+    float: right;
+  position: relative;
+}
+.divTimeSetterContainer input.timePart {
+  float: left;
+  text-align: right;
+  height: 25px;
+  border: none;
+  cursor: text;
+  outline: none;
+}
+.divTimeSetterContainer input.hours {
+  width: 30px;
+}
+.divTimeSetterContainer input.minutes {
+  width: 18px;
+}
+.divTimeSetterContainer span.hourSymbol,
+.divTimeSetterContainer span.minuteSymbol {
+  float: left;
+  margin: 6px 2px 0 2px;
+  font-size: 0.9em;
+}
+.divTimeSetterContainer span.timeDelimiter {
+  float: left;
+  font-weight: bold;
+  margin: 2px 2px 0 2px;
+}
+.divTimeSetterContainer .button-time-control {
+  width: 20px;
+  float: right;
+  position: relative;
+  cursor: pointer;
+}
+.divTimeSetterContainer .button-time-control div.updownButton {
+  width: 18px;
+  float: right;
+  height: 15px;
+  border: 1px solid White;
+}
+
+.divTimeSetterContainer .button-time-control div.updownButton:hover {
+  background-color: #bebebe;
+}

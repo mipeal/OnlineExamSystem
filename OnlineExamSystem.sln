@@ -3,17 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineExamSystem", "OnlineExamSystem\OnlineExamSystem.csproj", "{BC486EDE-9DC6-4354-8B71-EA524FD357A1}"
-EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{6F78D4AD-E84A-4591-A985-5DEF0B4DC7A5}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{9FC7BF18-E14A-4F27-B752-764F129DEBD5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{8BC04D3A-63DE-4B9B-8C95-51894201CDF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{2A14CB52-B2E3-4996-A9D9-2D4431AA2591}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityModels", "Models\EntityModels.csproj", "{2A14CB52-B2E3-4996-A9D9-2D4431AA2591}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBContext", "DBContext\DBContext.csproj", "{F4277102-26AE-4171-B476-2390B17F5C56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineExamSystem", "OnlineExamSystem\OnlineExamSystem.csproj", "{BC486EDE-9DC6-4354-8B71-EA524FD357A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,14 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BC486EDE-9DC6-4354-8B71-EA524FD357A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC486EDE-9DC6-4354-8B71-EA524FD357A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BC486EDE-9DC6-4354-8B71-EA524FD357A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BC486EDE-9DC6-4354-8B71-EA524FD357A1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6F78D4AD-E84A-4591-A985-5DEF0B4DC7A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6F78D4AD-E84A-4591-A985-5DEF0B4DC7A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6F78D4AD-E84A-4591-A985-5DEF0B4DC7A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6F78D4AD-E84A-4591-A985-5DEF0B4DC7A5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9FC7BF18-E14A-4F27-B752-764F129DEBD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9FC7BF18-E14A-4F27-B752-764F129DEBD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FC7BF18-E14A-4F27-B752-764F129DEBD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +35,10 @@ Global
 		{F4277102-26AE-4171-B476-2390B17F5C56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4277102-26AE-4171-B476-2390B17F5C56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4277102-26AE-4171-B476-2390B17F5C56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC486EDE-9DC6-4354-8B71-EA524FD357A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC486EDE-9DC6-4354-8B71-EA524FD357A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC486EDE-9DC6-4354-8B71-EA524FD357A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC486EDE-9DC6-4354-8B71-EA524FD357A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

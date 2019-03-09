@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Models
+namespace EntityModels
 {
     public class Course
     {
@@ -34,16 +29,13 @@ namespace Models
         [DataType(DataType.Currency)]
         public double Fees { get; set; }
         [Required]
-        public string OrganizationId { get; set; }
-        [Required]
+        public int OrganizationId { get; set; }
         [ForeignKey("OrganizationId")]
         public Organization Organization { get; set; }
-        public ICollection<Tag> Tags { get; set; }
-        public ICollection<Trainer> Trainers { get; set; }
-        public ICollection<Participant> Participants { get; set; }
-        public ICollection<Exam> Exams { get; set; }
-        public ICollection<Batch> Batches { get; set; }
-        
+        [NotMapped]
+        public virtual ICollection<Trainer> Trainers { get; set; }
+        [NotMapped]
+        public virtual ICollection<Exam> Exams { get; set; }
         
     }
 }
