@@ -47,7 +47,18 @@
     <Compile Include="ParticipantManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionBankManager.cs" />
+    <Compile Include="TagManager.cs" />
     <Compile Include="TrainerManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Models\EntityModels.csproj">
+      <Project>{2a14cb52-b2e3-4996-a9d9-2d4431aa2591}</Project>
+      <Name>EntityModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository\Repository.csproj">
+      <Project>{8bc04d3a-63de-4b9b-8c95-51894201cdf9}</Project>
+      <Name>Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

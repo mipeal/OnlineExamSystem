@@ -48,17 +48,78 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseContext.cs" />
+    <Compile Include="Migrations\201809091624265_InitialDb.cs" />
+    <Compile Include="Migrations\201809091624265_InitialDb.Designer.cs">
+      <DependentUpon>201809091624265_InitialDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809121302048_CourseUpdated_TagAdded.cs" />
+    <Compile Include="Migrations\201809121302048_CourseUpdated_TagAdded.Designer.cs">
+      <DependentUpon>201809121302048_CourseUpdated_TagAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809160932066_TrainerImage_NotRequired.cs" />
+    <Compile Include="Migrations\201809160932066_TrainerImage_NotRequired.Designer.cs">
+      <DependentUpon>201809160932066_TrainerImage_NotRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809250622085_ParticipantImage_NotRequired.cs" />
+    <Compile Include="Migrations\201809250622085_ParticipantImage_NotRequired.Designer.cs">
+      <DependentUpon>201809250622085_ParticipantImage_NotRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809281513416_UpdatedQuestionBankModel.cs" />
+    <Compile Include="Migrations\201809281513416_UpdatedQuestionBankModel.Designer.cs">
+      <DependentUpon>201809281513416_UpdatedQuestionBankModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809290547245_UpdatedOptionAddedAnswer.cs" />
+    <Compile Include="Migrations\201809290547245_UpdatedOptionAddedAnswer.Designer.cs">
+      <DependentUpon>201809290547245_UpdatedOptionAddedAnswer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809290551448_UpdatedOptionAddedOrder.cs" />
+    <Compile Include="Migrations\201809290551448_UpdatedOptionAddedOrder.Designer.cs">
+      <DependentUpon>201809290551448_UpdatedOptionAddedOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809290637523_UpdatedQuestionRemovedOption.cs" />
+    <Compile Include="Migrations\201809290637523_UpdatedQuestionRemovedOption.Designer.cs">
+      <DependentUpon>201809290637523_UpdatedQuestionRemovedOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Models\Models.csproj">
+    <ProjectReference Include="..\Models\EntityModels.csproj">
       <Project>{2A14CB52-B2E3-4996-A9D9-2D4431AA2591}</Project>
-      <Name>Models</Name>
+      <Name>EntityModels</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201809091624265_InitialDb.resx">
+      <DependentUpon>201809091624265_InitialDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809121302048_CourseUpdated_TagAdded.resx">
+      <DependentUpon>201809121302048_CourseUpdated_TagAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809160932066_TrainerImage_NotRequired.resx">
+      <DependentUpon>201809160932066_TrainerImage_NotRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809250622085_ParticipantImage_NotRequired.resx">
+      <DependentUpon>201809250622085_ParticipantImage_NotRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809281513416_UpdatedQuestionBankModel.resx">
+      <DependentUpon>201809281513416_UpdatedQuestionBankModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809290547245_UpdatedOptionAddedAnswer.resx">
+      <DependentUpon>201809290547245_UpdatedOptionAddedAnswer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809290551448_UpdatedOptionAddedOrder.resx">
+      <DependentUpon>201809290551448_UpdatedOptionAddedOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809290637523_UpdatedQuestionRemovedOption.resx">
+      <DependentUpon>201809290637523_UpdatedQuestionRemovedOption.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

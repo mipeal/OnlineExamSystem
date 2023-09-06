@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DBContext;
-using Models;
+using EntityModels;
 
 namespace Repository
 {
-    class BatchRepository
+    public class BatchRepository
     {
         DatabaseContext db = new DatabaseContext();
 

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Models
+namespace EntityModels
 {
     public class Organization
     {
@@ -32,10 +26,8 @@ namespace Models
         [StringLength(250)]
         [DataType(DataType.Text)]
         public string About { get; set; }
-        [Required]
+       // [Required(ErrorMessage = "Please provide your organization logo!")]
         public byte[] Logo { get; set; }
-        public ICollection<Course> Courses { get; set; }
-        public ICollection<Trainer> Trainers { get; set; }
         
     }
 }

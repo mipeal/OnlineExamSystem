@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DBContext;
-using Models;
+using EntityModels;
 
 namespace Repository
 {
-    class OrganizationRepository
+    public class OrganizationRepository
     {
         DatabaseContext db = new DatabaseContext();
 
@@ -22,7 +22,7 @@ namespace Repository
 
         public List<Organization> GetAll()
         {
-            var organizationList = db.Organizations.ToList();
+            List<Organization> organizationList = db.Organizations.ToList();
             return organizationList;
         }
         public Organization GetById(int id)

@@ -1,22 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Models
+namespace EntityModels
 {
     public class Exam
     {
-        public Exam()
-        {
-            ExamCreated = DateTime.Now;
-        }
         [Key]
         public int Id { get; set; }
+        [Required]
+        public int Serial { get; set; }
         [Required]
         [StringLength(15)]
         [DataType(DataType.Text)]
@@ -34,19 +27,14 @@ namespace Models
         [Required]
         [DataType(DataType.Duration)]
         public TimeSpan Duration { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime ExamCreated { get; set; }
         [Required]
         public int CourseId { get; set; }
         [ForeignKey("CourseId")]
-        public Course Course { get; set; }
-        [Required]
-        public int OrganizationId { get; set; }
-        [ForeignKey("OrganizationId")]
-        public Organization Organization { get; set; }
-        [DataType(DataType.Date)]
-        public DateTime ExamCreated { get; set; }
+        public virtual Course Course { get; set; }
 
-        public ICollection<QuestionBank> Questions { get; set; }
-        public ICollection<Participant> Participants { get; set; }
+        
     }
 
 }
